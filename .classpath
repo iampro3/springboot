@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Ex03_AnnotationDI/src/main/java"/>
+	<classpathentry kind="src" path="Ex03_AnnotationDI/src/test/java"/>
+	<classpathentry kind="src" path="Ex04_WebBasic/src/main/java"/>
+	<classpathentry kind="src" path="Ex04_WebBasic/src/test/java"/>
+	<classpathentry kind="src" path="Ex06_Model1/src/main/java"/>
+	<classpathentry kind="src" path="Ex06_Model1/src/test/java"/>
+	<classpathentry kind="src" path="Ex07_Form/src/main/java"/>
+	<classpathentry kind="src" path="Ex07_Form/src/test/java"/>
+	<classpathentry kind="src" path="Ex08_Lombok/src/main/java"/>
+	<classpathentry kind="src" path="Ex08_Lombok/src/test/java"/>
+	<classpathentry kind="src" path="Ex09_Validator/src/main/java"/>
+	<classpathentry kind="src" path="Ex09_Validator/src/test/java"/>
+	<classpathentry kind="src" path="Ex12_Valid_Annotation/src/main/java"/>
+	<classpathentry kind="src" path="Ex12_Valid_Annotation/src/test/java"/>
+	<classpathentry kind="src" path="Ex13_JDBCTemplate/src/main/java"/>
+	<classpathentry kind="src" path="Ex13_JDBCTemplate/src/test/java"/>
+	<classpathentry kind="src" path="Ex14_SimpleBBS/src/main/java"/>
+	<classpathentry kind="src" path="Ex14_SimpleBBS/src/test/java"/>
+	<classpathentry kind="lib" path="Ex03_AnnotationDI/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex04_WebBasic/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex06_Model1/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex07_Form/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex08_Lombok/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex09_Validator/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex12_Valid_Annotation/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex13_JDBCTemplate/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Ex14_SimpleBBS/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
