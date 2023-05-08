@@ -17,7 +17,7 @@
         // 참고 : https://poiemaweb.com/js-ajax#3-xmlhttprequest
         /* let btn1 = document.querySelector("#btn1");
         btn1.addEventListener("click", function(){ */
-        let btn2 = document.querySelector("#btn2");
+          let btn2 = document.querySelector("#btn2");
         btn2.addEventListener("click", function(){
             
             // ajax 객체 생성
@@ -25,11 +25,8 @@
             
             // 보낼 준비
 //            let url = "http://localhost:8081/json";
-            //let url = "http://localhose:8081/test1";
-            //let url = "http://localhose:8081/test1";
+            let url = "http://localhose:8081/test1";
 //            let url = "http://localhose:8081/test2";
-			let url = "https://data.seoul.go.kr/dataList/OA-15483/S/1/datasetView.do";
-    		url = "https://api.allorigins.win/get?url="+encodeURIComponent(url);
             xhr.open("GET", url);
             
             // 실행을 지시. 단! 언제 끝날지 모름
@@ -43,8 +40,8 @@
             }
         })
     </script>
-    <!-- <hr>
-    jQuery로 ajax 실행<br> -->
+    <hr>
+    jQuery로 ajax 실행<br>
     <!-- <input type="button" id="btn2" value="jq-ajax 실행"> -->
     <script>
         /* dom */ /*이벤트제거*//*이벤트 바인딩*/

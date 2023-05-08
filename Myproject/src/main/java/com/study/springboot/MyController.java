@@ -1,3 +1,4 @@
+
 package com.study.springboot;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
+
+//import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class MyController {
@@ -58,4 +61,27 @@ public class MyController {
         
         return page;       
     }
+	
+	// Ex05에서 붙여왔음
+	@RequestMapping("/test1")	// url
+	public String test1() {		// 메소드 
+		System.out.println();
+		return "test1";			// jsp 이름	: application. "/WEB-INf/views/" +"test3"+".jsp"를 불러온다.
+	}
+	
+	@RequestMapping("/ajax")	// url
+	public String ajax() {		// 메소드 
+		// System.out.println();
+		return "ajax";			// jsp 이름	: application. "/WEB-INf/views/" +"test3"+".jsp"를 불러온다.
+	}
+	
+	
+	@RequestMapping("/test2")
+	public String test2(){
+		System.out.println("/test2 실행");
+		String nextPage = "sub/test2";
+		return nextPage;
+	}
+	
+	
 }

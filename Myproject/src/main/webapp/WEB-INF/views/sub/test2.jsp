@@ -8,12 +8,7 @@
 </head>
 <body>
 <%
-	int a = 10;
-	System.out.println(a);
-	
-	// html에 적어주는 역할.
-	out.println("<h1>hello world! "+ a +"</h1>");
+    out.println("Hello World!  (test2:sub)");
 %>
-
 </body>
 </html>
