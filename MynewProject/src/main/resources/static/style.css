@@ -1,0 +1,385 @@
+@charset "EUC-KR";
+
+:root {
+    --main-color:rgb(77, 16, 151);
+    /* 지정할 속성에 var(--main-color)라고 쓰면 적용됨 */
+}
+
+* {
+    margin: 0; padding: 0;      /* 좌측 메뉴 보라색 박스 영역을 화면과여백없이 지정 */
+    box-sizing: border-box;
+    outline: 0 ; border : none ;
+    text-decoration: none;
+}
+
+html {
+    font-size: 14px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;    /* 스크롤 이동을 부드럽게 한다.-나중에 추가 */
+}
+
+body {
+    padding-left: 25rem;        /*  헤더의 크기만큼 띄어서 나온다. */
+}
+
+section {   
+    min-height: 100vh;  /*  모니터 크기의 전체가 적용된다. 50:절반 */
+    padding: 1rem 5%;
+}
+    /* 좌측 메뉴 my portpolio 영역 부분 */
+header {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    background-color: rgb(208, 185, 227);
+    width: 25rem;       /* body에  padding-left: 25rem;  준 값*/
+    display: flex;
+    flex-direction: column; /* 가로 방향으로 변경함 */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rem 1rem;
+    text-align: center;
+}
+/* my portpolop 글씨 */
+header .logo {
+    color: rgb(176, 161, 217);
+    font-size: 2rem;
+    font-weight: bold;
+}
+header .logo  span {
+    color: var(--main-color);
+}
+header .navbar {}   /*좌 네비게이션 글자*/
+header .navbar a {
+    display: block;
+    color: rgb(150, 134, 207);
+    margin: 2rem 0;
+    font-size: 1.1rem;
+}
+header .navbar a:hover {
+    color: var(--main-color);
+}
+header .sns {}
+header .sns a {
+    color: rgb(231, 241, 250);
+    font-size: 1rem;
+    margin: 50px 1rem;
+}
+
+header .sns a:hover {
+    color: var(--main-color);
+}
+
+/* ################ header 끝 ############## */
+
+
+
+/* ################ section login ############## */
+/* reset */
+input {
+    outline: none;
+    border: none;
+    background-color: transparent;  /* 투명 */
+}
+
+a {
+    text-decoration: none;
+    color: blueviolet;
+    text-align: center;
+}
+
+/* 전체영역 */
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+/* 휴먼교육센터 logo 단 크기 및 위아래 -- login logo 영역*/
+#logo .main-logo {
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+
+/* 로고 크기 */
+#logo .main-logo img{
+    width: 80%;
+    height: 90px;
+    object-fit: contain;    /* 비율유지하면서 이미지가 깨지지 않고 비율맞츔 */
+}
+
+/* 아이디/ 비밀번호 입력 줄 설정 */
+#title .title-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 로그인영역 */
+.title-wrap{
+    /* 가로세로 가운데 */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    padding: 30px;    
+    border-radius: 10px;
+    background-color: aliceblue;
+    /* x축y축 블러 색성 */
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+}
+
+/* inner */
+#title { width: 100%;   height: 100%; }
+
+
+
+/* 아이디/ 비밀번호 입력 줄 설정 */
+#title .title-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 아이디/비밀번호 입력 칸 크기 */
+#title .title-inputbox input{
+    width: 70%;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ddd;
+    margin-bottom: 10px;    
+    box-sizing: border-box;
+}
+
+/* ::placeholder
+        -input 태그의 placeholder 속성을 선택하는 가상 선택자
+        -input 박스의 글자(id, pw 글자)에 대한 속성 설정
+         */
+#title .title-inputbox input::placeholder{
+    color: rgb(133, 130, 130);  /* id, pw 글자 색상 설정 */
+}
+
+#login .login-inputbox input ~ .border {    /* 로그인에 주황라인 없음 */
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 0;
+    /* border: 0 solid  salmon;     */
+}
+
+/* 아이디 저징/자동 로그인 */
+#login .login-remember {
+    height: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 10px;    
+}
+
+#login .login-remember label {
+    position: relative;
+    padding-left: 25px;
+    color: rgb(174, 164, 176);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#login .login-remember label input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#login .login-remember label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(233, 234, 235);
+}
+
+#login .login-remember label .checkmark::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 4px;
+    height: 8px;
+    border:  solid rgb(215, 215, 209);
+    border-width: 0 3px 3px 0;  /* top right botton left */
+    transform: rotate(45deg);
+}
+
+/* 체크했을 때 색상 변경 */
+#login .login-remember label input:checked ~ .checkmark {
+    background-color: blueviolet;
+
+}
+
+/* 글씨색도 변경  */
+#login .login-remember label input:checked ~ span {
+    color: rgb(134, 17, 212);
+}
+/* -----------로그인 버튼 박스 */ 
+#title .title-btnbox .title-btn{
+    display: block;
+    background-color: rgb(227, 220, 233);
+    /* background: 
+    radial-gradient(circle at 50% 0, rgba(255,0,0, 0.5), rgba(255,0,0,0) 70%),
+    radial-gradient(circle at 7% 75%, rgba(0,0,255, 0.5), rgba(255,0,0,0) 70%),
+    radial-gradient(circle at 93% 75%, rgba(0,255,0, 0.5), rgba(255,0,0,0) 70%); */
+    color: blanchedalmond;
+    font-size: 1.0rem;
+    color: rgb(133, 103, 146);
+    margin-top: 10px;   /* 내가 추가함 */
+    line-height: 25px;    /* 버튼 안에서 글자 높이 */
+    border-radius: 10px;
+    width: 120px;
+    height: 30px;
+}
+
+/* 로그인 박스 올렸을 때 버튼 색상 진해짐 */
+#title .title-btnbox .title-btn:hover {
+    filter: brightness(90%);
+}
+
+/* 카피라이트 */
+#login .copy {
+    height: 200px;
+    margin-top: 500px;   /* 카피라이트 글자 위의 요소와의 거리 */
+    margin-bottom: 100px;   
+    width: 500px;
+
+}
+
+#login .copy p {
+    font-size: 0.7rem;
+    text-align: center;
+}   
+/* ################ section login 끝 ############## */
+
+
+/* ################ section.profile ############## */
+
+/* ################ section.profile ############## */
+
+.profile {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+.profile .img {
+    flex: 1 1 20rem;
+}
+
+.profile .img img {
+    width: 100%;
+    min-width: 320px;
+}
+.profile .content {
+    flex: 1 1 30rem;}
+
+.profile .content .intro {
+    font-size: 2rem;
+    color: var(--main-color);
+}
+.profile .content h3 {
+    font-size: 3rem;
+    color: blueviolet;}
+
+.profile .content h3 span {
+    color: var(--main-color);
+}
+.profile .content .info {
+    font-size: 1.4rem;
+    color: black;
+}
+.profile .content .text {
+    font-size: 1.0rem;
+    color: darkgrey;
+}
+
+.btn {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.8rem 1.2 rem;
+    background-color: var(--main-color);
+    color: #ddd;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+.btn:hover {
+    background-color: darkblue;
+}
+/* ################ section.profile 끝 ############## */
+
+
+/* ################ section.portpolio  ############## */
+/* 슬라이드 */
+/* 슬라이드 */
+.slide-container {
+    width: 100%;
+    height: 700px;
+    margin: 0 auto;
+}
+
+.slide-container .slide {
+    width: auto;
+    height: 700px;
+    padding: 20px 0;    /* 작은 이미지와 큰 이미지와 간격 */
+    box-sizing: border-box;
+}
+
+.slide img { 
+    width: auto;
+    height: 50%;
+    
+}
+
+.slide-nav {    /* 하단 작은 슬라이드 영역 */
+    width: 100%;
+    height: 180px;
+    margin: 0 auto;
+}
+
+
+.slide-nav .slide { /* 하단 슬라이드 이미지 크기 */
+    width: auto;
+    height: 180px;
+    /* padding: 20px; */
+    box-sizing: border-box;
+}
+
+.slide-nav .slide:not(.slick-current) {
+    filter: brightness(40%);
+}
+
+
+/* ################ section.portpolio 끝 ############## */
+
+/* 상단 x 표 메뉴열기/닫기 */
+.btn-menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(177, 177, 207);
+    color: aliceblue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#btn-close {
+    position: absolute;
+}
