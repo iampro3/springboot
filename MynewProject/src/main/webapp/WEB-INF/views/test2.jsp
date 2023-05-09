@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,12 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <%
-	int a = 10;
-	System.out.println(a);
-	
-	// html에 적어주는 역할.
-	out.println("<h1>hello world! "+ a +"</h1>");
+	    out.println("#02 : Hello World");
 %>
 
 </body>
