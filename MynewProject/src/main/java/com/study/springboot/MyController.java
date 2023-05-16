@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class MyController {
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public @ResponseBody String root() throws Exception{
         return "Form 데이터 전달받아 사용하기";
     }

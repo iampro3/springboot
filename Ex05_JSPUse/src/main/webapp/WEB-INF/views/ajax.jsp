@@ -45,7 +45,7 @@
     </script>
     <!-- <hr>
     jQuery로 ajax 실행<br> -->
-    <!-- <input type="button" id="btn2" value="jq-ajax 실행"> -->
+  <!--    <input type="button" id="btn2" value="jq-ajax 실행"> -->
     <script>
         /* dom */ /*이벤트제거*//*이벤트 바인딩*/
         $("#btn2").off("click").on("click", function(){

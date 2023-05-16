@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+      
+    <style>
+ /*       table, th, td{
+           border :1px solid rgb(231, 228, 228);
+       }
+       table{
+           margin-top: auto;
+           align-self: center;
+           width: 400px;
+       } */
+       table{
+           margin-top: 400px;
+           background-color: rgb(233, 241, 248);
+           margin : auto;
+           width: 40%;
+           height: 200px;
+       }
+       th{
+           margin-top: 100px;
+           background-color: rgb(252, 253, 253);
+         
+           height: 200px;
+       }
+    </style>
+</head>
+<script>
+    function fnClick(){
+            let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
+         if (matchid){            
+            alert("환영합니다.")
+            location.href = "http://naver.com"
+         } else {
+            alert("id와 pw를 입력해주세요.")
+            location.href = "http://daum.net"
+        } 
+    }
+    </script>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <td align="center">
+
+                    
+                    <div class="container">
+                        <form action="" id="loginform">
+                            <p>                            
+                        <h2>Instagram</h2>
+                        <br>
+                        <p>
+                        <label for="username">Username</label>
+                        
+                    <input type="text" id="id" width="100" height="20" placeholder="username">
+                    </p>
+                
+                    <p>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" width="100" height="200" placeholder="password">
+                    <!-- </p> -->
+                    <!-- <br> -->
+                    <input type="button" value="Login" onclick="fnClick()" width="100" height="200"> </p>
+                    <div class="copy">
+                        <br>
+                        <p>copyright&copy: 2023 Instagram Edu. All right reserved.</p>
+                    </div>    
+
+
+                    <!-- jQuery 아래로 내리는 것이 추세이다.-->
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+
+                    <script>
+                    /* 같으면 alert("환영합니다.")
+                        location.href = "http://naver.com"
+                        다르면 id/pw를 확인해주세요. 출력
+
+                    */
+                    let id = document.querySelector("#id");
+                        id.addEventListener("keyup", function (event){
+                            console.log(event.keyCode);
+                        });
+                    let pw = document.querySelector("#password");
+                        pw.addEventListener("keyup", function (event){
+                        
+                        console.log(event.keyCode);
+                    });
+
+                    </script>
+                    </form>
+                    </div>
+                </td>
+            </th>
+        </tr>
+    </thead>
+</table>
+</body>
+</html>

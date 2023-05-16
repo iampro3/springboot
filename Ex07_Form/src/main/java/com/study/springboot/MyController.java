@@ -17,6 +17,12 @@ public class MyController {
     public @ResponseBody String root() throws Exception{
         return "Form 데이터 전달받아 사용하기";
     }
+    
+//    @RequestMapping("/info.html")
+//    public @ResponseBody String String root() info(){
+//        return "info";
+//    }
+// 
  
     @RequestMapping("/test1")
     public String test1(HttpServletRequest httpServletRequest, Model model) {
