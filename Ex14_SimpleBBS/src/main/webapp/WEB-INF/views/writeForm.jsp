@@ -23,7 +23,7 @@
         <td> 내용 </td>
         <td> <input type="text" name="content" size = "100" > </td>
     </tr>
-    <tr >
+    <tr>
         <td colspan="2"> <input type="submit" value="입력">
               &nbsp;&nbsp; <a href="list">목록보기</a></td>
     </tr>

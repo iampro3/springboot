@@ -15,7 +15,7 @@ public class MyController {
 
     @RequestMapping("/")
     public @ResponseBody String root() throws Exception{
-        return "Form 데이터 전달받아 사용하기";
+        return "index.html";
     }
  
     @RequestMapping("/test1")

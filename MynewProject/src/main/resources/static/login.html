@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 
@@ -15,7 +15,7 @@
           let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
        if (matchid){            
           alert("회원가입을 환영합니다.")
-          location.href = "index.html"
+          location.href = "/index.html"
        } else {
           alert("id와 pw를 입력해주세요.")
           location.href = "http://naver.com"
@@ -57,7 +57,7 @@
 
                                 <!-- tel-->
                               <div class="sign-inputbox">
-                                <input type="tel" name="tel" placeholder="전화번호">
+                                <input type="tel" name="phone" placeholder="전화번호">
                                 <span class="border"></span>
                                 </div>
 

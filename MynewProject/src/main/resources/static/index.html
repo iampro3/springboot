@@ -12,15 +12,19 @@
         <!-- slick 이미지 슬라이드 : 라이브러리 사용 slick.css 파일 -->
         <!-- slick css CDN -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">        
-        <link rel="stylesheet" href="style.css">       
+        <link rel="stylesheet" href="/style.css">       
     
         <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        
+        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=db50938a3b4ef4e31b81ef7b279e5313"></script>
+        
         <!-- slick js 이미지 슬라이드 -->
         <script src="/slick.min.js"></script>
     
-        <script src="/script.js"></script>     
-            
+        <script src="/script.js"></script>            
     </head>
 
     <!-- login 버튼 누르면 이동 -->
@@ -59,7 +63,7 @@
            
         <!-- 좌측 메뉴 -->
         <nav class="navbar">
-            <a href="#Find">도서관 강좌 정보</a>                
+            <a href="#Find">도서관 정보</a>                
             <!-- <a href="#Find">도서관 소장 정보</a>               -->
             <a href="#chatbot">Chatbot</a>
             <a href="#AIProject">Image make</a>                    
@@ -81,7 +85,7 @@
     <!-- ########## section 1 ########## -->
     <section class="Find" id="Find">             
             
-        <!-- <div class="text">도서관 강좌 정보</div><br> -->
+        <!-- 도서관 강좌/소장 정보 -->
             <!-- index.html 가져오기 -->
             <!-- 전체 영역 -->
         <div class="container">
@@ -91,15 +95,24 @@
                 <div class="title-wrap">
                     <!-- 중첩 박스 (inner)-->
                     <div id="title">
-                        <div class="title-text">도서관 강좌정보</div>             
+                        <div class="title-text">도서관 정보</div>             
                         <br>
-                        <!-- 아이디-->
+                        <!-- 강좌정보 -->
                         <div class="title-inputbox">
                             <p>서울시 도서관의 강좌 정보를 검색합니다</p><br>
-                                <!-- <input type="text" name="id" placeholder="입력하세요..."> -->
+                               
                                 <!-- libstudy.html 불러오기 -->
-                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">강좌 조회하기</a></div>                        
-                                                                   
+                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">강좌 정보 조회하기</a></div>                                                                  
+                        </div>
+                        
+                        <br>
+                        <br>
+                         <!-- 소장정보 -->
+                        <div class="title-inputbox">
+                            <p>서울시 도서관의 소장된 도서 정보를 검색합니다</p><br>
+                                
+                                <!-- booklist.html 불러오기 -->
+                                <div class="title-btnbox" id="btn8"><a href="#Find" class="title-btn">소장 정보 조회하기</a></div>                                                                  
                         </div>
                     </div>
                 </div>
@@ -182,7 +195,7 @@
                             <div id="btn3">
                                 <a href="#AIProject">
                                 <figure>
-                                    <img src="img/a1.jpg" alt="" style="width:360px;height:260px;">
+                                    <img src="img/a1.jpg" alt="" style="width:360px;height:260px;" >
                                     <figcaption>: Grafitti</figcaption>
                                 </figure>                        
                             </a>
@@ -191,7 +204,7 @@
                         <li>
                             <a href="#AIProject">
                                 <figure>
-                                    <img src="img/a2.jpg" alt="">
+                                    <img src="img/a2.jpg" alt="" style="width:360px;height:260px;">
                                     <figcaption> : Abstract painting</figcaption>
                                 </figure>
                             </a>
@@ -199,7 +212,7 @@
                         <li>
                             <a href="#AIProject" target="_self">
                                 <figure>
-                                    <img src="img/a3.jpg" alt="" style="width:360px;height:260px;">                   
+                                    <img src="img/a3.jpg" alt="" >                   
                                 <figcaption>: Character</figcaption>
                                 </figure>
                             </a>
@@ -207,23 +220,22 @@
                         <li>
                             <a href="#AIProject" target="_self">
                                 <figure>
-                                    <img src="img/a4.jpg" alt="">                   
+                                    <img src="img/a4.jpg" alt="" >                   
                                 <figcaption>: Webtoon</figcaption>
-                                </figure>
+                                </figure>	
                             </a>
                         </li>
                         <li>
-                            <a href="#AIProject" target="_self">
-                                <figure>
-                                    <img src="img/a5.jpg" alt="" >                   
+                            <a href="#AIProject" target="_self"  >
+                                <figure><img src="img/a5.jpg" alt="">                   
                                 <figcaption>: Universe</figcaption>
                                 </figure>
                             </a>
                         </li>
                         <li>
-                            <a href="#AIProject" target="_self">
+                            <a href="#AIProject" target="_self" >
                                 <figure>
-                                    <img src="img/a6.jpg" alt="">                   
+                                    <img src="img/a6.jpg" alt="" >                    
                                 <figcaption>: Fantasy</figcaption>
                                 </figure>
                             </a>
@@ -280,7 +292,7 @@
                                                       
                             <!-- ID/PW 찾기 -->
                             <br>
-                                <div id="btn1" style="text-align: center;"><a href=#login class="login-btn">ID/PW 찾기</a>                                                
+                                <div id="btn1" style="text-align: center;"><a href="#login" class="login-btn">ID/PW 찾기</a>                                                
                                 </div>      
                     </div>   
                 </form>    
@@ -307,38 +319,32 @@
         </section>  
 
          <!-- section 6 게시판 -->
-        <section class="field", id="field">
+        <section class="field" id="field">
             <div class="login-container">
                 <!-- 입력 영역 -->
                 <div class="common-title">We make a new Generation, and new Universe</div>
                 <br>
                 <img src="img/last1.jpg" alt="" style="width:420px;height:550px;align-items: flex-end;" >
                 <img src="img/last2.jpg" alt="" style="width:520px;height:550px;align-items: flex-end;" >
-                <!-- <div class="margin-box">
-                    <div id="map" style="width:100%;height:500px;"></div> -->
-               
+                              
             <!--카피라이트-->
             <div class="copy">       
-                <br>             
-                                
+                <br>                               
                 <p align="center">Copyright&copy: 2023 AI Project JOE. All rights reserved.</p>   
             </div>                     
-            </div>
-             
+            </div>             
         </section>
 
-        <!-- map api -->
-        <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d9c4ccd55af22e749af292453ba1fa9"></script> -->
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d5f77b3d4cfcb354c55ca6b62645ca4"></script>
+        <!-- map api -->         
         <script>
             // 카카오 지도 API 기능 구현하기 
-
+			
             var lat = 37.51826573899883		// 위도 
             var lon = 126.90642947856348
 
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = {
-/*                     center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표 */
+                    center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표 
                     center: new kakao.maps.LatLng(37.51826573899883, 126.90642947856348), // 지도의 중심좌표
                     level: 4, // 지도의 확대 레벨
                     mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
@@ -387,14 +393,12 @@
                 
                 var resultDiv = document.getElementById('clickLatlng'); 
                 resultDiv.innerHTML = message;                
-            });
-        
+            });        
         </script>
 
 
         <!-- 회원가입 html 불러오기. -->
-        <script>
-            
+        <script>            
             $("#btn2").off("click").on("click", function(){
                 // ajax 실행
                 let option = {                 
@@ -402,8 +406,10 @@
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                       
-                        let result = document.querySelector("#login");
-                    result.innerHTML = data
+                 /*        let result = document.querySelector("#login");
+                    result.innerHTML = data */
+                    
+                    $("#login").html(data);
                     },
                     "error" : function(data){
                         console.log(data)
@@ -430,7 +436,7 @@
             })
             </script>
             
-             <!-- login 창, find 불러오기-->
+             <!-- login 창, id/pw 찾기 find.html 불러오기-->
             <script>
             $("#btn1").off("click").on("click", function(){
                 // ajax 실행
@@ -454,8 +460,7 @@
                 let option2 = {                
                     "url" : "http://localhost:8081/",               
                     "type": "get"
-                }
-                  
+                }                  
             })
         </script>
         
@@ -548,8 +553,7 @@
         </script>
 
         <!-- libstudy 창 불러오기 libstudy.html : 공공데이터 크롤링 -->
-          <script>
-            
+          <script>            
             $("#btn6").off("click").on("click", function(){
                 // ajax 실행
                 let option = {
@@ -564,6 +568,42 @@
                    		result.innerHTML = data
                    		---- 아래의 jq로 수정함 : 중요, 공부하기~~
                    		*/
+                   		/* 새로운 jquery 구문 */
+                   		$("#Find").html(data);
+                   		
+                    },
+                    "error" : function(data){
+                        console.log(data)
+                    },
+                    "complete" : function(data){
+                        console.log("THE END")
+                    }
+                }     
+                $.ajax(option);
+                let option2 = {                
+                    "url" : "http://localhost:8081/",               
+                    "type": "get"
+                }
+            })
+        </script>
+        
+        <!-- booklist 창 불러오기 booklist.html : 공공데이터 크롤링 -->
+          <script>            
+            $("#btn8").off("click").on("click", function(){
+                // ajax 실행
+                let option = {
+            
+                    "url" : "/booklist.html",
+                    "type": "get",
+                    "success" : function(data){
+                        console.log(data);                        
+                        
+                        
+                        /* let result = document.querySelector("#Find");
+                   		result.innerHTML = data
+                   		---- 아래의 jq로 수정함 : 중요, 공부하기~~
+                   		*/
+                   		/* 새로운 jquery 구문 */
                    		$("#Find").html(data);
                    		
                     },
