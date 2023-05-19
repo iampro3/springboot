@@ -528,7 +528,7 @@ a {
     height: 700px;
     margin: 0 auto;
     display: flex;
- 
+ 	/* flex-direction : row; 이미지들 가로 정렬하기 0519 추가*/
    justify-content: center;     /*4개 메뉴 자식들 메인 이미지 중앙정렬됨*/
   /*    justify-content: flex-start;   */ /*좌측으로 정렬*/
 }
