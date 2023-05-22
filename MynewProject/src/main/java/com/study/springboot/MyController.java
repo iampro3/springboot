@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class MyController {
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public @ResponseBody String root() throws Exception{
         return "index.html";
     }

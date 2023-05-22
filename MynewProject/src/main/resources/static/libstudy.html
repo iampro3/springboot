@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>서울시 도서관 수강 정보</title>
-</head>
+    <title>서울시 도서관 문화강좌 수강 정보</title>
 
-  <style>
+
+</head>
+<body>
+    <div style="margin-left:70px;margin-top: 50px;"> 
+   <!--  <input type="button" id="btn7" value="강좌 조회하기" style="width:105px; height:30px; color: rgb(63, 6, 116);">    -->     
+  
+    <div class="title-btnbox" id="btn7"><a href="#Find" class="title-btn">도서관 문화강좌 조회하기</a></div>
+    </div>
+    <div id="info">
+    <style>
 
         th{background-color: rgb(187, 155, 233);color: aliceblue;}
         th,td{
             border: 1px solid grey;
-            padding: 10px 5px;
+            padding: 12px 10px;
             /* width: 100px; */
         }
-        
-      	#input .button{
+
+        #input .button{
 	    display: block;
 	    background-color: rgb(227, 220, 233);
 	    color: blanchedalmond;
 	    font-size: 1.0rem;
 	    color: rgb(133, 103, 146);
 	    margin-top: 10px;   /* 내가 추가함 */
+	    
 	    line-height: 25px;    /* 버튼 안에서 글자 높이 */
-	    border-radius: 5px;
+	    border-radius: 15px;
 	    width: 170px;
 	    height: 30px;
 	    justify-content: space-between;
 	    align-items: center;    
 	}
     </style>
-    
-<body>
-<!--     <input type="button" id="btn7" value="강좌 조회하기" style="width:130px; height:30px; color: rgb(63, 6, 116);"> -->        
-    <input type="button" id="btn7" value="강좌 조회하기">        
-    <!-- <div class="title-btnbox" id="btn7"><a href="#Find" class="title-btn">강좌 조회하기</a></div>  -->
-    
-    <div id="info">
-  
-    
-    <table>
+    <table style ="padding:10px 70px">
         <thead>
             <tr>
             <th>LECTURE ID</th>
@@ -55,21 +55,23 @@
         </thead>
         <tbody>
             <tr>
-                <td colspan="8">내용이 없습니다.</td>
+             <!--    <td colspan="8">내용이 없습니다.</td>  -->
             </tr>
+
         </tbody>
     </table>
 </div>
 <script>
 
-	 console.log("viewData 실행")
-	 
-	 let btn7 = document.querySelector("#btn7");
-     btn7.addEventListener("click", function(){  //////////
+/*  function viewData(){ */
+
+     let btn7 = document.querySelector("#btn7");
+     btn7.addEventListener("click", function(){  
          // ajax 객체 생성
          const xhr = new XMLHttpRequest();   // 준비시킴
          
-                xhr.open('GET', 'http://openapi.seoul.go.kr:8088/42655972616c75633838727176754c/json/SeoulLibraryLectureInfo/4/8/'); // url로 부르면 안 들어온다.
+         // 보낼 준비
+   		xhr.open('GET', 'http://openapi.seoul.go.kr:8088/42655972616c75633838727176754c/json/SeoulLibraryLectureInfo/1/9/'); // url로 부르면 안 들어온다.
          // 실행을 지시. 단 언제 끝날지 모름
          xhr.send();
          // 다녀오는것이 끝났을 때, : 응답 이후
@@ -81,96 +83,36 @@
                  let json_data = JSON.parse(xhr.responseText);
                  //console.log(json_data);   
                  // let PM10 = json_data.DailyAverageCityAir.row[0].PM10
-                 let LECTURE_ID = json_data.SeoulLibraryLectureInfo.row[0].LECTURE_ID
-                 let TITLE = json_data.SeoulLibraryLectureInfo.row[0].TITLE
-                 let SUBJECT = json_data.SeoulLibraryLectureInfo.row[0].SUBJECT
-                 let TERM_START_DATE = json_data.SeoulLibraryLectureInfo.row[0].TERM_START_DATE
-                 let TERM_END_DATE = json_data.SeoulLibraryLectureInfo.row[0].TERM_END_DATE
-                 let PLACE = json_data.SeoulLibraryLectureInfo.row[0].PLACE
-                 
- 
-                 // for(let i=0;i<list_post.length;i++){                     
-                 // }
- 
-                 let html = "";
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 // html += '   <td>ID</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';     
-                 // html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+LECTURE_ID+'</td>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+SUBJECT+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+TERM_END_DATE+'</td>';
-                 html += '   <td>'+PLACE+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';   
-                     
-                 document.querySelector("tbody").innerHTML =html;
- 
-             } catch(error){
-                 console.error(error)
-             }                
-         }
-     })
 
+
+				 for (let i = 0; i < 6; i++) {
+				          let LECTURE_ID = json_data.SeoulLibraryLectureInfo.row[i].LECTURE_ID;
+				          let TITLE = json_data.SeoulLibraryLectureInfo.row[i].TITLE;
+				          let SUBJECT = json_data.SeoulLibraryLectureInfo.row[i].SUBJECT;
+				          let TERM_START_DATE = json_data.SeoulLibraryLectureInfo.row[i].TERM_START_DATE;
+				          let TERM_END_DATE = json_data.SeoulLibraryLectureInfo.row[i].TERM_END_DATE;
+				          let PLACE = json_data.SeoulLibraryLectureInfo.row[i].PLACE;
+				
+				          let html = "";
+				          html += "<tr>";
+				          html += "<td>" + LECTURE_ID + "</td>";
+				          // html += "<td>ID</td>";
+				          html += "<td>" + TITLE + "</td>";
+				          html += "<td>" + SUBJECT + "</td>";
+				          html += "<td>" + TERM_START_DATE + "</td>";
+				          html += "<td>" + TERM_END_DATE + "</td>";
+				          html += "<td>" + PLACE + "</td>";
+				          html += "</tr>";
+
+          document.querySelector("tbody").innerHTML += html;
+        }
+      } catch(error) {
+        console.error(error);
+      }
+    };
+  });
+/* }
+ viewData(); */
 </script>
 </body>
 </html>

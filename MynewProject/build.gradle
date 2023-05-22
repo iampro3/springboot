@@ -26,6 +26,9 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
+	developementOnly 'org.springframework.boot:spring-boot-devtols' // html 파일 수정 시, refresh 설정 추가함
+	
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
     // implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
