@@ -294,8 +294,13 @@
                                                       
                             <!-- ID/PW 찾기 -->
                             <br>
-                                <div id="btn1" style="text-align: center;"><a href=#login class="login-btn">ID/PW 찾기</a>                                                
+                            
+                                <div id="btn1" style="text-align: center;"><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
+                                <div id="btn7" style="text-align: center;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
+                                <span class="border"></span>                                            
                                 </div>      
+                                
+                                	
                     </div>    
                 </form>    
             </div>                     
@@ -429,13 +434,41 @@
         })
             </script>
             
-             <!-- login 창, id/pw 찾기 find.html 불러오기-->
+             <!-- login 창, id 찾기 find.html 불러오기-->
             <script>
             $("#btn1").off("click").on("click", function(){
                 // ajax 실행
                 let option = {
             
                     "url" : "/find.html",
+                    "type": "get",
+                    "success" : function(data){
+                        console.log(data);                  
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
+                    },
+                    "error" : function(data){
+                        console.log(data)
+                    },
+                    "complete" : function(data){
+                        console.log("THE END")
+                    }
+                }         
+                $.ajax(option);
+                let option2 = {                
+                    "url" : "http://localhost:8081/",               
+                    "type": "get"
+                }                  
+            })
+        </script>
+        
+        <!-- login 창, pw 찾기 findpw.html 불러오기-->
+         <script>
+            $("#btn7").off("click").on("click", function(){
+                // ajax 실행
+                let option = {
+            
+                    "url" : "/findpw.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  

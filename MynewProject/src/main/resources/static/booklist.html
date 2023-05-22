@@ -30,12 +30,12 @@
         <thead>
             <tr>
             <th>TITLE</th>
-            <th>LOAN_STATUS</th>
+            <th>대출 상태</th>
             <th>AUTHOR</th>
             <th>CTRLNO</th>
-            <th>PUBLER</th>
-            <th>PUBLER_YEAR</th>
-            <th>LOCA_NAME</th>
+            <th>출판사</th>
+            <th>출판년도</th>
+            <th>소장 도서관</th>
             <!-- <th>METHOD</th> -->
             </tr>
         </thead>
@@ -64,16 +64,7 @@
     
              try
              {
-                 let json_data = JSON.parse(xhr.responseText);
-                 //console.log(json_data);   
-                 // let PM10 = json_data.DailyAverageCityAir.row[0].PM10
-                /*  let TITLE = json_data.SeoulLibraryBookSearchInfo.row[0].TITLE
-                 let LOAN_STATUS_NAME = json_data.SeoulLibraryBookSearchInfo.row[0].LOAN_STATUS_NAME
-                 let AUTHOR = json_data.SeoulLibraryBookSearchInfo.row[0].AUTHOR
-                 let CTRLNO = json_data.SeoulLibraryBookSearchInfo.row[0].CTRLNO
-                 let PUBLER = json_data.SeoulLibraryBookSearchInfo.row[0].PUBLER
-                 let PUBLER_YEAR = json_data.SeoulLibraryBookSearchInfo.row[0].PUBLER_YEAR
-                 let LOCA_NAME = json_data.SeoulLibraryBookSearchInfo.row[0].LOCA_NAME */
+                 let json_data = JSON.parse(xhr.responseText);               
                  
  
                  for (let i = 0; i < 6; i++) {
@@ -88,7 +79,7 @@
 			          let html = "";
 			          html += "<tr>";
 			          html += "<td>" + TITLE + "</td>";
-			          // html += "<td>ID</td>";
+			          
 			          html += "<td>" + LOAN_STATUS_NAME + "</td>";
 			          html += "<td>" + AUTHOR + "</td>";
 			          html += "<td>" + CTRLNO + "</td>";
@@ -98,7 +89,7 @@
 			          html += "</tr>";
 
                      
-                 document.querySelector("tbody").innerHTML =html;
+                 document.querySelector("tbody").innerHTML +=html;
             	 }
  
              } catch(error){
