@@ -297,7 +297,7 @@ a {
     height: 600px; 
     padding: 30px;    
     border-radius: 5.5px;    
-    border-color: rgb(128, 0, 255);
+    border-color: rgb(112, 84, 207);
     border-style: solid;
     background-color: rgb(255, 255, 255);
     /* x축y축 블러 색성 */
@@ -312,6 +312,7 @@ a {
     color: #3c0c60;
     cursor: pointer;
     font-size: 1.8rem;
+    /*  text-decoration : underline;  언더라인:링크 시*/
 }
 
 
