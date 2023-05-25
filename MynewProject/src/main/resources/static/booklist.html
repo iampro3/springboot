@@ -12,147 +12,91 @@
         th{background-color: rgb(187, 155, 233);color: aliceblue;}
         th,td{
             border: 1px solid grey;
-            padding: 10px 5px;
-            /* width: 100px; */
+            padding: 14px 12px;      
         }
+
     </style>
 
 </head>
 <body>
-    <input type="button" id="btn9" value="소장정보 조회하기" style="width:130px; height:30px; color: rgb(63, 6, 116);">        
-      
+	<div style="margin-left:70px; margin-top: 50px;">
+   
+      <!-- <input type="button" id="btn7" value="소장정보 조회하기"  style="width:130px; height:30px; color: rgb(63, 6, 116);"> -->
+      <div class="title-btnbox" id="btn9"><a href="#Find" class="title-btn">도서관 소장정보 조회하기</a></div>
+      </div> 
     <div id="info">
    
-    <table>
+    <table style ="padding:10px 70px">
         <thead>
             <tr>
             <th>TITLE</th>
-            <th>BIB_TYPE_NAME</th>
+            <th>대출 상태</th>
             <th>AUTHOR</th>
             <th>CTRLNO</th>
-            <th>PUBLER</th>
-            <th>PUBLER_YEAR</th>
-            <!-- <th>CHARGE</th> -->
+            <th>출판사</th>
+            <th>출판년도</th>
+            <th>소장 도서관</th>
             <!-- <th>METHOD</th> -->
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td colspan="8">내용이 없습니다.</td>
+                <!-- <td colspan="8">내용이 없습니다.</td> -->
             </tr>
         </tbody>
     </table>
 </div>
 <script>
 
-	 console.log("viewData1 실행")
+/* 	 console.log("viewData 실행") */
 	 
 	 let btn9 = document.querySelector("#btn9");
-     btn7.addEventListener("click", function(){  //////////
+     btn9.addEventListener("click", function(){  
          // ajax 객체 생성
          const xhr = new XMLHttpRequest();   // 준비시킴
          
-                xhr.open('GET', 'http://openapi.seoul.go.kr:8088/6756645a776c75633132304162465052/json/BookSearchInfo/1/7/구독형/'); // url로 부르면 안 들어온다.
+          xhr.open('GET', 'http://openapi.seoul.go.kr:8088/6756645a776c75633132304162465052/json/SeoulLibraryBookSearchInfo/1/10/'); // url로 부르면 안 들어온다.
          // 실행을 지시. 단 언제 끝날지 모름
          xhr.send();
          // 다녀오는것이 끝났을 때, : 응답 이후
          xhr.onload = function(){
              console.log(xhr.responseText);
-    
+    		
              try
              {
-                 let json_data = JSON.parse(xhr.responseText);
-                 //console.log(json_data);   
-                 // let PM10 = json_data.DailyAverageCityAir.row[0].PM10
-                 let TITLE = json_data.SeoulLibraryLectureInfo.row[0].TITLE
-                 let BIB_TYPE_NAME = json_data.SeoulLibraryLectureInfo.row[0].BIB_TYPE_NAME
-                 let AUTHOR = json_data.SeoulLibraryLectureInfo.row[0].AUTHOR
-                 let CTRLNO = json_data.SeoulLibraryLectureInfo.row[0].CTRLNO
-                 let PUBLER = json_data.SeoulLibraryLectureInfo.row[0].PUBLER
-                 let PUBLER_YEAR = json_data.SeoulLibraryLectureInfo.row[0].PUBLER_YEAR
+                 let json_data = JSON.parse(xhr.responseText);               
                  
  
-                 // for(let i=0;i<list_post.length;i++){                     
-                 // }
- 
-                 let html = "";
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 // html += '   <td>ID</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+TERM_START_DATE+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM10+'</td>';
-                 html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';     
-                 // html += '</tr>';
-                 html += '<tr>';
-                 html += '   <td>'+TITLE+'</td>';
-                 html += '   <td>'+BIB_TYPE_NAME+'</td>';
-                 html += '   <td>'+AUTHOR+'</td>';
-                 html += '   <td>'+CTRLNO+'</td>';
-                 html += '   <td>'+PUBLER+'</td>';
-                 html += '   <td>'+PUBLER_YEAR+'</td>';
-                 // html += '   <td>'+PM25+'</td>';
-                 html += '</tr>';
-                 html += '</tr>';   
+                 for (let i = 0; i < 10; i++) {
+			          let TITLE = json_data.SeoulLibraryBookSearchInfo.row[i].TITLE;
+			          let LOAN_STATUS_NAME = json_data.SeoulLibraryBookSearchInfo.row[i].LOAN_STATUS_NAME;
+			          let AUTHOR = json_data.SeoulLibraryBookSearchInfo.row[i].AUTHOR;
+			          let CTRLNO = json_data.SeoulLibraryBookSearchInfo.row[i].CTRLNO;
+			          let PUBLER = json_data.SeoulLibraryBookSearchInfo.row[i].PUBLER;
+			          let PUBLER_YEAR = json_data.SeoulLibraryBookSearchInfo.row[i].PUBLER_YEAR;
+			          let LOCA_NAME = json_data.SeoulLibraryBookSearchInfo.row[i].LOCA_NAME;
+			
+			          let html = "";
+			          html += "<tr>";
+			          html += "<td>" + TITLE + "</td>";
+			          
+			          html += "<td>" + LOAN_STATUS_NAME + "</td>";
+			          html += "<td>" + AUTHOR + "</td>";
+			          html += "<td>" + CTRLNO + "</td>";
+			          html += "<td>" + PUBLER + "</td>";
+			          html += "<td>" + PUBLER_YEAR + "</td>";
+			          html += "<td>" + LOCA_NAME + "</td>";
+			          html += "</tr>";
+
                      
-                 document.querySelector("tbody").innerHTML =html;
+                 document.querySelector("tbody").innerHTML +=html;
+            	 }
  
              } catch(error){
                  console.error(error)
              }                
-         }
-     })
+         };
+     });
 
 </script>
 </body>

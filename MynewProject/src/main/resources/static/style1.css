@@ -1,11 +1,11 @@
 @charset "EUC-KR";
+
 :root {
-    --main-color:rgb(77, 16, 151);
- 
+    --main-color:rgb(77, 16, 151);   
 }
 
 * {
-    margin: 0; padding: 0;      /* 좌측 메뉴 보라색 박스 영역을 화면과여백없이 지정 */
+    margin: 0; padding: 0;      /* 좌측 메뉴 보라색 박스 영역을 화면과 여백없이 지정 */
     box-sizing: border-box;
     outline: 0 ; border : none ;
     text-decoration: none;
@@ -14,7 +14,7 @@
 html {
     font-size: 14px;
     overflow-x: hidden;
-    scroll-behavior: smooth;    /* 스크롤 이동을 부드럽게 한다.-나중에 추가 */
+ /*    scroll-behavior: smooth;  */   /* 스크롤 이동을 부드럽게 한다.- 작동 제대로 안 함 */
 }
 
 body {
@@ -32,14 +32,14 @@ header {
     background-color: rgb(212, 185, 227);
     width: 25rem;       /* body에  padding-left: 25rem;  준 값*/
     display: flex;
-    flex-direction: column; /* 가로 방향으로 변경함 */
+    flex-direction: column; /* 세로 방향으로 변경함 */
     justify-content: space-between;
     align-items: center;
     padding: 10rem 1rem;
     text-align: center;
-     z-index: 10; /*navi가 top*/
+     z-index: 10;
 }
-/* Makedata 글씨 설정*/
+/* 메뉴 글씨 */
 header .logo {
     color: rgb(176, 161, 217);
     font-size: 2rem;
@@ -123,7 +123,7 @@ a {
 .title-wrap{
     /* 가로세로 가운데 */
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 800px;
@@ -134,9 +134,8 @@ a {
     /* x축y축 블러 색성 */
     box-shadow: 5px 5px 10px rgba(173, 168, 168, 0.4);
     display: flex;
-    /* justify-content: space-between;
-    align-items: center; */   
-    
+      justify-content: space-between; 
+   /*  align-items: center;        */
     justify-content: center;
 }
 
@@ -155,6 +154,7 @@ a {
     height: 50px;
     margin-bottom: 10px;
     margin-top: 20px;    
+    
 }
 
 
@@ -166,15 +166,15 @@ a {
     font-size: 1rem;
     border-bottom : 1px solid #ddd;
     margin-bottom: 10px;    
-    box-sizing: border-box;
-    }
+    box-sizing: border-box;    
+}
 
 
 #title .title-inputbox input::placeholder{
     color: rgb(133, 130, 130);  /* id, pw 글자 색상 설정 */
 }
 
-/* ----------- 버튼 박스 */ 
+/* ----------- 버튼 박스----- chatbot / imagemake 페이지와 공유 중 */ 
 #title .title-btnbox .title-btn{
     display: block;
     background-color: rgb(227, 220, 233);
@@ -184,11 +184,10 @@ a {
     margin-top: 10px;   /* 내가 추가함 */
     line-height: 25px;    /* 버튼 안에서 글자 높이 */
     border-radius: 5px;
-    width: 180px;
+    width: 170px;
     height: 30px;
     justify-content: space-between;
-    align-items: center; 
-   
+    align-items: center;    
 }
 
 /* 버튼 박스 올렸을 때 버튼 색상 진해짐 */
@@ -203,7 +202,7 @@ a {
     position: relative;
 }
 
-/* image make 영역 */
+/* image make 영역 실행화면 */
 .img-wrap{
     /* 가로세로 가운데 */
     position: absolute;
@@ -219,7 +218,8 @@ a {
     box-shadow: 5px 5px 10px rgba(173, 168, 168, 0.4);
     display: flex;
     /* justify-content: space-between;*/ 
-    align-items: flex-end;    
+    align-items: flex-start; 
+    
     justify-content: center;
 }
 
@@ -264,12 +264,11 @@ a {
     color: blanchedalmond;
     font-size: 1.0rem;
     color: rgb(133, 103, 146);
-    margin-top: 10px;   /* 내가 추가함 */
+    margin-top: 10px;   /* 추가했음 : top에 공백이 커서. */
     line-height: 25px;    /* 버튼 안에서 글자 높이 */
     border-radius: 5px;
     width: 120px;
-    height: 30px;
-   
+    height: 30px;   
 }
 
 
@@ -293,11 +292,11 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 490px;
-    height: 600px; 
+    width: 480px;
+    height: 510px;
     padding: 30px;    
     border-radius: 5.5px;    
-    border-color: rgb(112, 84, 207);
+    border-color: #cbb7e2;
     border-style: solid;
     background-color: rgb(255, 255, 255);
     /* x축y축 블러 색성 */
@@ -312,7 +311,6 @@ a {
     color: #3c0c60;
     cursor: pointer;
     font-size: 1.8rem;
-    /*  text-decoration : underline;  언더라인:링크 시*/
 }
 
 
@@ -381,20 +379,20 @@ a {
     width: 4px;
     height: 8px;
     border:  solid rgb(215, 215, 209);
-    border-width: 0 3px 3px 0;  /* top right botton left */
+    border-width: 0 3px 3px 0;  /* top right button left */
     transform: rotate(45deg);
 }
 
 /* 체크했을 때 색상 변경 */
 #login .login-remember label input:checked ~ .checkmark {
     background-color: rgb(67, 43, 226);
-
 }
 
 /* 글씨색도 변경  */
 #login .login-remember label input:checked ~ span {
     color: rgb(85, 17, 212);
 }
+
 /* 로그인 버튼 박스 */
 #login .login-btnbox .login-btn{
     display: block;
@@ -418,15 +416,13 @@ a {
     margin-top: 00px;   /* 카피라이트 글자 위의 요소와의 거리 */
     margin-bottom: 10px;   
     /* width: 500px; */
-    }
-    
+}
+
 #login .copy p {
     font-size: 1.0rem;
     text-align: center;
 }   
 /* ################ section login 끝 ############## */
-
-
 
 
 /* ############## sign up ############### 영역 */
@@ -480,10 +476,6 @@ a {
     box-sizing: border-box;
 }
 
-/* ::placeholder
-        -input 태그의 placeholder 속성을 선택하는 가상 선택자
-        -input 박스의 글자(id, pw 글자)에 대한 속성 설정
-         */
 #sign .sign-inputbox input::placeholder{
     color: rgb(194, 172, 221);  /* id, pw 글자 색상 설정 */
 }
@@ -532,25 +524,30 @@ a {
 }
 
 
-/* 슬라이드 */
+/* 슬라이드 img : chatbot & AIProject 공통사용 */
 .slide-container {
-    width: 100%;
+     width: 1000px;
     height: 700px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction : row;
-    /* justify-content: space-between;
-    align-items: center; */   
-    
-    justify-content: center;    /*4개 메뉴 자식들 메인 이미지 중앙정렬됨*/
+    margin: 0 auto; 
+   /* display: flex;
+ 	flex-direction : row; 이미지들 가로 정렬하기 0519 추가*/ 
+ 	
+  /*   justify-content: flex-start; */
+
+ 	/* flex-flow : column-wrap; */
+      justify-content: center;    /* 4개 메뉴 자식들 메인 이미지 중앙정렬됨*/
+      /*justify-content: flex-start;    좌측으로 정렬*/
 }
 
+/* .slide-container.row{flex-direction: row;}   --------------------<div class="flex-container row"> */
+
 .slide-container .slide {
-    width: auto;
-    height: 700px;
-    padding: 40px 0;    /* top과 이미지의 거리 */
+     /*width: auto;	 ----auto에서 수정함*/
+    height: 700px; 
+     padding: 60px 0;    /* 이미지와 top과의 여백*/
     box-sizing: border-box;  
-    align-items: center;
+   /* align-items: center; ?*/
+
 }
 
 .slide-container .text {
@@ -560,34 +557,42 @@ a {
 }
 
 .slide li{
-  float: left;
-  width: 350px; height: 250px;
+  /*float : center; 	이미지 크기 조절*/
+  width: 330px; height: 230px;
 
+  /* margin-right: 30px; */
 }
 .slide li{ margin-right: 0; }
 
 .slide a{
-  display: block; /* 영역적용위해 사용 */
+  display: block; /* 영역 적용위해 사용 */
   width: 100%; height: 100%;
-
   overflow: hidden;
-  position: relative; /* absolute의 기본기준은 body로 처리 - 현재 요소로 기준변경 */
+  position: relative; 
 }
 
 .slide figure{
   width: 100%; height: 100%;
 }
+
+.slide .figure img {
+   width: 330px; height: 230px; 
+/*   width: 100%; height: 100%; */
+   float:center; 
+}
+
+
+
 .slide figcaption{
   width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.7);
 
-  position: absolute; /* 이미지와 겹치게 처리 */
+  position: absolute; 
   top: 0; left: 0;
-
   color: #fff; text-align: center;
   font-size: 2.0rem;
-  line-height: 250px;  /*글자 수직 위치*/
-
+  line-height: 220px;  /*글자 수직 위치*/
+/*   line-height: 250px;  글자 수직 위치 */
   opacity: 0; /* 처음엔 안보이고 */
   transition: 0.3s;
 }
@@ -599,10 +604,15 @@ a {
 
 .slide img { 
     width: auto;
-    height: 100%;
-    align-items: center; 
+    height: 100%;	/*100 */
+     align-items: center; 
+ 	/* float:left; */
 }
 
+.slide .slide-text{
+	color: #400080; text-align: center;
+	font-size: 1.0rem;
+}
 
 
 /* 상단 x 표 메뉴열기/닫기 */
@@ -628,7 +638,6 @@ a {
 
 /* 공통 */
 .common-title {
-
     color: #3c0c60;
     cursor: pointer;
     font-size: 1.8rem;

@@ -95,14 +95,14 @@
                 <div class="title-wrap">
                     <!-- 중첩 박스 (inner)-->
                     <div id="title">
-                        <div class="title-text">도서관 정보</div>             
+                        <div class="title-text">도서관 정보 검색</div>             
                         <br>
                         <!-- 강좌정보 -->
                         <div class="title-inputbox">
-                            <p>서울시 도서관의 강좌 정보를 검색합니다</p><br>
+                            <p>서울시 도서관의 문화강좌 정보를 검색합니다</p><br>
                                
                                 <!-- libstudy.html 불러오기 -->
-                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">강좌 정보 조회하기</a></div>                                                                  
+                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">문화강좌 정보 조회하기</a></div>                                                                  
                         </div>
                         
                         <br>
@@ -112,7 +112,7 @@
                             <p>서울시 도서관의 소장된 도서 정보를 검색합니다</p><br>
                                 
                                 <!-- booklist.html 불러오기 -->
-                                <div class="title-btnbox" id="btn8"><a href="#Find" class="title-btn">소장 정보 조회하기</a></div>                                                                  
+                                <div class="title-btnbox" id="btn8"><a href="#Find" class="title-btn">소장도서 정보 조회하기</a></div>                                                                  
                         </div>
                     </div>
                 </div>
@@ -126,13 +126,13 @@
                     
                 <div class="slide">
                     <div class="text">Chatbot : Health Counsel</div><br>                   
-                   
+                  <!--  <div class="slide-container.row"> -->
                     <ul>
                         <li>
-                            <div id="btn4">
+                            <div id="btn4" >
                             <a href="#chatbot"> 
                                 <figure>
-                                    <img src="img/h1.jpg" alt="">
+                                    <img src="img/h1.jpg" alt="" style="width:350px;height:250px;">
                                     <figcaption>: For you, health Counsel</figcaption>
                                 </figure>                        
                             </a>
@@ -178,10 +178,11 @@
                                 </figure>
                             </a>
                         </li>  
-                    </ul>   
-                    <p>+ If you want to know about health, you ask anything!</p><br>
+                    </ul>                    
+                  <p>+ If you want to know about health, you ask anything!</p><br>          	
+                    </div>                   
                 </div>
-            </div>
+           <!--  </div> -->
         </section>
 
         <!-- section 3 image make -->
@@ -195,16 +196,17 @@
                             <div id="btn3">
                                 <a href="#AIProject">
                                 <figure>
-                                    <img src="img/a1.jpg" alt="" style="width:360px;height:260px;" >
+                                    <img src="img/a1.jpg" alt="" style="width:350px;height:250px;" >
+<!--                                     <img src="img/a1.jpg" alt="" style="width:360px;height:260px;" > -->
                                     <figcaption>: Grafitti</figcaption>
                                 </figure>                        
-                            </a>
-                        </div>
+                           	    </a>
+                       		</div>
                         </li>
                         <li>
                             <a href="#AIProject">
                                 <figure>
-                                    <img src="img/a2.jpg" alt="" style="width:360px;height:260px;">
+                                    <img src="img/a2.jpg" alt="" >
                                     <figcaption> : Abstract painting</figcaption>
                                 </figure>
                             </a>
@@ -212,7 +214,7 @@
                         <li>
                             <a href="#AIProject" target="_self">
                                 <figure>
-                                    <img src="img/a3.jpg" alt="" >                   
+                                    <img src="img/a3.jpg" alt="" style="width:350px;height:250px;">                   
                                 <figcaption>: Character</figcaption>
                                 </figure>
                             </a>
@@ -258,6 +260,7 @@
                         <div class="login-text">Login</div><br>
                         <br>
                         <br>
+                        <br>
                         <!-- 중첩 박스 (inner)-->
                         <div id="login">
                                                        
@@ -285,16 +288,20 @@
                             </label><br>
                            
                         </div>                                     
-                            <!--버튼(로그인/회원가입)-->
+                           <!--버튼(로그인/회원가입)-->
                             <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">로그인</a></div>
                             <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
                             <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
+                            <br>
                                                       
                             <!-- ID/PW 찾기 -->
-                            <br>
-                                <div id="btn1" style="text-align: center;"><a href="#login" class="login-btn">ID/PW 찾기</a>                                                
-                                </div>      
-                    </div>   
+                            <br>                           
+                                <div id="btn1" style="text-align: center;"><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
+                                <div id="btn7" style="text-align: center;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
+                                <span class="border"></span>                                            
+                                </div>                                
+                                	
+                    </div>    
                 </form>    
             </div>                     
         </section>  
@@ -398,18 +405,47 @@
 
 
         <!-- 회원가입 html 불러오기. -->
-        <script>            
-            $("#btn2").off("click").on("click", function(){
+        <script>        
+        $("#btn2").off("click").on("click", function(){
+            // ajax 실행
+            let option = {                 
+                "url" : "/login.html", // sts에서 경로를 변경했다. 
+                "type": "get",
+                "success" : function(data){
+                    console.log(data);                       
+                    /* let result = document.querySelector("#login");
+                	result.innerHTML = data */
+                	/* 새로운 jquery 구문 */
+               		$("#login").html(data);
+                	
+                },
+                "error" : function(data){
+                    console.log(data)
+                },
+                "complete" : function(data){
+                    console.log("THE END")
+                }
+            }
+            $.ajax(option);
+            let option2 = {                
+                "url" : "http://localhost:8081/",               
+                "type": "get"
+            }       
+        })
+            </script>
+            
+             <!-- login 창, id 찾기 find.html 불러오기-->
+            <script>
+            $("#btn1").off("click").on("click", function(){
                 // ajax 실행
-                let option = {                 
-                    "url" : "/login.html",
+                let option = {
+            
+                    "url" : "/find.html",
                     "type": "get",
                     "success" : function(data){
-                        console.log(data);                       
-                 /*        let result = document.querySelector("#login");
-                    result.innerHTML = data */
-                    
-                    $("#login").html(data);
+                        console.log(data);                  
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
                     },
                     "error" : function(data){
                         console.log(data)
@@ -417,32 +453,22 @@
                     "complete" : function(data){
                         console.log("THE END")
                     }
-                }
+                }         
                 $.ajax(option);
                 let option2 = {                
                     "url" : "http://localhost:8081/",               
                     "type": "get"
-                }
-                $.ajax(option2)
-                    .done(function(data){
-                        console.log(data);
-                        let result = document.querySelector("#login");
-                        result.innerHTML = data
-                    })
-                    .fail()
-                    .always(function(data){
-                        console.log("THE END")
-                    })
+                }                  
             })
-            </script>
-            
-             <!-- login 창, id/pw 찾기 find.html 불러오기-->
-            <script>
-            $("#btn1").off("click").on("click", function(){
+        </script>
+        
+        <!-- login 창, pw 찾기 findpw.html 불러오기-->
+         <script>
+            $("#btn7").off("click").on("click", function(){
                 // ajax 실행
                 let option = {
             
-                    "url" : "/find.html",
+                    "url" : "/findpw.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
@@ -534,8 +560,11 @@
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                        
-                        let result = document.querySelector("#field");
-                    result.innerHTML = data
+                        
+                         let result = document.querySelector("#field");
+                    result.innerHTML = data                    
+                   
+                    
                     },
                     "error" : function(data){
                         console.log(data)
@@ -587,7 +616,7 @@
             })
         </script>
         
-        <!-- booklist 창 불러오기 booklist.html : 공공데이터 크롤링 -->
+        <!-- booklist 소장정보 창 불러오기 booklist.html : 공공데이터 크롤링 -->
           <script>            
             $("#btn8").off("click").on("click", function(){
                 // ajax 실행

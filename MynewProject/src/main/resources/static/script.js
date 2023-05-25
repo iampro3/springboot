@@ -3,8 +3,8 @@
 $(function(){      
 
     // 슬릭 슬라이드 시작!
-    $('.slide-container').slick({
-   /* $('.slide-container').not('.slick-initialized').slick({*/	
+   /* $('.slide-container').slick({*/	
+    $('.slide-container').not('.slick-initialized').slick({
         dots: false,
         arrows: false,
         
