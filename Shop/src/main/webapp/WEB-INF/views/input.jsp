@@ -1,60 +1,75 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>form</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style>
-#popup{
-	display:none;
-	width:500px;
-	height:500px;
-	position:absolute;
-	top:250px;
-	left:0;
-}
+	#popup {
+		display: none;
+	
+		width: 500px;
+		height: 500px;
+		position: absolute;
+		top: 50px;
+		left: 100px;
+		border: 1px solid red;
+	}
 </style>
 </head>
 <body>
-<a href="http://localhost:8081/send1?id=admin2">anchorÅÂ±× ÀÌ¿ë</a>
+<a href="http://localhost:8080/send1?id=admin2">anchor íƒœê·¸ë¥¼ ì´ìš©</a>
 <br>
-<form action = "http://localhost:8081/send1">
-	
-	id :<input type="text" name="id">
-	
-	<div id="wrap"  style="border: 5px solid red">
-	<input type="submit" value="Àü¼Û">
-	</div>	
+<form action="http://localhost:8080/send1" method="get">
+
+	id : <input type="text" name="id"><br>
+
+	<div id="wrap" style="border: 1px solid red">
+		<input type="submit" value="ì „ì†¡">
+	</div>
 </form>
 
-<div id="popup">
-°øÁöÀÔ´Ï´Ù
-</div>
-<script>
-	let submit=document.querySelector("#wrap")
-	submit.addEventListener("click", function(event){
-		console.log("wrap Å¬¸¯")
-	})
 
-	let submit=document.querySelector("[type=submit]")
+<div id="popup">
+	ê³µì§€ì…ë‹ˆë‹¤
+</div>
+
+
+<script>
+	let wrap = document.querySelector("#wrap")
+	wrap.addEventListener("click", function(event){
+// 		event.stopPropagation();
+		
+		console.log("wrap í´ë¦­")
+	})
+	
+	let submit = document.querySelector("[type=submit]")
 	submit.addEventListener("click", function(event){
-		event.preventDefault(); // ¿ø·¡ domÀÌ µ¿ÀÛÇØ¾ß ÇÏ´Â Çàµ¿À» ¸·´Â´Ù.
+		// ì›ë˜ domì´ ë™ì‘í•´ì•¼í•˜ëŠ” í–‰ë™ì„ ë§‰ì•„ì¤€ë‹¤
+		event.preventDefault();
 		
-		event.stopPropagation(); // eventÀüÆÄ¸¦ ¸·À½
-		document.querySelector("#popup").style.display="block";
+		// ì´ë²¤íŠ¸ ì „íŒŒë¥¼ ë§‰ì•„ì¤€ë‹¤
+		event.stopPropagation();
+
+		console.log(document.querySelector("#popup").style.display)
 		
-		let frm =document.querySelector("form")
+		setTimeout(function(){
+			document.querySelector("#popup").style.display = "block";
+		}, 0)
+
 		
-		let id=document.querySelector("input[name=id]").value
-		console.log("id:",id)
+		let frm = document.querySelector("form")
 		
-			if(id.trim().length ==0){
-				alert("id¸¦ ÀÔ·ÉÇÏ¼¼¿ä")
-			}else{
-				frm.submit();
-			}
+		let id = document.querySelector("input[name=id]").value
+		console.log("id : ", id)
+		
+		if(id.trim().length == 0){
+			setTimeout(function(){
+				alert("idë¥¼ ì…ë ¥í•˜ì„¸ìš”")
+			}, 50)
+		} else {
+			frm.submit();
 		}
 	})
 </script>

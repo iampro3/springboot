@@ -29,7 +29,8 @@ section {
 header {
     position: fixed;
     top: 0; left: 0; bottom: 0;
-    background-color: rgb(212, 185, 227);
+    background-image: url(./img/b2.jpg);
+/*     background-color: rgb(212, 185, 227); */
     width: 25rem;       /* body에  padding-left: 25rem;  준 값*/
     display: flex;
     flex-direction: column; /* 가로 방향으로 변경함 */
@@ -41,7 +42,7 @@ header {
 }
 /* Makedata 글씨 설정*/
 header .logo {
-    color: rgb(176, 161, 217);
+    color: rgb(255, 255, 255);
     font-size: 2rem;
     font-weight: bold;
 }
@@ -66,7 +67,7 @@ header .navbar {
 /*좌 네비게이션 세부메뉴*/
 header .navbar a {
     display: block;
-    color: rgb(150, 134, 207);
+    color: rgb(255, 255, 255);
     margin: 0.7rem 0;   /* navi 메뉴 글자간격*/
     font-size: 1.1rem;
 }

@@ -1,56 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	°á°úÆäÀÌÁö ÀÔ´Ï´Ù.
-	
-	´ç½ÅÀÇ id´Â ${req_id }ÀÔ´Ï´Ù
-	´ç½ÅÀÇ id´Â ${req_id == "1234" }ÀÔ´Ï´Ù
-	´ç½ÅÀÇ id´Â ${req_id == "134" }ÀÔ´Ï´Ù<br>
-	
-	ÀÌ°ÍÀº >: (lt), < gtÀÔ´Ï´Ù.
-	req_id2: ${req_id2 }<br>
-	<%
+ê²°ê³¼í˜ì´ì§€ ì…ë‹ˆë‹¤.<br>
+ë‹¹ì‹ ì˜ idëŠ” ${ req_id }ì…ë‹ˆë‹¤.<br>
+req_id2 : ${ req_id2 }<br>
 
-	String req_id2= (String) request.getAttribute("req_id2");
-	
-	System.out.println("jsp:req_id2 :" +req_id2 );
+<%
+	String req_id2 = (String) request.getAttribute("req_id2");
+	System.out.println("jsp : req_id2 : "+ req_id2);
 %>
 <hr>
-list_id : ${list_id } <br>
-<!-- controllerÀÇ list_id¸¦ ºÒ·¯¿È -->
-
-<!-- <% %>  java·Î »ç¿ëÇØµµ µÊ -->
+list_id : ${list_id }<br>
 
 <table>
-<tr>
-	<th>¾ÆÀÌµğ</th>	
-</tr>
-						<!-- request¿¡¼­ ¿Â °Í--><!-- 10±îÁö¸¸ ÀÛµ¿ÇØ¶ó. -->
-	<c:forEach var="item" items="${list_id }"  end= "10"> 
-<%-- <c:forEach var="i" begin="0" end= "10"> --%>
 	<tr>
-		<td>
-		<c:if test="${item eq'admin' }">
-			<strong>
-			${item}
-			</strong>
-		</c:if>
-			<c:if test="${item !='admin' }">
-			${item}
-			</c:if>
-		</td>	
-		<!-- key°ªÀ¸·Î elÅÂ±×¿¡ ³Ö¾îÁÜ -->
+		<th>ì•„ì´ë””</th>
 	</tr>
+<%-- 	<c:forEach var="i" begin="0" end="10"> --%>
+	<c:forEach var="item" items="${list_id }">
+		<tr>
+			<td>
+				<c:if test="${ item eq 'admin' }">
+					<strong>${item }</strong>
+				</c:if>
+				<c:if test="${ item != 'admin' }">
+					${item }
+				</c:if>
+			</td>
+		</tr>
 	</c:forEach>
 </table>
-
 
 </body>
 </html>
