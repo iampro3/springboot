@@ -205,7 +205,7 @@
                 // 보낼 준비
                 let count = 10;
                 let type = "bag";
-                let qs = "?"		// 쿼리스트링 방법
+                let qs = "?"
                 	qs += "count="+ count;
                 	qs += "&type="+ type;
                 	qs += "&order=desc";
@@ -213,19 +213,16 @@
                 let jsonData = {
                 	"count": count,
                 	"type" : type,
-                	"order": desc
+                	"order": "desc"
                 }
                 	
-                let url = "/send2";                
-                //let url = "/send2?count"+ count +"&type="+type+"&order=desc";                
+                let url = "/send2"
                 
                 // get 방식으로 전송
 //                 xhr.open("GET", url + qs);
-                /* let url = "/send2?id=123";
-                xhr.open("GET", url); */
 
                 // post 방식으로 전송
-                xhr.open("POST", url);
+                xhr.open("post", url);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 
                 // 실행을 지시. 단! 언제 끝날지 모름
@@ -234,26 +231,27 @@
                 // 다녀오는게 끝났을때(응답 이후)
                 xhr.onload = function(){
                     console.log(xhr.responseText);
+                    
                     try{
-                    	
-                    	let list_data = JSON.parse(xhr.reponseText)
-                    	
-                    	condloe.log(list_data)
-                    	drawList(list_data);
-                    	
+                        let list_data = JSON.parse(xhr.responseText)
+                        console.log(list_data)
+                        
+		        		// 받은 list를 화면에 표시
+                        drawList(list_data);
+                    } catch(e) {
+                    	console.log("ERROR", e)
                     }
-                    catch(e){
-                    	console.log("erorr",e)
-                    }
-		        	// 받은 list를 화면에 표시
-                }       		
+                    
+                }      	
+        		
         	})
         }
+
     </script>
 </head>
 
 <body>
-    <header> 
+    <header>
         <h1>쇼핑몰</h1>
     </header>
 

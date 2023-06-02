@@ -19,9 +19,9 @@
 </style>
 </head>
 <body>
-<a href="http://localhost:8080/send1?id=admin2">anchor 태그를 이용</a>
+<a href="http://localhost:8081/send1?id=admin2">anchor 태그를 이용</a>
 <br>
-<form action="http://localhost:8080/send1" method="get">
+<form action="http://localhost:8081/send1" method="get">
 
 	id : <input type="text" name="id"><br>
 

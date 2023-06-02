@@ -21,13 +21,13 @@
 </style>
 </head>
 <body>
-cookiee
+index.jsppp
 
 
 <div class="popup">
 	공지 팝업<br>
 	 <input type="checkbox" id="popup_1">1분동안 보이지 않기<br> 
-	<input type="checkbox" id="popup_dark" >popup 색상 변경하기<br>
+	<input type="checkbox" id="popup_dark" >어두운 화면<br>
 </div>
 
 <script>
@@ -119,7 +119,7 @@ cookiee
 		
 		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
 			setCustomCookie('popup_dark', true, 10); // 60초/
-			document.querySelector(".popup").style.backgroundcolor= "rgb(212, 185, 227)";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
+			document.querySelector(".popup").style.backgroundColor= "rgb(212, 185, 227)";	// popup의 check박스에 체크 하는 순간 popup 배경색이 바뀐다.
 		}
 	})
 	
@@ -127,7 +127,7 @@ cookiee
 		let value = getCookie("popup_1")
 		console.log("value : ", value, typeof(value), ( value == true )) // if문이 들어갔는지 출력해본다.
 		if(value == 'true'){
-			document.querySelector(".popup").style.backgroundcolor= "rgb(212, 185, 227)";
+			document.querySelector(".popup").style.display= "none";
 		} else{
 			document.querySelector(".popup").style.display= "block";
 		}
@@ -138,8 +138,8 @@ cookiee
 	function darkPopup(){
 		let value= getCookie("popup_dark")
 		console.log("value : ", value, typeof(value), (value == true) )
-		if(value == true){
-			document.querySelector(".popup").style.display = "background-color: rgb(212, 185, 227)";
+		if(value == 'true'){
+			document.querySelector(".popup").style.backgroundColor = "rgb(212, 185, 227)";
 		}else {
 			document.querySelector(".popup").style.display = "block";
 		}

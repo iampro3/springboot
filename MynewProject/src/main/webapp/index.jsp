@@ -587,7 +587,7 @@
         })
             </script>
             
-             <!-- login 창, id 찾기 find.html 불러오기 : 다른 파일로 구현했기 때문에-->
+             <!-- login 창, id 찾기 find.html 불러오기-->
             <script>
             $("#btn1").off("click").on("click", function(){
                 // ajax 실행
@@ -598,10 +598,10 @@
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
+                     /*    let result = document.querySelector("#login");
+                    result.innerHTML = data */
                     
-                    	//$("#login").html(data);  //: 다른 파일로 구현했기 때문에 사용하면 안 된다.
+                    	$("#login").html(data);
                     },
                     "error" : function(data){
                         console.log(data)
@@ -629,10 +629,10 @@
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
+                       /*  let result = document.querySelector("#login");
+                    result.innerHTML = data */
                     
-                    	//$("#login").html(data); // : 다른 파일로 구현했기 때문에
+                    	$("#login").html(data);
                     },
                     "error" : function(data){
                         console.log(data)

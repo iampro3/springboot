@@ -1,12 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- <meta charset="EUC-KR"> -->
-<!-- <title>Makedata</title> -->
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Makedata</title>
@@ -14,12 +9,10 @@
         <!-- FontAwesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
    
-        <!-- slick ÀÌ¹ÌÁö ½½¶óÀÌµå : ¶óÀÌºê·¯¸® »ç¿ë slick.css ÆÄÀÏ -->
+        <!-- slick ì´ë¯¸ì§€ ìŠ¬ë¼ì´ë“œ : ë¼ì´ë¸ŒëŸ¬ë¦¬ ì‚¬ìš© slick.css íŒŒì¼ -->
         <!-- slick css CDN -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">        
-        <link rel="stylesheet" href="/style.css"> 
-      <%--   <link href="<c:url value="/src/main/webapp/WEB-INF/views/style.css"/>" rel='stylesheet' />      --%>
-<%--         <link href="<c:url value="/resources/static/style.css"/>" rel='stylesheet' />      --%>
+        <link rel="stylesheet" href="/style.css">       
     
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -28,179 +21,35 @@
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=db50938a3b4ef4e31b81ef7b279e5313"></script>
         
-        <!-- slick js ÀÌ¹ÌÁö ½½¶óÀÌµå -->
+        <!-- slick js ì´ë¯¸ì§€ ìŠ¬ë¼ì´ë“œ -->
         <script src="/slick.min.js"></script>
     
-        <script src="/script.js"></script>        
-        
-        <!-- cookie style ¼³Á¤ÇÔ -->
-        <style>
-			.popup{
-				/* border : 1px solid red; */
-				width : 300px;
-				height : 300px;
-				position : absolute;
-				top : 40%;
-				left : 40%;
-				background-color : rgb(82,52,186); 
-				color : rgb(255,255,255); 
-				transform : translate(-50%, -50%);	
-				padding : 30px	
-			 }	
-		</style>    
+        <script src="/script.js"></script>            
     </head>
 
-    <!-- login ¹öÆ° ´©¸£¸é ÀÌµ¿ -->
+    <!-- login ë²„íŠ¼ ëˆ„ë¥´ë©´ ì´ë™ -->
     <script>
         function fnClick(){
-                let matchid = "${matchid}"  // ifÀÇ °ªÀ» ¼±¾ğÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+                let matchid = "${matchid}"  // ifì˜ ê°’ì„ ì„ ì–¸í•´ ì£¼ì–´ì•¼ í•œë‹¤.
              if (matchid){            
-                alert("È¯¿µÇÕ´Ï´Ù!")
-                location.href = "mypage.jsp"
-                	/*               location.href = "index.html" */
-                 } else {
-                alert("id¿Í pw¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.")
-                location.href = "/" 
+                alert("í™˜ì˜í•©ë‹ˆë‹¤.")
+                location.href = "index.html"
+             } else {
+                alert("idì™€ pwë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.")
+                location.href = "http://naver.com"
             } 
         }
         </script>
-        
-         <script>
-         <!-- cookie popup scripts ½ÃÀÛ -->
 
-         /* setCookie()¿Í getCookie´Â ±×´ë·Î °¡Á®´Ù »ç¿ëÇØµµ µÈ´Ù. */
-         	function setCookie(){
-         		// ÀĞ±â
-         		/* document.cookie */
-         		
-         		//¾²±â
-         		//key=value; path=/user(userÆú´õ¿¡¼­ ¸¸ »ç¿ë °¡´É); expires=GMT, UTC
-         		
-         		let now = new Date();
-         		let after_10s=now.getSeconds()+10
-         		now.setSeconds(after_10s)
-         		
-         		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString(); 
-         		/*	popup 7 : 7ÀÏ µ¿¾È ¾È º¸ÀÌ±â*/
-         		document.cookie= "popup1=false; path=/; expires=" +now.toGMTString(); 
-         		
-          		/* document.cookie= "login=true"  */
-         		console.log("cookie ¼³Á¤ ¿Ï·á")
-         	}
-         	
-         	//´Ü maxAgeÀÇ ´ÜÀ§´Â ÃÊ
-         	function setCustomCookie(key, value, maxAge){
-         		let now = new Date();
-         		let after=now.getSeconds()+maxAge
-         		now.setSeconds(after)
-         		
-         /* 		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString();  */
-         		document.cookie= key + "=" + value + "; path=/; expires=" +now.toGMTString(); 		
-         	}
-         	
-         	function getCookie(key){
-         		let value = null;
-         		//let key = "popup7";  // Àü´ŞÀÎÀÚ·Î ³Ö´Â´Ù.
-         		let cookie = document.cookie;
-         		console.log(cookie)	//"popup7=true"
-         		// "popup7=true"; "popup5=true"; "popup7=true"; "popup6=false";
-         		// ¹æ¹ı 1
-         		let cookies = cookie.split("; ") // =À¸·Î ÀÚ¸¥ ¹è¿­
-         		for(c of cookies){
-         			let kv = cookie.split("=") // =À¸·Î ÀÚ¸¥ ¹è¿­
-         			if(kv[0]==key){
-         				console.log("kv[0] : " + kv[0])
-         				console.log("kv[1] : " + kv[1])
-         				value = kv[1];
-         				break
-         				}				
-         			}
-         			
-         			let temp_val = c.split(key+"=")
-         			if(temp_val.length ==1){
-         				console.log(" value =", temp_val[0].split(";")[0])
-         			}else{
-         				console.log(" value =", temp_val[1].split(";")[0])
-         				}		
-         		}
-         	
-         	// ½ÇÇà
-         	setCookie()
-         	
-         	getCookie()
-         	setTimeout(function(){
-         		getCookie()
-         	}, 11*1000)
-         	
-          	let popup_1 = document.querySelector("#popup_1")
-         	popup_1.addEventListener("click", function(event){
-         		// clickµÈ ¿ä¼Ò(È¤Àº ÀÌº¥Æ®°¡ ¹ß»ıÇÑ ¿ä¼Ò)¿ä¼Ò
-         		// ±× ¿ä¼ÒÀÇ Ã¼Å© ¿©ºÎ
-         		console.log(event.target.checked);
-         		
-         		if(event.target.checked){ //  == true ¸¦ ½áµµ µÇ°í ¾È ½áµµ µÈ´Ù. ¹İµå½Ã "=="À¸·Î Ç¥±âÇÏ±â
-         			setCustomCookie('popup_1', true, -1); // 60ÃÊ -1
-          			//setCustomCookie('popup_1', true, 60*1); // 60ÃÊ 
-         			document.querySelector(".popup").style.display= "none";	// popupÀÇ check¹Ú½º¿¡ Ã¼Å© ÇÏ´Â ¼ø°£ popup »ç¶óÁø´Ù.
-         		}
-         	}) 
-         	
-         	
-         	// popup_dark	
-         	let popup_dark = document.querySelector("#popup_dark")
-         	popup_dark.addEventListener("click", function(event){
-         		// clickµÈ ¿ä¼Ò(È¤Àº ÀÌº¥Æ®°¡ ¹ß»ıÇÑ ¿ä¼Ò)¿ä¼Ò
-         		// ±× ¿ä¼ÒÀÇ Ã¼Å© ¿©ºÎ
-         		console.log(event.target.checked);
-         		
-         		if(event.target.checked){ //  == true ¸¦ ½áµµ µÇ°í ¾È ½áµµ µÈ´Ù. ¹İµå½Ã "=="À¸·Î Ç¥±âÇÏ±â
-         			setCustomCookie('popup_dark', true, 10); // 60ÃÊ/
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";	// popupÀÇ check¹Ú½º¿¡ Ã¼Å© ÇÏ´Â ¼ø°£ popup »ç¶óÁø´Ù.
-         		}
-         	})
-         	
-         	function showPopup(){
-         		let value = getCookie("popup_1")
-         		console.log("value : ", value, typeof(value), ( value == true )) // if¹®ÀÌ µé¾î°¬´ÂÁö Ãâ·ÂÇØº»´Ù.
-         		if(value == 'true'){
-         			document.querySelector(".popup").style.display = "none";
-         		} else{
-         			document.querySelector(".popup").style.display= "block";
-         		}
-         	}
-         	showPopup(); 
-         	//popup check ÇÏ´Â ¹æ¹ı 1. getcookie¸¦ °¡Á®¿Â´Ù.
-         	
-         	function darkPopup(){
-         		let value= getCookie("popup_dark")
-         		console.log("value : ", value, typeof(value), (value == true) )
-         		if(value == true){
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";
-         		}else {
-         			document.querySelector(".popup").style.display = "block";
-         		}
-         	}
-         	darkPopup();
-</script>
-<!-- cookie popup scripts ³¡ -->
-
-<body>
-	<!-- cookie popup ½ÃÀÛ-->
-	<div class="popup">
-	<h2>°øÁö ÆË¾÷</h2><br>
-	 <input type="checkbox" id="popup_1">1ºĞµ¿¾È º¸ÀÌÁö ¾Ê±â<br>  
-	<input type="checkbox" id="popup_dark" ><h3>popup È­¸é »ö»ó º¯°æÇÏ±â. <br> <br> MakeData site¸¦ ¹æ¹®ÇÏ½Å °ÍÀ» È¯¿µÇÕ´Ï´Ù.</h3><br>
-	</div>
-		<!-- cookie ³¡ -->
-	
-	  <!-- ÁÂÃø »ó´Ü ¸Ş´º ¿­±â -->
+    <body>
+        <!-- ì¢Œì¸¡ ìƒë‹¨ ë©”ë‰´ ì—´ê¸° -->
         <span id="btn-menu" class="btn-menu">
             <i class="fa fa-bars"></i>
         </span>
     
         <!-- ########## header ########## -->       
         <header>
-            <!-- ¸Ş´º ´İ±â ¹öÆ° -->
+            <!-- ë©”ë‰´ ë‹«ê¸° ë²„íŠ¼ -->
             <span id="btn-close" class="btn-menu">
                 <i class="fa fa-times"></i>
             </span>
@@ -212,10 +61,10 @@
                 <div class="main-logo"><img src="img/logo-01.png" alt="make"></div>               
            </a>
            
-        <!-- ÁÂÃø ¸Ş´º -->
+        <!-- ì¢Œì¸¡ ë©”ë‰´ -->
         <nav class="navbar">
-            <a href="#Find">µµ¼­°ü Á¤º¸</a>                
-            <!-- <a href="#Find">µµ¼­°ü ¼ÒÀå Á¤º¸</a>  -->
+            <a href="#Find">ë„ì„œê´€ ì •ë³´</a>                
+            <!-- <a href="#Find">ë„ì„œê´€ ì†Œì¥ ì •ë³´</a>               -->
             <a href="#chatbot">Chatbot</a>
             <a href="#AIProject">Image make</a>                    
             <a href="https://iampro3-iris-streamlit-app-0331-w3thn9.streamlit.app/" target="_blank">Bidgata Analysis portpolio</a>
@@ -224,7 +73,7 @@
             <br>
             <a href="#login">Login</a>
             <br>
-        <!-- sns ¹öÆ° -->
+        <!-- sns ë²„íŠ¼ -->
             <div class="sns">        
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
             <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
@@ -236,34 +85,34 @@
     <!-- ########## section 1 ########## -->
     <section class="Find" id="Find">             
             
-        <!-- µµ¼­°ü °­ÁÂ/¼ÒÀå Á¤º¸ -->
-            <!-- index.html °¡Á®¿À±â -->
-            <!-- ÀüÃ¼ ¿µ¿ª -->
+        <!-- ë„ì„œê´€ ê°•ì¢Œ/ì†Œì¥ ì •ë³´ -->
+            <!-- index.html ê°€ì ¸ì˜¤ê¸° -->
+            <!-- ì „ì²´ ì˜ì—­ -->
         <div class="container">
-            <!-- ÀÔ·Â ¿µ¿ª -->
+            <!-- ì…ë ¥ ì˜ì—­ -->
             <form action="" method="post">
-                <!-- ÀÔ·Â ¹Ú½º -->
+                <!-- ì…ë ¥ ë°•ìŠ¤ -->
                 <div class="title-wrap">
-                    <!-- ÁßÃ¸ ¹Ú½º (inner)-->
+                    <!-- ì¤‘ì²© ë°•ìŠ¤ (inner)-->
                     <div id="title">
-                        <div class="title-text">µµ¼­°ü Á¤º¸ °Ë»ö</div>             
+                        <div class="title-text">ë„ì„œê´€ ì •ë³´ ê²€ìƒ‰</div>             
                         <br>
-                        <!-- °­ÁÂÁ¤º¸ -->
+                        <!-- ê°•ì¢Œì •ë³´ -->
                         <div class="title-inputbox">
-                            <p>¼­¿ï½Ã µµ¼­°üÀÇ ¹®È­°­ÁÂ Á¤º¸¸¦ °Ë»öÇÕ´Ï´Ù</p><br>
+                            <p>ì„œìš¸ì‹œ ë„ì„œê´€ì˜ ë¬¸í™”ê°•ì¢Œ ì •ë³´ë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤</p><br>
                                
-                                <!-- libstudy.html ºÒ·¯¿À±â -->
-                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">¹®È­°­ÁÂ Á¤º¸ Á¶È¸ÇÏ±â</a></div>                                                                  
+                                <!-- libstudy.html ë¶ˆëŸ¬ì˜¤ê¸° -->
+                                <div class="title-btnbox" id="btn6"><a href="#Find" class="title-btn">ë¬¸í™”ê°•ì¢Œ ì •ë³´ ì¡°íšŒí•˜ê¸°</a></div>                                                                  
                         </div>
                         
                         <br>
                         <br>
-                         <!-- ¼ÒÀåÁ¤º¸ -->
+                         <!-- ì†Œì¥ì •ë³´ -->
                         <div class="title-inputbox">
-                            <p>¼­¿ï½Ã µµ¼­°üÀÇ ¼ÒÀåµÈ µµ¼­ Á¤º¸¸¦ °Ë»öÇÕ´Ï´Ù</p><br>
+                            <p>ì„œìš¸ì‹œ ë„ì„œê´€ì˜ ì†Œì¥ëœ ë„ì„œ ì •ë³´ë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤</p><br>
                                 
-                                <!-- booklist.html ºÒ·¯¿À±â -->
-                                <div class="title-btnbox" id="btn8"><a href="#Find" class="title-btn">¼ÒÀåµµ¼­ Á¤º¸ Á¶È¸ÇÏ±â</a></div>                                                                  
+                                <!-- booklist.html ë¶ˆëŸ¬ì˜¤ê¸° -->
+                                <div class="title-btnbox" id="btn8"><a href="#Find" class="title-btn">ì†Œì¥ë„ì„œ ì •ë³´ ì¡°íšŒí•˜ê¸°</a></div>                                                                  
                         </div>
                     </div>
                 </div>
@@ -271,7 +120,7 @@
         </div>      
     </section>
 
-        <!-- section 2 Ãªº¿ -->
+        <!-- section 2 ì±—ë´‡ -->
         <section class="chatbot" id="chatbot">   
             <div class="slide-container">  
                     
@@ -335,7 +184,7 @@
                 </div>
            <!--  </div> -->
         </section>
-		
+
         <!-- section 3 image make -->
         <section class="AIProject" id="AIProject">   
             <div class="slide-container">   
@@ -404,54 +253,53 @@
             
             <!-- <div class="common-title">Login</div> -->
             <div class="login-container">
-                <!-- ÀÔ·Â ¿µ¿ª -->
-                <form action="/login_check" method="post">
-                    <!-- ·Î±×ÀÎ ¹Ú½º -->
+                <!-- ì…ë ¥ ì˜ì—­ -->
+                <form action="" method="post">
+                    <!-- ë¡œê·¸ì¸ ë°•ìŠ¤ -->
                     <div class="login-wrap">
                         <div class="login-text">Login</div><br>
                         <br>
                         <br>
                         <br>
-                        <!-- ÁßÃ¸ ¹Ú½º (inner)-->
+                        <!-- ì¤‘ì²© ë°•ìŠ¤ (inner)-->
                         <div id="login">
                                                        
-                            <!-- ¾ÆÀÌµğ-->
+                            <!-- ì•„ì´ë””-->
                             <div class="login-inputbox">
-                                <input type="text" name="id" placeholder="¾ÆÀÌµğ">
+                                <input type="text" name="id" placeholder="ì•„ì´ë””">
                                 <span class="border"></span>
                             </div>
-                            <!-- ºñ¹Ğ¹øÈ£-->
+                            <!-- ë¹„ë°€ë²ˆí˜¸-->
                             <div class="login-inputbox">
-                            <input type="password" name="pw" placeholder="ºñ¹Ğ¹øÈ£">
+                            <input type="password" name="pw" placeholder="ë¹„ë°€ë²ˆí˜¸">
                             <span class="border"></span>
                             </div>
-                            <!--¾ÆÀÌµğ ÀúÀå/ÀÚµ¿·Î±×ÀÎ-->
+                            <!--ì•„ì´ë”” ì €ì¥/ìë™ë¡œê·¸ì¸-->
                             <div class="login-remember">
                                 <label for="remember-id">
                                     <input type="checkbox" name="remember-id" id="remember-id">
                                     <span class="checkmark"> </span>
-                                    <span>¾ÆÀÌµğ ÀúÀå</span>                       
+                                    <span>ì•„ì´ë”” ì €ì¥</span>                       
                                  </label>
                             <label for="remember-me">
                                  <input type="checkbox" name="remember-me" id="remember-me">                    
-                                <span class="checkmark"> </span>    <!-- Ã¼Å©¸ğ¾çÀ» ¸¸µê -->
-                                <span>ÀÚµ¿ ·Î±×ÀÎ</span>
-                            </label><br>                           
+                                <span class="checkmark"> </span>    <!-- ì²´í¬ëª¨ì–‘ì„ ë§Œë“¦ -->
+                                <span>ìë™ ë¡œê·¸ì¸</span>
+                            </label><br>
+                           
                         </div>                                     
-                           <!--¹öÆ°(·Î±×ÀÎ/È¸¿ø°¡ÀÔ)-->
-                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">·Î±×ÀÎ
-                            	<!-- <input type="submit" id="btn" value="·Î±×ÀÎ" style="font-size: 12pt; color:rgb(255,255,255)"> -->
-                            </a></div>
-                            <!-- <div id="btn2"> - ajax·Î sign up ÆÄÀÏ ºÒ·¯¿À±â  -->
-                            <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">È¸¿ø°¡ÀÔ</a></div>   
+                           <!--ë²„íŠ¼(ë¡œê·¸ì¸/íšŒì›ê°€ì…)-->
+                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">ë¡œê·¸ì¸</a></div>
+                            <!-- <div id="btn2"> - ajaxë¡œ sign up íŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°  -->
+                            <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">íšŒì›ê°€ì…</a></div>   
                             <br>
                                                       
-                            <!-- ID/PW Ã£±â -->
+                            <!-- ID/PW ì°¾ê¸° -->
                             <br>                           
-                                <div id="btn1" style="width: 300px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID Ã£±â</span> </a>                                                
-                                <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW Ã£±â</span></a>  
+                                <div id="btn1" style="text-align: center;"><a href=#login class="login-btn"><span>ID ì°¾ê¸°</span> </a>                                                
+                                <div id="btn7" style="text-align: center;"><a href=#login class="login-btn"><span>PW ì°¾ê¸°</span></a>  
                                 <span class="border"></span>                                            
-                                </div>                        
+                                </div>                                
                                 	
                     </div>    
                 </form>    
@@ -473,20 +321,20 @@
         <div class="place-info">
             <div class="content">
                 <p class="hall">+ Email : star@gmail</h3>
-                <p class="address">+ ÁÖ¼Ò : ¼­¿ïÆ¯º°½Ã ¿µµîÆ÷±¸ 1000</p>
+                <p class="address">+ ì£¼ì†Œ : ì„œìš¸íŠ¹ë³„ì‹œ ì˜ë“±í¬êµ¬ 1000</p>
             </div>         
         </section>  
 
-         <!-- section 6 °Ô½ÃÆÇ -->
+         <!-- section 6 ê²Œì‹œíŒ -->
         <section class="field" id="field">
             <div class="login-container">
-                <!-- ÀÔ·Â ¿µ¿ª -->
+                <!-- ì…ë ¥ ì˜ì—­ -->
                 <div class="common-title">We make a new Generation, and new Universe</div>
                 <br>
                 <img src="img/last1.jpg" alt="" style="width:420px;height:550px;align-items: flex-end;" >
                 <img src="img/last2.jpg" alt="" style="width:520px;height:550px;align-items: flex-end;" >
                               
-            <!--Ä«ÇÇ¶óÀÌÆ®-->
+            <!--ì¹´í”¼ë¼ì´íŠ¸-->
             <div class="copy">       
                 <br>                               
                 <p align="center">Copyright&copy: 2023 AI Project JOE. All rights reserved.</p>   
@@ -496,59 +344,59 @@
 
         <!-- map api -->         
         <script>
-            // Ä«Ä«¿À Áöµµ API ±â´É ±¸ÇöÇÏ±â 
+            // ì¹´ì¹´ì˜¤ ì§€ë„ API ê¸°ëŠ¥ êµ¬í˜„í•˜ê¸° 
 			
-            var lat = 37.51826573899883		// À§µµ 
+            var lat = 37.51826573899883		// ìœ„ë„ 
             var lon = 126.90642947856348
 
-            var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+            var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
                 mapOption = {
-                    center: new kakao.maps.LatLng(lat, lon), // ÁöµµÀÇ Áß½ÉÁÂÇ¥ 
-                    center: new kakao.maps.LatLng(37.51826573899883, 126.90642947856348), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-                    level: 4, // ÁöµµÀÇ È®´ë ·¹º§
-                    mapTypeId : kakao.maps.MapTypeId.ROADMAP // ÁöµµÁ¾·ù
+                    center: new kakao.maps.LatLng(lat, lon), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ 
+                    center: new kakao.maps.LatLng(37.51826573899883, 126.90642947856348), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+                    level: 4, // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
+                    mapTypeId : kakao.maps.MapTypeId.ROADMAP // ì§€ë„ì¢…ë¥˜
                 }; 
 
-            // Áöµµ¸¦ »ı¼ºÇÑ´Ù 
+            // ì§€ë„ë¥¼ ìƒì„±í•œë‹¤ 
             var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-            // Áöµµ Å¸ÀÔ º¯°æ ÄÁÆ®·ÑÀ» »ı¼ºÇÑ´Ù
+            // ì§€ë„ íƒ€ì… ë³€ê²½ ì»¨íŠ¸ë¡¤ì„ ìƒì„±í•œë‹¤
             var mapTypeControl = new kakao.maps.MapTypeControl();
 
-            // ÁöµµÀÇ »ó´Ü ¿ìÃø¿¡ Áöµµ Å¸ÀÔ º¯°æ ÄÁÆ®·ÑÀ» Ãß°¡ÇÑ´Ù
+            // ì§€ë„ì˜ ìƒë‹¨ ìš°ì¸¡ì— ì§€ë„ íƒ€ì… ë³€ê²½ ì»¨íŠ¸ë¡¤ì„ ì¶”ê°€í•œë‹¤
             map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);	
 
-            // Áöµµ¿¡ È®´ë Ãà¼Ò ÄÁÆ®·ÑÀ» »ı¼ºÇÑ´Ù
+            // ì§€ë„ì— í™•ëŒ€ ì¶•ì†Œ ì»¨íŠ¸ë¡¤ì„ ìƒì„±í•œë‹¤
             var zoomControl = new kakao.maps.ZoomControl();
 
-            // ÁöµµÀÇ ¿ìÃø¿¡ È®´ë Ãà¼Ò ÄÁÆ®·ÑÀ» Ãß°¡ÇÑ´Ù
+            // ì§€ë„ì˜ ìš°ì¸¡ì— í™•ëŒ€ ì¶•ì†Œ ì»¨íŠ¸ë¡¤ì„ ì¶”ê°€í•œë‹¤
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-            // Áöµµ¿¡ ¸¶Ä¿¸¦ »ı¼ºÇÏ°í Ç¥½ÃÇÑ´Ù
+            // ì§€ë„ì— ë§ˆì»¤ë¥¼ ìƒì„±í•˜ê³  í‘œì‹œí•œë‹¤
             var marker = new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(lat, lon), // ¸¶Ä¿ÀÇ ÁÂÇ¥
-                map: map // ¸¶Ä¿¸¦ Ç¥½ÃÇÒ Áöµµ °´Ã¼
+                position: new kakao.maps.LatLng(lat, lon), // ë§ˆì»¤ì˜ ì¢Œí‘œ
+                map: map // ë§ˆì»¤ë¥¼ í‘œì‹œí•  ì§€ë„ ê°ì²´
             });
 
-            // Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ »ı¼ºÇÏ°í Áöµµ¿¡ Ç¥½ÃÇÑ´Ù
+            // ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ìƒì„±í•˜ê³  ì§€ë„ì— í‘œì‹œí•œë‹¤
             var customOverlay = new kakao.maps.CustomOverlay({
                 map: map,
                 content: '<div style="padding:10px 15px;background:#fff; border: 1px solid black;">Human center</div>', 
-                position: new kakao.maps.LatLng(lat, lon), // Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÒ ÁÂÇ¥
-                xAnchor: 0.5, // ÄÁÅÙÃ÷ÀÇ x À§Ä¡
-                yAnchor: 0 // ÄÁÅÙÃ÷ÀÇ y À§Ä¡
+                position: new kakao.maps.LatLng(lat, lon), // ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•  ì¢Œí‘œ
+                xAnchor: 0.5, // ì»¨í…ì¸ ì˜ x ìœ„ì¹˜
+                yAnchor: 0 // ì»¨í…ì¸ ì˜ y ìœ„ì¹˜
             });
 
             kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
                 
-                // Å¬¸¯ÇÑ À§µµ, °æµµ Á¤º¸¸¦ °¡Á®¿É´Ï´Ù 
+                // í´ë¦­í•œ ìœ„ë„, ê²½ë„ ì •ë³´ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤ 
                 var latlng = mouseEvent.latLng; 
                 
-                // ¸¶Ä¿ À§Ä¡¸¦ Å¬¸¯ÇÑ À§Ä¡·Î ¿Å±é´Ï´Ù
+                // ë§ˆì»¤ ìœ„ì¹˜ë¥¼ í´ë¦­í•œ ìœ„ì¹˜ë¡œ ì˜®ê¹ë‹ˆë‹¤
                 marker.setPosition(latlng);
                 
-                var message = 'Å¬¸¯ÇÑ À§Ä¡ÀÇ À§µµ´Â ' + latlng.getLat() + ' ÀÌ°í, ';
-                message += '°æµµ´Â ' + latlng.getLng() + ' ÀÔ´Ï´Ù';
+                var message = 'í´ë¦­í•œ ìœ„ì¹˜ì˜ ìœ„ë„ëŠ” ' + latlng.getLat() + ' ì´ê³ , ';
+                message += 'ê²½ë„ëŠ” ' + latlng.getLng() + ' ì…ë‹ˆë‹¤';
                 
                 var resultDiv = document.getElementById('clickLatlng'); 
                 resultDiv.innerHTML = message;                
@@ -556,19 +404,18 @@
         </script>
 
 
-        <!-- È¸¿ø°¡ÀÔ html ºÒ·¯¿À±â. -->
+        <!-- íšŒì›ê°€ì… html ë¶ˆëŸ¬ì˜¤ê¸°. -->
         <script>        
         $("#btn2").off("click").on("click", function(){
-            // ajax ½ÇÇà
+            // ajax ì‹¤í–‰
             let option = {                 
-                "url" : "/login.jsp", // sts¿¡¼­ °æ·Î¸¦ º¯°æÇß´Ù. 
+                "url" : "/login.html", // stsì—ì„œ ê²½ë¡œë¥¼ ë³€ê²½í–ˆë‹¤. 
                 "type": "get",
                 "success" : function(data){
                     console.log(data);                       
                     /* let result = document.querySelector("#login");
                 	result.innerHTML = data */
-                	/* »õ·Î¿î jquery ±¸¹® */
-               //	$("#login").jsp(data);
+                	/* ìƒˆë¡œìš´ jquery êµ¬ë¬¸ */
                		$("#login").html(data);
                 	
                 },
@@ -587,21 +434,18 @@
         })
             </script>
             
-             <!-- login Ã¢, id Ã£±â find.html ºÒ·¯¿À±â : ´Ù¸¥ ÆÄÀÏ·Î ±¸ÇöÇß±â ¶§¹®¿¡-->
+             <!-- login ì°½, id ì°¾ê¸° find.html ë¶ˆëŸ¬ì˜¤ê¸°-->
             <script>
             $("#btn1").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
-                		/*                    "url" : "/findpw.jsp",*/
-                     "url" : "/find.html", 
+                    "url" : "/find.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
-                    
-                    	//$("#login").html(data);  //: ´Ù¸¥ ÆÄÀÏ·Î ±¸ÇöÇß±â ¶§¹®¿¡ »ç¿ëÇÏ¸é ¾È µÈ´Ù.
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
                     },
                     "error" : function(data){
                         console.log(data)
@@ -618,21 +462,18 @@
             })
         </script>
         
-        <!-- login Ã¢, pw Ã£±â findpw.html ºÒ·¯¿À±â-->
+        <!-- login ì°½, pw ì°¾ê¸° findpw.html ë¶ˆëŸ¬ì˜¤ê¸°-->
          <script>
             $("#btn7").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
-                		/*                  "url" : "/findpw.jsp",*/
-                     "url" : "/findpw.html", 
+                    "url" : "/findpw.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
-                    
-                    	//$("#login").html(data); // : ´Ù¸¥ ÆÄÀÏ·Î ±¸ÇöÇß±â ¶§¹®¿¡
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
                     },
                     "error" : function(data){
                         console.log(data)
@@ -649,11 +490,11 @@
             })
         </script>
         
-        <!-- imgmake Ã¢ ºÒ·¯¿À±â imgmake.html : AIProject ÀÌ¹ÌÁö ¸ŞÀÌÅ© ºÒ·¯¿À±â -->
+        <!-- imgmake ì°½ ë¶ˆëŸ¬ì˜¤ê¸° imgmake.html : AIProject ì´ë¯¸ì§€ ë©”ì´í¬ ë¶ˆëŸ¬ì˜¤ê¸° -->
         <script>
              
              $("#btn3").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
                
                     "url" : "/imgmake.html",
@@ -679,11 +520,11 @@
             })
         </script>
 
-        <!-- chatbot Ã¢ ºÒ·¯¿À±â chatbot.html : health °Ô½ÃÆÇ ºÒ·¯¿À±â -->
+        <!-- chatbot ì°½ ë¶ˆëŸ¬ì˜¤ê¸° chatbot.html : health ê²Œì‹œíŒ ë¶ˆëŸ¬ì˜¤ê¸° -->
         <script>
             
             $("#btn4").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
                     "url" : "/chatbot.html",
@@ -708,11 +549,11 @@
             })
         </script>
 
-          <!-- field Ã¢ ºÒ·¯¿À±â field.html : °Ô½ÃÆÇ, post -->
+          <!-- field ì°½ ë¶ˆëŸ¬ì˜¤ê¸° field.html : ê²Œì‹œíŒ, post -->
           <script>
             
             $("#btn5").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
                     "url" : "/field.html",
@@ -740,10 +581,10 @@
             })
         </script>
 
-        <!-- libstudy Ã¢ ºÒ·¯¿À±â libstudy.html : °ø°øµ¥ÀÌÅÍ Å©·Ñ¸µ -->
+        <!-- libstudy ì°½ ë¶ˆëŸ¬ì˜¤ê¸° libstudy.html : ê³µê³µë°ì´í„° í¬ë¡¤ë§ -->
           <script>            
             $("#btn6").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
                     "url" : "/libstudy.html",
@@ -754,9 +595,9 @@
                         
                         /* let result = document.querySelector("#Find");
                    		result.innerHTML = data
-                   		---- ¾Æ·¡ÀÇ jq·Î ¼öÁ¤ÇÔ : Áß¿ä, °øºÎÇÏ±â~~
+                   		---- ì•„ë˜ì˜ jqë¡œ ìˆ˜ì •í•¨ : ì¤‘ìš”, ê³µë¶€í•˜ê¸°~~
                    		*/
-                   		/* »õ·Î¿î jquery ±¸¹® */
+                   		/* ìƒˆë¡œìš´ jquery êµ¬ë¬¸ */
                    		$("#Find").html(data);
                    		
                     },
@@ -775,10 +616,10 @@
             })
         </script>
         
-        <!-- booklist ¼ÒÀåÁ¤º¸ Ã¢ ºÒ·¯¿À±â booklist.html : °ø°øµ¥ÀÌÅÍ Å©·Ñ¸µ -->
+        <!-- booklist ì†Œì¥ì •ë³´ ì°½ ë¶ˆëŸ¬ì˜¤ê¸° booklist.html : ê³µê³µë°ì´í„° í¬ë¡¤ë§ -->
           <script>            
             $("#btn8").off("click").on("click", function(){
-                // ajax ½ÇÇà
+                // ajax ì‹¤í–‰
                 let option = {
             
                     "url" : "/booklist.html",
@@ -789,9 +630,9 @@
                         
                         /* let result = document.querySelector("#Find");
                    		result.innerHTML = data
-                   		---- ¾Æ·¡ÀÇ jq·Î ¼öÁ¤ÇÔ : Áß¿ä, °øºÎÇÏ±â~~
+                   		---- ì•„ë˜ì˜ jqë¡œ ìˆ˜ì •í•¨ : ì¤‘ìš”, ê³µë¶€í•˜ê¸°~~
                    		*/
-                   		/* »õ·Î¿î jquery ±¸¹® */
+                   		/* ìƒˆë¡œìš´ jquery êµ¬ë¬¸ */
                    		$("#Find").html(data);
                    		
                     },
@@ -809,5 +650,5 @@
                 }
             })
         </script>
-	</body>
+    </body>
 </html>

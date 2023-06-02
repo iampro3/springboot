@@ -8,17 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-당신의 id : ${id }<br>
-당신의 pw : ${pw }<br>
-당신의 name : ${name }<br>
-당신의 phone : ${phone }<br>
-당신의 성별 : ${gender }<br>
-당신의 email : ${email }<br>
-당신의 생년월일 : ${birth }<br>
-
-
+session.jsp
 
 </body>
 </html>

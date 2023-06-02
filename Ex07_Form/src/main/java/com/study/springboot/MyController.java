@@ -31,7 +31,7 @@ public class MyController {
 		// key가 없다면 null을  return한다.    	
     	// test1?id=ss&name=aa / 주소 불러오는 방식
 		String id = httpServletRequest.getParameter("id");
-		String pw = httpServletRequest.getParameter("pw");
+		String pw = httpServletRequest.getParameter("pw");	
 		String name = httpServletRequest.getParameter("name");
 		String birth = httpServletRequest.getParameter("birth");
 		String gender = httpServletRequest.getParameter("gender");

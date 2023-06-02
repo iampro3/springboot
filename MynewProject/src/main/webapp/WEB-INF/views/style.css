@@ -56,6 +56,7 @@ header .navbar {
     cursor: pointer;
     font-size: 14px;
     border-bottom: 1px solid #dddddd;  
+    
   }
 header .navbar {
     display: block;
@@ -68,11 +69,19 @@ header .navbar {
 header .navbar a {
     display: block;
     color: rgb(255, 255, 255);
-    margin: 0.7rem 0;   /* navi 메뉴 글자간격*/
+    margin: 0.8rem 0;   /* navi 메뉴 글자간격*/
     font-size: 1.1rem;
 }
 header .navbar a:hover {
-    color: var(--main-color);
+    /* color: var(--main-color); */
+    font-weight : bold;    
+}
+
+header .navbara {
+    display: block;
+    color: rgb(255, 255, 255);
+    margin: 0.8rem 0;   /* navi 메뉴 글자간격*/
+    font-size: 1.1rem;
 }
 
 
@@ -147,8 +156,8 @@ a {
 .title-text {
     color: #3c0c60;
     cursor: pointer;
-    font-size: 1.8rem;
-    /* font-weight : bold; */
+    font-size: 0.8rem;
+    font-weight : bold;
 }
 
 /* ####### 도서관 수강 부분 */
@@ -183,7 +192,7 @@ a {
     color: blanchedalmond;
     font-size: 1.0rem;
     font-weight : bold;
-    color: rgb(66, 0, 132);
+    color: rgb(64, 0, 128);
     margin-top: 10px;   /* 내가 추가함 */
     line-height: 25px;    /* 버튼 안에서 글자 높이 */
     border-radius: 5px;

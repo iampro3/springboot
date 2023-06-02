@@ -86,8 +86,10 @@ public class ShopController {
 		return "view";
 	}
 	
-	@RequestMapping("/input")
-	public String input() {
+	/* @RequestMapping("/")  --- input.jsp 파일이 열렸다. controller에서 '/' 를 준 파일이 indexljsp 보다 우선한다. */
+	
+	  @RequestMapping("/input")
+	 	public String input() {
 		return "input";
 	}
 	
@@ -95,7 +97,8 @@ public class ShopController {
 	// post로 전달하는것 : @RequestBody
 	@RequestMapping("/getBagList")
 	@ResponseBody
-	public List getBagList(int count) {
+	public List getBagList(
+			@RequestParam(value="count", required=false) Integer count) {
 		List list_item = new ArrayList();
 		
 		Map info = new HashMap();
@@ -104,17 +107,10 @@ public class ShopController {
 		info.put("desc", "여성 카세트 크로스백 - 패러킷");
 		info.put("price", "1,308,000");
 
-		info = new HashMap();
-		info.put("img_src", "//image.msscdn.net/images/goods_img/20230401/3199783/3199783_16844763299344_320.jpg");
-		info.put("name", "보테가베네타");
-		info.put("desc", "여성 카세트 크로스백 - 패러킷");
-		info.put("price", "1,308,000");
-		
-		
-		for(int i=0; i < count; i++) {
+		for(int i=0; i<10; i++) {
 			list_item.add(info);
 		}
-				
+		
 		return list_item;
 	}
 	
@@ -125,9 +121,7 @@ public class ShopController {
 	
 	@RequestMapping("/send2")
 	@ResponseBody
-		 // return 타입과 동일하게 변경 List	
 	public List send2(
-	//public String send2(
 			@RequestParam Map paramMap,	// Map을 이용하는 방법; 전부 받아줌
 			
 			// 주소의 query string('?' 이후에 key=value) 형태를 받음
@@ -143,62 +137,162 @@ public class ShopController {
 		System.out.println(shopDTO2);
 		
 		List list = getBagList(shopDTO2.getCount());
+		
 		return list;
 	}
 	
-	@RequestMapping("/cookie")
-	public String cookie(HttpServletRequest request, // 요청에 관한 모든 것
-						HttpServletResponse reponse// 응답에 관한 모든 것. 브라우저까지 전송함 : reponse에 담아서 보내도 된다.
-													// model은 jsp까지만 전송된다. jsp가 java로 바뀐다.
-			) {
-		//쓰기
-		Cookie cookie = new Cookie("popup3", "ks:나");
-		cookie.setMaxAge(10);//단위 :초
-		// 브라우저에 돌려주기 : 일반적으로 모델에 담았음
-		cookie.setPath("/");//단위 :초
-		reponse.addCookie(cookie);
+	//@RequestMapping("/index")
+	//public String index(
+	 @RequestMapping("/cookie")
+	 	
+			 	public String cookie(
+//				public String index(
+			// 요청에 관한 모든 것
+			HttpServletRequest request,
+			
+			// 응답에 관한 모든 것 - 브라우저까지 전송 됨
+			//	* model은 jsp까지만 전송 됨
+			HttpServletResponse response
+	) {
+		// 쓰기
+		Cookie cookie = new Cookie("popup3", "ks");
+		cookie.setMaxAge(-10); // 단위: 초
+		cookie.setPath("/");
+		response.addCookie(cookie);
 		
-		//읽기
+		// 읽기
 		Cookie[] cookies = request.getCookies();
-		
-		for (Cookie c: cookies) {
-			System.out.println("c:"+c);
-			System.out.println("c.getName():"+c.getName());
-			System.out.println("c.getValue():"+c.getValue());
+		if( cookies != null ) {
+			for(Cookie c : cookies) {
+				System.out.println("c : "+ c);
+				System.out.println("c.getName() : "+ c.getName());
+				System.out.println("c.getValue() : "+ c.getValue());
+			}
 		}
 		
-		//HttpSession session = request.getSession();
-//		if(id, pw 같을 때,) {
-//			session.setAttribute("isLogin', true);
-//		}
-//		
-//		if(session.getAttribute("isLogin")!= null)
-//			&& (boolean) session.getAttribute("isLogin") == 
-//		{   System.out.println("login 되었습니다.");
-//		}
-//		else {
-//			System.out.println("c.getName():"+c.getName());
-//		}		
+		//return "index";
+		return "cookie";
+	}
+
+	@RequestMapping("/session")
+	public String session(
+			HttpServletRequest request
+	) {
+		// 세선 : 30분의 유효기간
+		// JSESSIONID라는 키를 가지는 세션쿠키를 이용
 		
-		return "cookie";	// 자바스크립트에서 쿠키 출력
+		HttpSession session = request.getSession();
+		boolean isNew = session.isNew(); // 최초 접속:true
+		System.out.println("isNew : "+ isNew);
+		
+		// 세션에 저장
+		session.setAttribute("isLogin", "true");
+		
+		return "session";
+	}
+	
+	@RequestMapping("/session2")
+	public String session2(
+			HttpServletRequest request
+	) {
+		HttpSession session = request.getSession();
+		
+		// 세션에서 불러오기
+		String isLogin = (String)session.getAttribute("isLogin");
+		System.out.println("isLogin : "+ isLogin);
+		try {
+//			if(isLogin != null && isLogin.equals("true")) {
+			if(isLogin != null 
+				&& "true".equals(isLogin)) {
+				
+				System.out.println("로그인 되어있습니다.");
+			} else {
+				System.out.println("로그인 페이지로 이동합니다.");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("로그인 페이지로 이동합니다.");
+		}
+		
+		return "session";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(
+			HttpServletRequest request
+	) {
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		return "session";
+	}
+
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@RequestMapping("/mypage")
+	public String mypage(HttpServletRequest request, Model model) {
+		
+		String nextPage = "login";
+		
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		
+		// 세션에서 꺼내기
+		String id = (String) session.getAttribute("isLogin2");
+		System.out.println("id : "+ id);
+		if(id != null) {
+			model.addAttribute("id", id);
+			nextPage = "mypage";
+		} else {
+			model.addAttribute("msg", "로그인 해주세요");
+		}
+		
+		return nextPage;
+	}
+
+	@RequestMapping("/login_check")
+	public String login_check(
+			HttpServletRequest request,
+			
+			@RequestParam("pw") String pw,
+			
+			Model model
+	) {
+		String nextPage = null;
+		
+		String id = request.getParameter("id");
+
+		String _id = "admin";
+		String _pw = "1234";
+		
+		if(id != null && pw != null) {
+			if(id.equals(_id) && pw.equals(_pw)) {
+				// 로그인 확인 완료
+				
+				// 세션 가져오기
+				HttpSession session = request.getSession();
+				
+				// 세션에 저장
+				session.setAttribute("isLogin2", id);
+//				session.removeAttribute("isLogin2");
+				
+				model.addAttribute("id", id);
+				nextPage = "/mypage";
+			} else {
+				// 회원 정보 없음
+				model.addAttribute("msg", "회원이 아닙니다");
+				nextPage = "/login";
+			}
+		} else {
+			model.addAttribute("msg", "아이디와 패스워드는 필수입니다");
+			nextPage = "/login";
+		}
+		
+		return "redirect:"+ nextPage;
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

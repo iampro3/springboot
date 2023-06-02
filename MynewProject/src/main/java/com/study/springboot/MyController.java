@@ -1,5 +1,8 @@
 package com.study.springboot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,16 +11,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.study.springboot.dto.MemberDTO;
+
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MyController {
-
-    @RequestMapping("/index")
-    public @ResponseBody String root() throws Exception{
-        return "index.html";
-    }
+	
+	/* -- 항상 ststic 폴더 > index.html 파일이 1순위로 열린다.
+	 * @RequestMapping("/") public @ResponseBody String root() throws Exception{
+	 * 
+	 * System.out.println("html :"); return "index.html"; }
+	 */
  
+//	  @RequestMapping("/")
+//	 	public String index() {
+//		return "index";
+//	}
+	  
+	  
     @RequestMapping("/test1")
     public String test1(HttpServletRequest httpServletRequest, Model model) {
 		
@@ -27,18 +42,18 @@ public class MyController {
 		String id = httpServletRequest.getParameter("id");
 		String pw = httpServletRequest.getParameter("pw");
 		String name = httpServletRequest.getParameter("name");
-		String birth = httpServletRequest.getParameter("birth");
-		String gender = httpServletRequest.getParameter("gender");
-		String email = httpServletRequest.getParameter("email");
 		String phone = httpServletRequest.getParameter("phone");
+		String email = httpServletRequest.getParameter("email");
+		String gender = httpServletRequest.getParameter("gender");
+		String birth = httpServletRequest.getParameter("birth");
 		
 		model.addAttribute("id", id);
 		model.addAttribute("pw", pw);
 		model.addAttribute("name", name);
-		model.addAttribute("birth", birth);
-		model.addAttribute("gender", gender);
-		model.addAttribute("email", email);
 		model.addAttribute("phone", phone);
+		model.addAttribute("email", email);
+		model.addAttribute("gender", gender);
+		model.addAttribute("birth", birth);
 		return "test1";
 }   
 
@@ -93,5 +108,173 @@ public class MyController {
 			model.addAttribute("name", name);
 			return "test1";	// jsp 파일 명 
 		}	
+	
+	
+	List<String> list = new ArrayList();
+	
+	@RequestMapping("/send1") // 모든 method를 받을 수 있음
+//	@RequestMapping(value="/send1") // 위와 같음
+//	@RequestMapping(value="/send1", method=RequestMethod.GET)
+//	@GetMapping("/send1")// 위와 같음
+//	@RequestMapping(value="/send1", method={RequestMethod.GET, RequestMethod.POST})
+	// get이 아닌 method로 들어오면 405 method not allowed
+//	@PostMapping("/send1")
+	public String print(
+				HttpServletRequest request,
+				
+				// 들어올때 필수; 없으면 400 bad request
+				@RequestParam("id") String id2,
+				
+				// 필수 아님
+				@RequestParam(value="id", required=false) String id3,
+				
+				Model model
+			) {
+		
+		// id에 해당하는 내용을 전달받아
+		// 변수에 저장한다
+
+		// 전달받은 key값 중에서 첫번째것 하나만 가져옴
+		String id = request.getParameter("id"); // querySelector처럼
+		String[] ids = request.getParameterValues("id"); // querySelectorAll처럼
+		
+		System.out.println("id : "+ id);
+		System.out.println("id2 : "+ id2);
+		System.out.println("id3 : "+ id3);
+		for(String value : ids) {
+			System.out.println("ids : "+ value);
+		}
+		
+		////////////////////////////////////////////////
+		// 내보내기
+		////////////////////////////////////////////////
+		model.addAttribute("req_id", id);
+		
+		list.add(id);
+		model.addAttribute("list_id", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 id : "+ list.get(i) );
+		}
+		
+		request.setAttribute("req_id2", id);
+		request.setAttribute("text", "abcde");
+		request.setAttribute("m", model);
+		
+		String req_id2 = (String) request.getAttribute("req_id2");
+		System.out.println("req_id2 : "+ req_id2);
+		
+		return "viewresult";
+	}
+	
+	// cookie 설정
+	@RequestMapping("/index")
+	public String index(
+			/*
+			 * public String cookie(
+			 */			// 요청에 관한 모든 것
+			HttpServletRequest request,
+			
+			// 응답에 관한 모든 것 - 브라우저까지 전송 됨
+			//	* model은 jsp까지만 전송 됨
+			HttpServletResponse response
+	) {
+		// 쓰기
+		Cookie cookie = new Cookie("popup3", "ks");
+		cookie.setMaxAge(-10); // 단위: 초
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		
+		// 읽기
+		Cookie[] cookies = request.getCookies();
+		if( cookies != null ) {
+			for(Cookie c : cookies) {
+				System.out.println("c : "+ c);
+				System.out.println("c.getName() : "+ c.getName());
+				System.out.println("c.getValue() : "+ c.getValue());
+			}
+		}
+		
+		return "cookie";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(
+			HttpServletRequest request
+	) {
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		return "session";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	 @RequestMapping("/mypage")
+	// @RequestMapping("/index")
+	 	public String mypage(HttpServletRequest request, Model model) {
+		
+		String nextPage = "login";
+		
+		// 세션 가져오기
+		HttpSession session = request.getSession();
+		
+		// 세션에서 꺼내기
+		String id = (String) session.getAttribute("isLogin2");
+		System.out.println("id : "+ id);
+		if(id != null) {
+			model.addAttribute("id", id);
+//			nextPage = "index";
+			nextPage = "mypage";
+		} else {
+			model.addAttribute("msg", "로그인 해주세요");
+		}		
+		return nextPage;
+	}
+
+	@RequestMapping("/login_check")
+	public String login_check(
+			HttpServletRequest request,
+			
+			@RequestParam("pw") String pw,
+			
+			Model model
+	) {
+		String nextPage = null;
+		
+		String id = request.getParameter("id");
+
+		String _id = "admin";	
+		String _pw = "1234";
+		
+		if(id != null && pw != null) {
+			if(id.equals(_id) && pw.equals(_pw)) {
+				// 로그인 확인 완료
+				
+				// 세션 가져오기
+				HttpSession session = request.getSession();
+				
+				// 세션에 저장
+				session.setAttribute("isLogin2", id);
+//				session.removeAttribute("isLogin2");
+				
+				model.addAttribute("id", id);
+//				nextPage = "/index";
+				nextPage = "/mypage";
+			} else {
+				// 회원 정보 없음
+				model.addAttribute("msg", "회원이 아닙니다");
+				nextPage = "/login";
+			}
+		} else {
+			model.addAttribute("msg", "아이디와 패스워드는 필수입니다");
+			nextPage = "/login";
+		}
+		
+		return "redirect:"+ nextPage;
+	}
 }
 	

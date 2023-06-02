@@ -18,8 +18,7 @@
         <!-- slick css CDN -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">        
         <link rel="stylesheet" href="/style.css"> 
-      <%--   <link href="<c:url value="/src/main/webapp/WEB-INF/views/style.css"/>" rel='stylesheet' />      --%>
-<%--         <link href="<c:url value="/resources/static/style.css"/>" rel='stylesheet' />      --%>
+       <%--  <link href="<c:url value="/resources/static/style.css"/>" rel='stylesheet' />   --%>    
     
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -56,11 +55,11 @@
                 let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
              if (matchid){            
                 alert("환영합니다!")
-                location.href = "mypage.jsp"
-                	/*               location.href = "index.html" */
-                 } else {
+                location.href = "index.jsp"
+/*                 location.href = "index.html" */
+             } else {
                 alert("id와 pw를 입력해주세요.")
-                location.href = "/" 
+                location.href = "http://naver.com"
             } 
         }
         </script>
@@ -191,8 +190,7 @@
 	 <input type="checkbox" id="popup_1">1분동안 보이지 않기<br>  
 	<input type="checkbox" id="popup_dark" ><h3>popup 화면 색상 변경하기. <br> <br> MakeData site를 방문하신 것을 환영합니다.</h3><br>
 	</div>
-		<!-- cookie 끝 -->
-	
+		<!-- cookie 끝 -->	
 	  <!-- 좌측 상단 메뉴 열기 -->
         <span id="btn-menu" class="btn-menu">
             <i class="fa fa-bars"></i>
@@ -222,7 +220,8 @@
         </nav>
             <br>
             <br>
-            <a href="#login">Login</a>
+            <a href="/index" style="color:rgb(255,255,255)">Logout</a><br>
+             <div style="color:rgb(255,255,255)">${id }님 환영합니다!<br></div>
             <br>
         <!-- sns 버튼 -->
             <div class="sns">        
@@ -436,11 +435,12 @@
                                  <input type="checkbox" name="remember-me" id="remember-me">                    
                                 <span class="checkmark"> </span>    <!-- 체크모양을 만듦 -->
                                 <span>자동 로그인</span>
-                            </label><br>                           
+                            </label><br>
+                           
                         </div>                                     
                            <!--버튼(로그인/회원가입)-->
-                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">로그인
-                            	<!-- <input type="submit" id="btn" value="로그인" style="font-size: 12pt; color:rgb(255,255,255)"> -->
+                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">
+                            	<input type="submit" id="btn" value="로그인">
                             </a></div>
                             <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
                             <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
@@ -451,7 +451,7 @@
                                 <div id="btn1" style="width: 300px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
                                 <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
                                 <span class="border"></span>                                            
-                                </div>                        
+                                </div>                                
                                 	
                     </div>    
                 </form>    
@@ -561,14 +561,13 @@
         $("#btn2").off("click").on("click", function(){
             // ajax 실행
             let option = {                 
-                "url" : "/login.jsp", // sts에서 경로를 변경했다. 
+                "url" : "/login.html", // sts에서 경로를 변경했다. 
                 "type": "get",
                 "success" : function(data){
                     console.log(data);                       
                     /* let result = document.querySelector("#login");
                 	result.innerHTML = data */
                 	/* 새로운 jquery 구문 */
-               //	$("#login").jsp(data);
                		$("#login").html(data);
                 	
                 },
@@ -587,21 +586,18 @@
         })
             </script>
             
-             <!-- login 창, id 찾기 find.html 불러오기 : 다른 파일로 구현했기 때문에-->
+             <!-- login 창, id 찾기 find.html 불러오기-->
             <script>
             $("#btn1").off("click").on("click", function(){
                 // ajax 실행
                 let option = {
             
-                		/*                    "url" : "/findpw.jsp",*/
-                     "url" : "/find.html", 
+                    "url" : "/find.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
-                    
-                    	//$("#login").html(data);  //: 다른 파일로 구현했기 때문에 사용하면 안 된다.
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
                     },
                     "error" : function(data){
                         console.log(data)
@@ -624,15 +620,12 @@
                 // ajax 실행
                 let option = {
             
-                		/*                  "url" : "/findpw.jsp",*/
-                     "url" : "/findpw.html", 
+                    "url" : "/findpw.html",
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  
-                         let result = document.querySelector("#login");
-                    result.innerHTML = data 
-                    
-                    	//$("#login").html(data); // : 다른 파일로 구현했기 때문에
+                        let result = document.querySelector("#login");
+                    result.innerHTML = data
                     },
                     "error" : function(data){
                         console.log(data)

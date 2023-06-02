@@ -14,13 +14,29 @@
          function fnClick(){
             let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
          if (matchid){            
-            alert("ID를 변경했습니다.")
-            location.href = "index.html"
+            alert("인증번호를 전송했습니다.")
+            location.href = "index.jsp"
          } else {
-            alert("id와 pw를 입력해주세요.")
+            alert("id와 pw를 입력해주세요!!")
             location.href = "http://naver.com"
         } 
     }
+         
+         function fnClick1(){
+             let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
+          if (matchid){            
+             alert("인증번호가 확인되었습니다.")
+             location.href = "index.jsp"
+          }
+         }
+         
+         function fnClick2(){
+             let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
+          if (matchid){            
+             alert("id가 이메일로 전송되었습니다.")
+             location.href = "index.jsp"
+          }
+         }
     </script>
 <body>
 
@@ -49,7 +65,7 @@
                         <input type="password" name="pw" placeholder="휴대폰에 전송된 인증번호를 입력하세요.">
                         <span class="border"></span>
                     </div>
-                    <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">휴대폰 인증번호 확인</a></div>	
+                    <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick1()">휴대폰 인증번호 확인</a></div>	
                   
                     <div class="login-remember">    
                                                                                                               
@@ -65,7 +81,7 @@
                     <!--버튼(idpw 변경완료)-->     
                      
                                
-                    <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">이메일로 전송</a></div>
+                    <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick2()">이메일로 전송합니다</a></div>
                      
                     </div>                                         
               </div>      

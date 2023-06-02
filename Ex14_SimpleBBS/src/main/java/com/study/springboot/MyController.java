@@ -16,7 +16,7 @@ public class MyController {
 
     @Autowired
     ISimpleBbsDao dao;
-
+    
     @RequestMapping("/")
     public String root() throws Exception{
         // JdbcTemplate : SimpleBBS

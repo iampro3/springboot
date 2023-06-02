@@ -13,7 +13,7 @@
 		position : absolute;
 		top : 50%;
 		left : 50%;
-		 background-color : rgb(0,163,89); */
+		 background-color : rgb(82,52,186); 
 		transform : translate(-50%, -50%);
 		
 	 }
@@ -21,13 +21,12 @@
 </style>
 </head>
 <body>
-cookiee
-
+cookie
 
 <div class="popup">
 	공지 팝업<br>
 	 <input type="checkbox" id="popup_1">1분동안 보이지 않기<br> 
-	<input type="checkbox" id="popup_dark" >popup 색상 변경하기<br>
+	<input type="checkbox" id="popup_dark" >어두운 화면<br>
 </div>
 
 <script>
@@ -107,44 +106,21 @@ cookiee
  			//setCustomCookie('popup_1', true, 60*1); // 60초 
 			document.querySelector(".popup").style.display= "none";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
 		}
-	}) 
+	}) 	
 	
-	
-	// popup_dark	
-	let popup_dark = document.querySelector("#popup_dark")
-	popup_dark.addEventListener("click", function(event){
-		// click된 요소(혹은 이벤트가 발생한 요소)요소
-		// 그 요소의 체크 여부
-		console.log(event.target.checked);
-		
-		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
-			setCustomCookie('popup_dark', true, 10); // 60초/
-			document.querySelector(".popup").style.backgroundcolor= "rgb(212, 185, 227)";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
-		}
-	})
 	
 	function showPopup(){
 		let value = getCookie("popup_1")
 		console.log("value : ", value, typeof(value), ( value == true )) // if문이 들어갔는지 출력해본다.
 		if(value == 'true'){
-			document.querySelector(".popup").style.backgroundcolor= "rgb(212, 185, 227)";
+			document.querySelector(".popup").style.display= "none";
 		} else{
 			document.querySelector(".popup").style.display= "block";
 		}
 	}
 	showPopup(); 
 	//popup check 하는 방법 1. getcookie를 가져온다.
-	
-	function darkPopup(){
-		let value= getCookie("popup_dark")
-		console.log("value : ", value, typeof(value), (value == true) )
-		if(value == true){
-			document.querySelector(".popup").style.display = "background-color: rgb(212, 185, 227)";
-		}else {
-			document.querySelector(".popup").style.display = "block";
-		}
-	}
-	darkPopup();
+
 	
 </script>
 </body>
