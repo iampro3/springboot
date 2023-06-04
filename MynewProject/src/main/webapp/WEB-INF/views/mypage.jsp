@@ -39,12 +39,19 @@
 				width : 300px;
 				height : 300px;
 				position : absolute;
-				top : 40%;
-				left : 40%;
-				background-color : rgb(82,52,186); 
+				top : 60%;
+				left : 65%;
+			/* 	background-color : rgb(82,52,186);  */
+		/* 		   background: 
+			    radial-gradient(circle at 50% 0, rgba(255,0,0, 0.5), rgba(255,0,0,0) 70%),
+			    radial-gradient(circle at 7% 75%, rgba(0,0,255, 0.5), rgba(255,0,0,0) 70%),
+			    radial-gradient(circle at 93% 75%, rgba(0,255,0, 0.5), rgba(255,0,0,0) 70%); */
+			    
+			    background: linear-gradient(90deg, #9ebd13 0%, #26b3f7 50%, #5726f7 100%);
 				color : rgb(255,255,255); 
 				transform : translate(-50%, -50%);	
-				padding : 30px	
+				padding : 30px;
+				z-index : 999;	
 			 }	
 		</style>    
     </head>
@@ -142,22 +149,9 @@
           			//setCustomCookie('popup_1', true, 60*1); // 60초 
          			document.querySelector(".popup").style.display= "none";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
          		}
-         	}) 
+         	})          	
          	
-         	
-         	// popup_dark	
-         	let popup_dark = document.querySelector("#popup_dark")
-         	popup_dark.addEventListener("click", function(event){
-         		// click된 요소(혹은 이벤트가 발생한 요소)요소
-         		// 그 요소의 체크 여부
-         		console.log(event.target.checked);
-         		
-         		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
-         			setCustomCookie('popup_dark', true, 10); // 60초/
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
-         		}
-         	})
-         	
+              	
          	function showPopup(){
          		let value = getCookie("popup_1")
          		console.log("value : ", value, typeof(value), ( value == true )) // if문이 들어갔는지 출력해본다.
@@ -170,25 +164,18 @@
          	showPopup(); 
          	//popup check 하는 방법 1. getcookie를 가져온다.
          	
-         	function darkPopup(){
-         		let value= getCookie("popup_dark")
-         		console.log("value : ", value, typeof(value), (value == true) )
-         		if(value == true){
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";
-         		}else {
-         			document.querySelector(".popup").style.display = "block";
-         		}
-         	}
-         	darkPopup();
+     
 </script>
 <!-- cookie popup scripts 끝 -->
 
 <body>
 	<!-- cookie popup 시작-->
 	<div class="popup">
-	<h2>공지 팝업</h2><br>
-	 <input type="checkbox" id="popup_1">1분동안 보이지 않기<br>  
-	<input type="checkbox" id="popup_dark" ><h3>popup 화면 색상 변경하기. <br> <br> MakeData site를 방문하신 것을 환영합니다.</h3><br>
+	<h2>공지 사항</h2><br>
+	 
+	<h3>Login 되었습니다. <br> <br> MakeData 를 방문하신 것을 환영합니다.</h3><br>
+	<br>  <br>  <br>   
+	창 닫기&nbsp<input type="checkbox" id="popup_1" ><br>  
 	</div>
 		<!-- cookie 끝 -->	
 	  <!-- 좌측 상단 메뉴 열기 -->
@@ -220,7 +207,7 @@
         </nav>
             <br>
             <br>
-            <a href="/index" style="color:rgb(255,255,255)">Logout</a><br>
+            <a href="/" style="color:rgb(255,255,255)">Logout</a><br>	<!-- index.jsp로 이동함 -->
              <div style="color:rgb(255,255,255)">${id }님 환영합니다!<br></div>
             <br>
         <!-- sns 버튼 -->

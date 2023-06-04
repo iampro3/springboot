@@ -40,156 +40,161 @@
 				width : 300px;
 				height : 300px;
 				position : absolute;
-				top : 40%;
-				left : 40%;
+				top : 50%;
+				left : 65%;
 				background-color : rgb(82,52,186); 
 				color : rgb(255,255,255); 
 				transform : translate(-50%, -50%);	
-				padding : 30px	
+				padding : 30px;
+				z-index : 999;
 			 }	
 		</style>    
     </head>
 
     <!-- login 버튼 누르면 이동 -->
     <script>
-        function fnClick(){
-                let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
+         function fnClick(){
+                let matchid = "${matchid == admin}"  // if의 값을 선언해 주어야 한다.
              if (matchid){            
                 alert("환영합니다!")
-                location.href = "mypage.jsp"
-                	/*               location.href = "index.html" */
+              location.href = "mypage.jsp" -- jsp로 안 간다.
+      
                  } else {
-                alert("id와 pw를 입력해주세요.")
+                alert("환영합니다!!")
                 location.href = "/" 
             } 
-        }
+        } 
+ 
         </script>
         
          <script>
          <!-- cookie popup scripts 시작 -->
 
          /* setCookie()와 getCookie는 그대로 가져다 사용해도 된다. */
-         	function setCookie(){
-         		// 읽기
-         		/* document.cookie */
-         		
-         		//쓰기
-         		//key=value; path=/user(user폴더에서 만 사용 가능); expires=GMT, UTC
-         		
-         		let now = new Date();
-         		let after_10s=now.getSeconds()+10
-         		now.setSeconds(after_10s)
-         		
-         		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString(); 
-         		/*	popup 7 : 7일 동안 안 보이기*/
-         		document.cookie= "popup1=false; path=/; expires=" +now.toGMTString(); 
-         		
-          		/* document.cookie= "login=true"  */
-         		console.log("cookie 설정 완료")
-         	}
-         	
-         	//단 maxAge의 단위는 초
-         	function setCustomCookie(key, value, maxAge){
-         		let now = new Date();
-         		let after=now.getSeconds()+maxAge
-         		now.setSeconds(after)
-         		
-         /* 		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString();  */
-         		document.cookie= key + "=" + value + "; path=/; expires=" +now.toGMTString(); 		
-         	}
-         	
-         	function getCookie(key){
-         		let value = null;
-         		//let key = "popup7";  // 전달인자로 넣는다.
-         		let cookie = document.cookie;
-         		console.log(cookie)	//"popup7=true"
-         		// "popup7=true"; "popup5=true"; "popup7=true"; "popup6=false";
-         		// 방법 1
-         		let cookies = cookie.split("; ") // =으로 자른 배열
-         		for(c of cookies){
-         			let kv = cookie.split("=") // =으로 자른 배열
-         			if(kv[0]==key){
-         				console.log("kv[0] : " + kv[0])
-         				console.log("kv[1] : " + kv[1])
-         				value = kv[1];
-         				break
-         				}				
-         			}
-         			
-         			let temp_val = c.split(key+"=")
-         			if(temp_val.length ==1){
-         				console.log(" value =", temp_val[0].split(";")[0])
-         			}else{
-         				console.log(" value =", temp_val[1].split(";")[0])
-         				}		
-         		}
-         	
-         	// 실행
-         	setCookie()
-         	
-         	getCookie()
-         	setTimeout(function(){
-         		getCookie()
-         	}, 11*1000)
-         	
-          	let popup_1 = document.querySelector("#popup_1")
-         	popup_1.addEventListener("click", function(event){
-         		// click된 요소(혹은 이벤트가 발생한 요소)요소
-         		// 그 요소의 체크 여부
-         		console.log(event.target.checked);
-         		
-         		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
-         			setCustomCookie('popup_1', true, -1); // 60초 -1
-          			//setCustomCookie('popup_1', true, 60*1); // 60초 
-         			document.querySelector(".popup").style.display= "none";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
-         		}
-         	}) 
-         	
-         	
-         	// popup_dark	
-         	let popup_dark = document.querySelector("#popup_dark")
-         	popup_dark.addEventListener("click", function(event){
-         		// click된 요소(혹은 이벤트가 발생한 요소)요소
-         		// 그 요소의 체크 여부
-         		console.log(event.target.checked);
-         		
-         		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
-         			setCustomCookie('popup_dark', true, 10); // 60초/
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
-         		}
-         	})
-         	
-         	function showPopup(){
-         		let value = getCookie("popup_1")
-         		console.log("value : ", value, typeof(value), ( value == true )) // if문이 들어갔는지 출력해본다.
-         		if(value == 'true'){
-         			document.querySelector(".popup").style.display = "none";
-         		} else{
-         			document.querySelector(".popup").style.display= "block";
-         		}
-         	}
-         	showPopup(); 
-         	//popup check 하는 방법 1. getcookie를 가져온다.
-         	
-         	function darkPopup(){
-         		let value= getCookie("popup_dark")
-         		console.log("value : ", value, typeof(value), (value == true) )
-         		if(value == true){
-         			document.querySelector(".popup").style.backgroundcolor= "rgb(109, 55, 183)";
-         		}else {
-         			document.querySelector(".popup").style.display = "block";
-         		}
-         	}
-         	darkPopup();
+  function setCookie(){
+		// 읽기
+		/* document.cookie */
+		
+		//쓰기
+		//key=value; path=/user(user폴더에서 만 사용 가능); expires=GMT, UTC
+		
+		let now = new Date();
+		let after_10s=now.getSeconds()+10
+		now.setSeconds(after_10s)
+		
+		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString(); 
+		/*	popup 7 : 7일 동안 안 보이기*/
+		document.cookie= "popup1=false; path=/; expires=" +now.toGMTString(); 
+		
+ 		/* document.cookie= "login=true"  */
+		console.log("cookie 설정 완료")
+	}
+	
+	//단 maxAge의 단위는 초
+	function setCustomCookie(key, value, maxAge){
+		let now = new Date();
+		let after=now.getSeconds()+maxAge
+		now.setSeconds(after)
+		
+/* 		document.cookie= "popup7=true; path=/; expires=" +now.toGMTString();  */
+		document.cookie= key + "=" + value + "; path=/; expires=" +now.toGMTString(); 		
+	}
+	
+	function getCookie(key){
+		let value = null;
+		//let key = "popup7";  // 전달인자로 넣는다.
+		let cookie = document.cookie;
+		console.log(cookie)	//"popup7=true"
+		// "popup7=true"; "popup5=true"; "popup7=true"; "popup6=false";
+		// 방법 1
+		let cookies = cookie.split("; ") // =으로 자른 배열
+		for(c of cookies){
+			let kv = cookie.split("=") // =으로 자른 배열
+			if(kv[0]==key){
+				console.log("kv[0] : " + kv[0])
+				console.log("kv[1] : " + kv[1])
+				value = kv[1];
+				break
+				}				
+			}
+			
+			let temp_val = c.split(key+"=")
+			if(temp_val.length ==1){
+				console.log(" value =", temp_val[0].split(";")[0])
+			}else{
+				console.log(" value =", temp_val[1].split(";")[0])
+				}		
+		}
+	
+	// 실행
+	setCookie()
+	
+	getCookie()
+	setTimeout(function(){
+		getCookie()
+	}, 11*1000)
+	
+ 	let popup_1 = document.querySelector("#popup_1")
+	popup_1.addEventListener("click", function(event){
+		// click된 요소(혹은 이벤트가 발생한 요소)요소
+		// 그 요소의 체크 여부
+		console.log(event.target.checked);
+		
+		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
+			setCustomCookie('popup_1', true, -1); // 60초
+ 			//setCustomCookie('popup_1', true, 60*1); // 60초 
+			document.querySelector(".popup").style.display= "none";	// popup의 check박스에 체크 하는 순간 popup 사라진다.
+			document.querySelector(".popup").style.zIndex = 999;	// popup이 제일 위 레이어에 뜨게 한다.
+		}
+	}) 
+	
+	
+	// popup_dark	
+	let popup_dark = document.querySelector("#popup_dark")
+	popup_dark.addEventListener("click", function(event){
+		// click된 요소(혹은 이벤트가 발생한 요소)요소
+		// 그 요소의 체크 여부
+		console.log(event.target.checked);
+		
+		if(event.target.checked){ //  == true 를 써도 되고 안 써도 된다. 반드시 "=="으로 표기하기
+			setCustomCookie('popup_dark', true, 10); // 60초/
+			document.querySelector(".popup").style.backgroundColor= "rgb(109, 105, 200)";	// popup의 check박스에 체크 하는 순간 popup 배경색이 바뀐다.
+		}
+	})
+	
+	function showPopup(){
+		let value = getCookie("popup_1")
+		console.log("value : ", value, typeof(value), ( value == true )) // if문이 들어갔는지 출력해본다.
+		if(value == 'true'){
+			document.querySelector(".popup").style.display= "none";
+		} else{
+			document.querySelector(".popup").style.display= "block";
+		}
+	}
+	showPopup(); 
+	//popup check 하는 방법 1. getcookie를 가져온다.
+	
+	function darkPopup(){
+		let value= getCookie("popup_dark")
+		console.log("value : ", value, typeof(value), (value == true) )
+		if(value == 'true'){
+			document.querySelector(".popup").style.backgroundColor = "rgb(109, 105, 200)";
+		}else {
+			document.querySelector(".popup").style.display = "block";
+		}
+	}
+	darkPopup();
 </script>
 <!-- cookie popup scripts 끝 -->
 
 <body>
 	<!-- cookie popup 시작-->
 	<div class="popup">
-	<h2>공지 팝업</h2><br>
-	 <input type="checkbox" id="popup_1">1분동안 보이지 않기<br>  
-	<input type="checkbox" id="popup_dark" ><h3>popup 화면 색상 변경하기. <br> <br> MakeData site를 방문하신 것을 환영합니다.</h3><br>
+	<h2>공지 사항</h2><br>
+	 
+	 MakeData 를 방문하신 것을 환영합니다.</h3><br>
+	 <br> <br> <br> <br> <br> <br> 
+	 공지사항 닫기 &nbsp<input type="checkbox" id="popup_1"><br>  
 	</div>
 		<!-- cookie 끝 -->
 	
@@ -439,16 +444,22 @@
                             </label><br>                           
                         </div>                                     
                            <!--버튼(로그인/회원가입)-->
-                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">로그인
-                            	<!-- <input type="submit" id="btn" value="로그인" style="font-size: 12pt; color:rgb(255,255,255)"> -->
-                            </a></div>
+                           <form action="/login_check" method="post">
+                            <div class="login-btnbox"> <!-- <a href="#" class="login-btn" onclick="fnClick()">로그인 
+                            	<input type="submit" id="btn" value="로그인" style="font-size: 12pt; color:rgb(255,255,255)"> -->
+                            	<div class="login-btn" ><a href="#" onclick="fnClick()">
+                            	<input type="submit" value="로그인" id="btn" style="font-size: 12pt; color:rgb(255,255,255);">
+                            	 </a> 
+                           		 </div>
+                        	    </div>
+                            </form>
                             <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
                             <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
                             <br>
                                                       
                             <!-- ID/PW 찾기 -->
                             <br>                           
-                                <div id="btn1" style="width: 300px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
+                                <div id="btn1" style="width: 320px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
                                 <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
                                 <span class="border"></span>                                            
                                 </div>                        
@@ -557,11 +568,12 @@
 
 
         <!-- 회원가입 html 불러오기. -->
-        <script>        
+       <!--  <script>        
         $("#btn2").off("click").on("click", function(){
             // ajax 실행
             let option = {                 
-                "url" : "/login.jsp", // sts에서 경로를 변경했다. 
+                "url" : "/login.html", // sts에서 경로를 변경했다. 
+/*                 "url" : "/signup.jsp", // sts에서 경로를 변경했다.  */
                 "type": "get",
                 "success" : function(data){
                     console.log(data);                       
@@ -585,7 +597,7 @@
                 "type": "get"
             }       
         })
-            </script>
+            </script> -->
             
              <!-- login 창, id 찾기 find.html 불러오기 : 다른 파일로 구현했기 때문에-->
             <script>
@@ -625,7 +637,7 @@
                 let option = {
             
                 		/*                  "url" : "/findpw.jsp",*/
-                     "url" : "/findpw.html", 
+                     "url" : "/findpw.jsp", 
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                  

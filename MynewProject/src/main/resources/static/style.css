@@ -408,6 +408,7 @@ a {
     margin-top: 10px;   /* 내가 추가함 */
     line-height: 50px;    
     border-radius: 5px;
+    text-align : center;
 }
 
 /* 로그인 박스 올렸을 때 버튼 색상 진해짐 */

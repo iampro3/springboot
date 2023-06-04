@@ -86,10 +86,8 @@ public class ShopController {
 		return "view";
 	}
 	
-	/* @RequestMapping("/")  --- input.jsp 파일이 열렸다. controller에서 '/' 를 준 파일이 indexljsp 보다 우선한다. */
-	
-	  @RequestMapping("/input")
-	 	public String input() {
+	@RequestMapping("/input")
+	public String input() {
 		return "input";
 	}
 	
@@ -141,12 +139,8 @@ public class ShopController {
 		return list;
 	}
 	
-	//@RequestMapping("/index")
-	//public String index(
-	 @RequestMapping("/cookie")
-	 	
-			 	public String cookie(
-//				public String index(
+	@RequestMapping("/cookie")
+	public String cookie(
 			// 요청에 관한 모든 것
 			HttpServletRequest request,
 			
@@ -170,7 +164,6 @@ public class ShopController {
 			}
 		}
 		
-		//return "index";
 		return "cookie";
 	}
 
