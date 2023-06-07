@@ -46,7 +46,7 @@ public class ShopController {
 				@RequestParam("id") String id2,
 				
 				// 필수 아님
-				@RequestParam(value="id", required=false) String id3,
+				//@RequestParam(value="id", required=false) String id3,
 				
 				Model model
 			) {
@@ -59,8 +59,8 @@ public class ShopController {
 		String[] ids = request.getParameterValues("id"); // querySelectorAll처럼
 		
 		System.out.println("id : "+ id);
-		System.out.println("id2 : "+ id2);
-		System.out.println("id3 : "+ id3);
+		//System.out.println("id2 : "+ id2);
+		//System.out.println("id3 : "+ id3);
 		for(String value : ids) {
 			System.out.println("ids : "+ value);
 		}
@@ -76,12 +76,12 @@ public class ShopController {
 			System.out.println( i +"번째 id : "+ list.get(i) );
 		}
 		
-		request.setAttribute("req_id2", id);
+		//request.setAttribute("req_id2", id);
 		request.setAttribute("text", "abcde");
 		request.setAttribute("m", model);
 		
-		String req_id2 = (String) request.getAttribute("req_id2");
-		System.out.println("req_id2 : "+ req_id2);
+		//String req_id2 = (String) request.getAttribute("req_id2");
+		//System.out.println("req_id2 : "+ req_id2);
 		
 		return "view";
 	}
@@ -122,10 +122,11 @@ public class ShopController {
 	public List send2(
 			@RequestParam Map paramMap,	// Map을 이용하는 방법; 전부 받아줌
 			
-			// 주소의 query string('?' 이후에 key=value) 형태를 받음
+			// 주소의 query string('?' 이후에 key=value) 형태를 받음 : 주소에 하나씩 보낼때마다 사용한다.
 			@ModelAttribute ShopDTO shopDTO,
 
-			// post방식으로 json을 받음
+			// post방식으로 json을 받음 : ajax로 불러와서 사용할 때는 이렇게 해야 한다.
+			
 			@RequestBody ShopDTO shopDTO2
 			) {
 		System.out.println("/send2 진입");

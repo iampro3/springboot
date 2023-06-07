@@ -227,8 +227,9 @@
         </nav>
             <br>
             <br>
+            <div class="navbar_log">
             <a href="#login">Login</a>
-            <br>
+            </div>
         <!-- sns 버튼 -->
             <div class="sns">        
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -444,24 +445,24 @@
                             </label><br>                           
                         </div>                                     
                            <!--버튼(로그인/회원가입)-->
-                           <form action="/login_check" method="post">
-                            <div class="login-btnbox"> <!-- <a href="#" class="login-btn" onclick="fnClick()">로그인 
-                            	<input type="submit" id="btn" value="로그인" style="font-size: 12pt; color:rgb(255,255,255)"> -->
+                          <!--  <form action="/login_check" method="post"> -->
+                            <div class="login-btnbox"> 
+                            	
                             	<div class="login-btn" ><a href="#" onclick="fnClick()">
                             	<input type="submit" value="로그인" id="btn" style="font-size: 12pt; color:rgb(255,255,255);">
                             	 </a> 
                            		 </div>
                         	    </div>
-                            </form>
-                            <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
-                            <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
-                            <br>
-                                                      
+                           <!--  </form> -->
+                             <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
+                            <div class="login-btnbox" id="btn2"><a href="input" class="login-btn">회원가입</a></div>   
+                            <br>                                                      
                             <!-- ID/PW 찾기 -->
                             <br>                           
-                                <div id="btn1" style="width: 320px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
-                                <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
-                                <span class="border"></span>                                            
+                                <div style="width: 320px; text-align: center; float :left;" ><a href="find" class="login-btn"><span>ID 찾기</span></a>                                                
+<!--                                 <div id="btn1" style="width: 320px; text-align: center; float :left;" ><a href="find" class="login-btn"><span>ID 찾기</span></a>                                                 -->
+                                <div id="btn7" style=" text-align: center; float :right;"><a href="findpw" class="login-btn"><span>PW 찾기</span></a>  
+                                                                 
                                 </div>                        
                                 	
                     </div>    

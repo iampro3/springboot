@@ -19,15 +19,6 @@
     
 </head>
 <body>
-<%-- <c:if test="${msg != null}">
-	<h1>${msg }</h1>
-</c:if>
-
-<form action="/login_check" method="post">
-	id : <input type ="text" name="id"><br>
-	password : <input type ="text"  name="pw"><br>
-	<input type ="submit" value="로그인">
-</form> --%>
 
 <script>
   function fnClick(){
@@ -37,8 +28,8 @@
           location.href = "mypage.jsp"
 /*           location.href = "index.html" */
        } else {
-          alert("id와 pw를 입력해주세요.")
-          location.href = "#"
+          alert("환영합니다!!")
+          location.href = "/"
       } 
   }
   </script>
@@ -60,11 +51,9 @@
 	  }
   </script>
 <body>
-    <section class="login" id="login">   
-            
-                   <!-- <div class="common-title">Login</div> -->
+    <section class="login" id="login">        
             <div class="login-container">
-                <!-- 입력 영역 -->
+                <!-- Form 입력 영역 : input로 보내기 -->
                 <form action="/login_check" method="post">
                     <!-- 로그인 박스 -->
                     <div class="login-wrap">
@@ -97,22 +86,22 @@
                                 <span class="checkmark"> </span>    <!-- 체크모양을 만듦 -->
                                 <span>자동 로그인</span>
                             </label><br>                           
-                        </div>                                     
-                           <!--버튼(로그인/회원가입)-->
+                     	   </div>
+                     	                                        
+                           <!--버튼(로그인)-->
                             <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">
-                            	<input type="submit" id="btn" value="로 그 인" style="font-size: 12pt; color:rgb(255,255,255)">
+                            	<input type="submit" id="btn" value="로그인" style="font-size: 12pt; color:rgb(255,255,255)">
                             </a></div>
                             <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
-                            <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
+                           		 <div class="login-btnbox" id="btn2"><a href="input" class="login-btn">회원가입</a></div>   
                             <br>
                                                       
                             <!-- ID/PW 찾기 -->
                             <br>                           
-                                <div id="btn1" style="width: 300px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
-                                <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
-                                <span class="border"></span>                                            
-                                </div>                        
-                                	
+                                <div style="width: 320px; text-align: center; float :left;" ><a href="find" class="login-btn"><span>ID 찾기</span> </a>                                                
+<!--                                 <div id="btn1" style="width: 320px; text-align: center; float :left;" ><a href="find" class="login-btn"><span>ID 찾기</span> </a>                                                 -->
+                                <div id="btn7" style=" text-align: center; float :right;"><a href="findpw" class="login-btn"><span>PW 찾기</span></a>                                                                        
+                                </div>   
                     </div>    
                 </form>    
             </div>   
@@ -122,15 +111,15 @@
         $("#btn2").off("click").on("click", function(){
             // ajax 실행
             let option = {                 
-                "url" : "/login.jsp", // sts에서 경로를 변경했다. 
+                "url" : "/input.jsp", // sts에서 경로를 변경했다. 
                 "type": "get",
                 "success" : function(data){
                     console.log(data);                       
                     /* let result = document.querySelector("#login");
                 	result.innerHTML = data */
                 	/* 새로운 jquery 구문 */
-               	//$("#login").jsp(data);
-               		$("#login").html(data);
+               	$("#login").jsp(data);
+               		//$("#login").html(data);
                 	
                 },
                 "error" : function(data){

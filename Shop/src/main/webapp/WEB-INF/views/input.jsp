@@ -24,6 +24,7 @@
 <form action="http://localhost:8081/send1" method="get">
 
 	id : <input type="text" name="id"><br>
+	pw : <input type="text" name="pw"><br>
 
 	<div id="wrap" style="border: 1px solid red">
 		<input type="submit" value="전송">

@@ -1,22 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+My page 입니다.<br>
+${ req_id }님, 환영합니다.<br>
+<br>
+당신의 id는 ${ req_id }입니다.<br>
+당신의 pw는 ${ req_pw }입니다.<br>
+<%-- req_id2 : ${ req_id2 }<br>내가 프로젝트 적용위해서 주석처리함 --%>
 
-내용보기 <br>
+<%-- <%
+	String req_id2 = (String) request.getAttribute("req_id2");
+	System.out.println("jsp : req_id2 : "+ req_id2);
+%> 내가 프로젝트 적용위해서 주석처리함--%>
 <hr>
-작성자 : ${dto.writer} <br>
-제목 : ${dto.title} <br>
-내용 : ${dto.content} 
-<hr>
+list_id : ${list_id }<br>
 
-<br><p>
-<a href="list">목록보기</a>
- 
+<table>
+	<tr>
+	<!-- 	<th>아이디</th> 내가 프로젝트 적용위해서 주석처리함-->
+	</tr>
+<%-- 	<c:forEach var="i" begin="0" end="10"> --%>
+<%-- 	<c:forEach var="item" items="${list_id }">
+		<tr>
+			<td>
+				<c:if test="${ item eq 'admin' }">
+					<strong>${item }</strong>
+				</c:if>
+				<c:if test="${ item != 'admin' }">
+					${item }
+				</c:if>
+			</td>
+		</tr>
+	</c:forEach>
+</table> 내가 프로젝트 적용위해서 주석처리함--%>
+
 </body>
 </html>

@@ -197,18 +197,23 @@
                 <div class="main-logo"><img src="img/logo-01.png" alt="make"></div>               
            </a>
            
-        <!-- 좌측 메뉴 -->
+        <!-- 좌측 Navigation 메뉴 -->
         <nav class="navbar">
-            <a href="#Find">도서관 정보</a>                
-            <!-- <a href="#Find">도서관 소장 정보</a>  -->
+            <a href="#Find">도서관 정보</a>                   
             <a href="#chatbot">Chatbot</a>
             <a href="#AIProject">Image make</a>                    
-            <a href="https://iampro3-iris-streamlit-app-0331-w3thn9.streamlit.app/" target="_blank">Bidgata Analysis portpolio</a>
+            <a href="https://iampro3-iris-streamlit-app-0331-w3thn9.streamlit.app/" target="_blank">Bidgata Analysis Portpolio</a>
         </nav>
             <br>
             <br>
-            <a href="/" style="color:rgb(255,255,255)">Logout</a><br>	<!-- index.jsp로 이동함 -->
-             <div style="color:rgb(255,255,255)">${id }님 환영합니다!<br></div>
+            <div class="navbar_log">
+            <a href="/">Logout</a>	<!-- index.jsp로 이동함 -->
+           
+            <form action="http://localhost:8081/send1" name="sign" method="get">
+            <a href = "#" >
+            ${id }님 환영합니다!</a>             
+             </div>
+             </form>
             <br>
         <!-- sns 버튼 -->
             <div class="sns">        
@@ -382,70 +387,8 @@
                     </ul>
                 </div>
             </div>
-        </section>
-
-        
-        <!-- section 4 login -->
-        <section class="login" id="login">   
+        </section>        
             
-            <!-- <div class="common-title">Login</div> -->
-            <div class="login-container">
-                <!-- 입력 영역 -->
-                <form action="/login_check" method="post">
-                    <!-- 로그인 박스 -->
-                    <div class="login-wrap">
-                        <div class="login-text">Login</div><br>
-                        <br>
-                        <br>
-                        <br>
-                        <!-- 중첩 박스 (inner)-->
-                        <div id="login">
-                                                       
-                            <!-- 아이디-->
-                            <div class="login-inputbox">
-                                <input type="text" name="id" placeholder="아이디">
-                                <span class="border"></span>
-                            </div>
-                            <!-- 비밀번호-->
-                            <div class="login-inputbox">
-                            <input type="password" name="pw" placeholder="비밀번호">
-                            <span class="border"></span>
-                            </div>
-                            <!--아이디 저장/자동로그인-->
-                            <div class="login-remember">
-                                <label for="remember-id">
-                                    <input type="checkbox" name="remember-id" id="remember-id">
-                                    <span class="checkmark"> </span>
-                                    <span>아이디 저장</span>                       
-                                 </label>
-                            <label for="remember-me">
-                                 <input type="checkbox" name="remember-me" id="remember-me">                    
-                                <span class="checkmark"> </span>    <!-- 체크모양을 만듦 -->
-                                <span>자동 로그인</span>
-                            </label><br>
-                           
-                        </div>                                     
-                           <!--버튼(로그인/회원가입)-->
-                            <div class="login-btnbox"><a href="#" class="login-btn" onclick="fnClick()">
-                            	<input type="submit" id="btn" value="로그인">
-                            </a></div>
-                            <!-- <div id="btn2"> - ajax로 sign up 파일 불러오기  -->
-                            <div class="login-btnbox" id="btn2"><a href="#login" class="login-btn">회원가입</a></div>   
-                            <br>
-                                                      
-                            <!-- ID/PW 찾기 -->
-                            <br>                           
-                                <div id="btn1" style="width: 300px; text-align: center; float :left;" ><a href=#login class="login-btn"><span>ID 찾기</span> </a>                                                
-                                <div id="btn7" style=" text-align: center; float :right;"><a href=#login class="login-btn"><span>PW 찾기</span></a>  
-                                <span class="border"></span>                                            
-                                </div>                                
-                                	
-                    </div>    
-                </form>    
-            </div>                     
-        </section>  
-
-        
         <!-- section 5 map -->
         <section class="Map" id="Map">   
             <br>

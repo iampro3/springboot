@@ -57,62 +57,46 @@ public class MyController {
 		return "test1";
 }   
 
-	 @RequestMapping("/test2") 
-	 public String test2	 
-	 	(
-		// String id = httpServletRequest.getParameter("id");
-		// 이 역할을 해 줌
-		// 파라미터 중 id 없는 경우
-		// 실행되지 않도록 해 줌
-		@RequestParam("id") String id,
-	 
-		// key가 필수 : 없으면 400 에러 코드
-		// @RequestParam("name") 
-		
-		// 전달인자 없이 상요할 때, 넘겨받은 모든 것을 map에 저장
-		//@RequestParam Map map
-		
-		// key 없어도 사용하려면
-		@RequestParam(value="name", required=false) 
-		String name, Model model) {
-		 	model.addAttribute("id", id); 
-		 	model.addAttribute("name", name);
-	 
-		 	return "test1"; }
-	//전달받은 key와 클래스의 필드명이 같은 경우
-	 // ("set"+ 전달받은 key의 첫글자를 대문자로 하는 메소드를 실행
-	 // 자동으로 값을 채운다.
-	 // 뒤에 나오는 괄호안의 글씨를 key로 model에 넣어준다.
-	 // 62이 63와 같이 동일하면 생략가능함
-	 //@ModelAttribute("memberDTO")	
-	 // MemberDTO memberDTO
-	@RequestMapping("/test3")	// 전달인자를 모두 알 수 있다.
-	public String test3(MemberDTO memberDTO, Model model)
-	{
-		String id = memberDTO.getId();
-		System.out.println("id:" + id);
-				
-		// 아래가 없으면 test3의 id와 name가 출력 되지 않는다.
-		// member2를 model에 담아주어야 한다.
-		model.addAttribute("member2", memberDTO);	
-		return "test3";
-	}
-					  // 주소창에 입력하는 값 : "http://localhost:8081"/test4/{studentId}/{name}
-	@RequestMapping("/test4/{studentId}/{name}")	// {studentId} : @PathVariable String studentId에 담는다.
-							// 변수명이 같아야 한다. 규약
-	public String getStudent(@PathVariable String studentId,
-            @PathVariable String name,
-            Model model)
-		{
-			model.addAttribute("id", studentId);
-			model.addAttribute("name", name);
-			return "test1";	// jsp 파일 명 
-		}	
+/*
+ * @RequestMapping("/test2") public String test2 ( // String id =
+ * httpServletRequest.getParameter("id"); // 이 역할을 해 줌 // 파라미터 중 id 없는 경우 //
+ * 실행되지 않도록 해 줌
+ * 
+ * @RequestParam("id") String id,
+ * 
+ * // key가 필수 : 없으면 400 에러 코드 // @RequestParam("name")
+ * 
+ * // 전달인자 없이 상요할 때, 넘겨받은 모든 것을 map에 저장 //@RequestParam Map map
+ * 
+ * // key 없어도 사용하려면
+ * 
+ * @RequestParam(value="name", required=false) String name, Model model) {
+ * model.addAttribute("id", id); model.addAttribute("name", name);
+ * 
+ * return "test1"; } //전달받은 key와 클래스의 필드명이 같은 경우 // ("set"+ 전달받은 key의 첫글자를 대문자로
+ * 하는 메소드를 실행 // 자동으로 값을 채운다. // 뒤에 나오는 괄호안의 글씨를 key로 model에 넣어준다. // 62이 63와 같이
+ * 동일하면 생략가능함 //@ModelAttribute("memberDTO") // MemberDTO memberDTO
+ * 
+ * @RequestMapping("/test3") // 전달인자를 모두 알 수 있다. public String test3(MemberDTO
+ * memberDTO, Model model) { String id = memberDTO.getId();
+ * System.out.println("id:" + id);
+ * 
+ * // 아래가 없으면 test3의 id와 name가 출력 되지 않는다. // member2를 model에 담아주어야 한다.
+ * model.addAttribute("member2", memberDTO); return "test3"; } // 주소창에 입력하는 값 :
+ * "http://localhost:8081"/test4/{studentId}/{name}
+ * 
+ * @RequestMapping("/test4/{studentId}/{name}") // {studentId} : @PathVariable
+ * String studentId에 담는다. // 변수명이 같아야 한다. 규약 public String
+ * getStudent(@PathVariable String studentId,
+ * 
+ * @PathVariable String name, Model model) { model.addAttribute("id",
+ * studentId); model.addAttribute("name", name); return "test1"; // jsp 파일 명 }
+  0606 주석 처리함 : @RequestParam("id") String id, 이 구문이 겹치는 이유로 오류나서 프로젝트에 필요없는 코드*/
 	
 	
 	List<String> list = new ArrayList();
 	
-	@RequestMapping("/send1") // 모든 method를 받을 수 있음
+	@RequestMapping("/send1") // [@RequestMapping] : 모든 method를 받을 수 있음
 //	@RequestMapping(value="/send1") // 위와 같음
 //	@RequestMapping(value="/send1", method=RequestMethod.GET)
 //	@GetMapping("/send1")// 위와 같음
@@ -124,6 +108,7 @@ public class MyController {
 				
 				// 들어올때 필수; 없으면 400 bad request
 				@RequestParam("id") String id2,
+				//@RequestParam("pw") String pw2, //  0606추가함 
 				
 				// 필수 아님
 				@RequestParam(value="id", required=false) String id3,
@@ -138,33 +123,116 @@ public class MyController {
 		String id = request.getParameter("id"); // querySelector처럼
 		String[] ids = request.getParameterValues("id"); // querySelectorAll처럼
 		
+		String pw = request.getParameter("pw"); // querySelector처럼	//  0606추가함 
+		String[] pws = request.getParameterValues("pw"); // querySelectorAll처럼	//  0606추가함 
+		
+		String name = request.getParameter("name"); // querySelector처럼	//  0606추가함 
+		String[] names = request.getParameterValues("name"); // querySelectorAll처럼	//  0606추가함 
+		
+		String phone = request.getParameter("phone"); // querySelector처럼	//  0606추가함 
+		String[] phones = request.getParameterValues("phone"); // querySelectorAll처럼	//  0606추가함 
+		
+		String email = request.getParameter("email"); // querySelector처럼	//  0606추가함 
+		String[] emails = request.getParameterValues("email"); // querySelectorAll처럼	//  0606추가함 
+		
+		String gender = request.getParameter("gender"); // querySelector처럼	//  0606추가함 
+		String[] genders = request.getParameterValues("gender"); // querySelectorAll처럼	//  0606추가함 
+		
+		
 		System.out.println("id : "+ id);
+		System.out.println("pw : "+ pw);
 		System.out.println("id2 : "+ id2);
 		System.out.println("id3 : "+ id3);
 		for(String value : ids) {
 			System.out.println("ids : "+ value);
 		}
 		
+		// 0606 추기힘
+		for(String value : pws) {
+			System.out.println("pws : "+ value);
+		}
 		////////////////////////////////////////////////
 		// 내보내기
 		////////////////////////////////////////////////
 		model.addAttribute("req_id", id);
+		model.addAttribute("req_pw", pw);
+		model.addAttribute("req_name", name);
+		model.addAttribute("req_phone", phone);
+		model.addAttribute("req_email", email);
+		model.addAttribute("req_gender", gender);
 		
 		list.add(id);
 		model.addAttribute("list_id", list);
 		for(int i=0; i<list.size(); i++) {
 			System.out.println( i +"번째 id : "+ list.get(i) );
-		}
+		}		
 		
-		request.setAttribute("req_id2", id);
-		request.setAttribute("text", "abcde");
-		request.setAttribute("m", model);
+		// 0606 추기힘
+		list.add(pw);
+		model.addAttribute("list_pw", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 pw : "+ list.get(i) );
+		}	
 		
 		String req_id2 = (String) request.getAttribute("req_id2");
 		System.out.println("req_id2 : "+ req_id2);
 		
 		return "viewresult";
 	}
+	
+	@RequestMapping("/input")
+	public String input() {
+		return "input";
+	}
+	
+	@RequestMapping("/findpw")
+	public String findpw() {
+		return "findpw";
+	}
+	
+	@RequestMapping("/session")
+	public String session(
+			HttpServletRequest request
+	) {
+		// 세선 : 30분의 유효기간
+		// JSESSIONID라는 키를 가지는 세션쿠키를 이용
+		
+		HttpSession session = request.getSession();
+		boolean isNew = session.isNew(); // 최초 접속:true
+		System.out.println("isNew : "+ isNew);
+		
+		// 세션에 저장
+		session.setAttribute("isLogin", "true");
+		
+		return "session";
+	}
+	
+	@RequestMapping("/session2")
+	public String session2(
+			HttpServletRequest request
+	) {
+		HttpSession session = request.getSession();
+		
+		// 세션에서 불러오기
+		String isLogin = (String)session.getAttribute("isLogin");
+		System.out.println("isLogin : "+ isLogin);
+		try {
+//			if(isLogin != null && isLogin.equals("true")) {
+			if(isLogin != null 
+				&& "true".equals(isLogin)) {
+				
+				System.out.println("로그인 되어있습니다.");
+			} else {
+				System.out.println("로그인 페이지로 이동합니다.");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("로그인 페이지로 이동합니다.");
+		}
+		
+		return "session";
+	}
+	
 	
 	// cookie 설정
 	@RequestMapping("/index")
@@ -224,9 +292,12 @@ public class MyController {
 		
 		// 세션에서 꺼내기
 		String id = (String) session.getAttribute("isLogin2");
+		String pw = (String) session.getAttribute("isLogin3"); //  0606추가함
 		System.out.println("id : "+ id);
+		System.out.println("pw : "+ pw); // 0606추가함 콘솔창에 pw : null로 나옴
 		if(id != null) {
 			model.addAttribute("id", id);
+			model.addAttribute("pw", pw);
 //			nextPage = "index";
 			nextPage = "mypage";
 		} else {
@@ -239,18 +310,19 @@ public class MyController {
 	public String login_check(
 			HttpServletRequest request,
 			
-			@RequestParam("pw") String pw,
+			@RequestParam("pw") String pw2,  //  0606추가함 오류남,  pw2로 변경함
 			
 			Model model
 	) {
 		String nextPage = null;
 		
 		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");  //  0606추가함 오류남, 
 
 		String _id = "admin";	
 		String _pw = "1234";
 		
-		if(id != null && pw != null) {
+		if(id != null) {
 			if(id.equals(_id) && pw.equals(_pw)) {
 				// 로그인 확인 완료
 				
@@ -259,9 +331,11 @@ public class MyController {
 				
 				// 세션에 저장
 				session.setAttribute("isLogin2", id);
+				session.setAttribute("isLogin3", pw2);  //  0606추가함 "isLogin2"로 하면 콘솔창에 오류난다. id와 동일해서임 ~3으로 변경함 ,pw2로 변경
 //				session.removeAttribute("isLogin2");
 				
 				model.addAttribute("id", id);
+				model.addAttribute("pw", pw2);	 //  0606추가함 ,pw2로 변경
 //				nextPage = "/index";
 				nextPage = "/mypage";
 			} else {
