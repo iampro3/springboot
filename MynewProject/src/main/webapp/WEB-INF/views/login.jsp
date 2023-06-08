@@ -21,7 +21,7 @@
 <body>
 
 <script>
-  function fnClick(){
+/*   function fnClick(){
           let matchid = "${matchid}"  // if의 값을 선언해 주어야 한다.
        if (matchid){            
           alert("회원가입을 환영합니다!")
@@ -31,7 +31,7 @@
           alert("환영합니다!!")
           location.href = "/"
       } 
-  }
+  } */
   </script>
 	
 	<!-- select 입력 창 -->

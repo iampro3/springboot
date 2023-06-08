@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MyController {
 	
-	/* -- 항상 ststic 폴더 > index.html 파일이 1순위로 열린다.
+	/* -- 항상 static 폴더 > index.html 파일이 1순위로 열린다.
 	 * @RequestMapping("/") public @ResponseBody String root() throws Exception{
 	 * 
 	 * System.out.println("html :"); return "index.html"; }
@@ -148,8 +148,25 @@ public class MyController {
 		}
 		
 		// 0606 추기힘
+
 		for(String value : pws) {
 			System.out.println("pws : "+ value);
+		}
+		
+		for(String value : names) {
+			System.out.println("names : "+ value);
+		}
+		
+		for(String value : phones) {
+			System.out.println("phones : "+ value);
+		}		
+		
+		for(String value : emails) {
+			System.out.println("emails : "+ value);
+		}
+		
+		for(String value : genders) {
+			System.out.println("genders : "+ value);
 		}
 		////////////////////////////////////////////////
 		// 내보내기
@@ -174,6 +191,31 @@ public class MyController {
 			System.out.println( i +"번째 pw : "+ list.get(i) );
 		}	
 		
+		// 이하 0607 추기힘
+		list.add(name);
+		model.addAttribute("list_name", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 name : "+ list.get(i) );
+		}		
+		
+		list.add(phone);
+		model.addAttribute("list_phone", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 phone : "+ list.get(i) );
+		}		
+		
+		list.add(email);
+		model.addAttribute("list_email", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 email : "+ list.get(i) );
+		}	
+		
+		list.add(gender);
+		model.addAttribute("list_gender", list);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println( i +"번째 gender : "+ list.get(i) );
+		}	
+		
 		String req_id2 = (String) request.getAttribute("req_id2");
 		System.out.println("req_id2 : "+ req_id2);
 		
@@ -188,6 +230,11 @@ public class MyController {
 	@RequestMapping("/findpw")
 	public String findpw() {
 		return "findpw";
+	}
+	
+	@RequestMapping("/find")
+	public String find() {
+		return "find";
 	}
 	
 	@RequestMapping("/session")
