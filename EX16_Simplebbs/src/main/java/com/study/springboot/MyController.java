@@ -43,7 +43,7 @@ public class MyController {
 		
 		//return "writeForm";
 		//return userlistPage(model);	//
-		return "redirect :/list";  //list를 포워드해서 받아주기: writeform에서 글쓰고 list로 간다. 
+		return "redirect:/list";  //list를 포워드해서 받아주기: writeform에서 글쓰고 list로 간다. 
 		// 200번 잘 전송됨
 	}
 	

@@ -22,10 +22,15 @@
 	</tr>
 	<c:forEach var="dto" items="${list }">
 	<tr>
-		<td>${list.id }</td>
-		<td>${list.writer }</td>
-		<td>${list.title }</td>
-		<td>${list.content }</td>
+		<td>${dto.id }</td>
+		<td>${dto.writer }</td>
+		<td>${dto.title }</td>
+		<td>${dto.content }</td>
+
+<%-- 		<td>${list.id }</td> --%>
+<%-- 		<td>${list.writer }</td> --%>
+<%-- 		<td>${list.title }</td> --%>
+<%-- 		<td>${list.content }</td> --%>
 	</tr>	
 	</c:forEach>
 </table>
