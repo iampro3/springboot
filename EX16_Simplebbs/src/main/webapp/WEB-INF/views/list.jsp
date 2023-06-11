@@ -13,19 +13,25 @@
 
 <h1>글목록</h1>
 <br>
+<a href = "/writeForm">글쓰기</a><br>
+<br>
 <table border="1">
 	<tr>
 		<td>글번호</td>
 		<td>작성자</td>
 		<td>제목</td>
-		<td>글 내용</td>
+		
+		<td>삭제</td>
+		<!-- <td>글 내용</td> -->
 	</tr>
 	<c:forEach var="dto" items="${list }">
 	<tr>
 		<td>${dto.id }</td>
 		<td>${dto.writer }</td>
-		<td>${dto.title }</td>
-		<td>${dto.content }</td>
+						<!-- 보내고 싶은 id -->
+		<td><a href="/view?id=${dto.id }">${dto.title }</a></td>
+		<td><a href="delete?id=${dto.id }"> 삭제 </a></td>	<!-- 체크박스로 바꾸기 -->
+		<%-- <td>${dto.content }</td> --%>
 
 <%-- 		<td>${list.id }</td> --%>
 <%-- 		<td>${list.writer }</td> --%>
@@ -33,7 +39,7 @@
 <%-- 		<td>${list.content }</td> --%>
 	</tr>	
 	</c:forEach>
-</table>
+</table><br>
 
 
 </body>

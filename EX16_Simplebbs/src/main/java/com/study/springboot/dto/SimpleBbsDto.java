@@ -1,7 +1,10 @@
 package com.study.springboot.dto;
 
 public class SimpleBbsDto {
-
+	
+	//hashmap을 사용해도 되는데
+	//hashmap은 아무나 들어오므로
+	//DTO를 설정해서 아래 허락된 인원만 들어오도록 한다.
 	private int id;
 	private String writer;
 	private String title;
@@ -31,6 +34,4 @@ public class SimpleBbsDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
 }

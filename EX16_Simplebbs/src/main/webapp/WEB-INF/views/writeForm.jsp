@@ -19,10 +19,11 @@ ${content }
 	content<br>
 	<textarea name="content" cols="50" rows="10">
 	</textarea><br>
+	<!-- 글쓰기 버튼 추가하기. -->
 	<input type="submit" value="글쓰기">
 </form>
 
-<!-- 글쓰기 버튼 추가하기. -->
+
 
 </body>
 </html>

@@ -7,24 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>view</title>
 </head>
 <body>
-<c:if test="${msg != null }">
-	<h1>${msg }</h1>
-	<c:out value="<h1>"/>
-	<h1>
-	&lt;h1&gt;
-</c:if>
-
-<form action="/login_check" method="post">
-
-	id : <input type="text" name="id"><br>
-	password : <input type="text" name="pw"><br>
-	<input type="submit" value="로그인">
-
-</form>
-
-
+id:${dto.id }<br>
+writer:${dto.writer }<br>
+title:${dto.title }<br>
+content:<br>
+<textarea>
+${dto.content }
+</textarea>
+<br>
+<a href="/list">목록</a>
+<a href="/modifyForm?id=${dto.id }">수정</a>
 </body>
 </html>
