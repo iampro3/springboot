@@ -17,4 +17,6 @@ public interface ISimpleBbsDao {
 	int writeDao(String writer, String title, String content);
 	int deleteDao(String id);
 	int updateDao(SimpleBbsDto dto);
+	
+	List testIF(SimpleBbsDto dto);
 }

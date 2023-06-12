@@ -50,4 +50,91 @@
 <!-- 		 	<![CDATA[ id<3 ]]> 문자 그대로의 의미 -->
 		 		id = #{id}
 	</update>
+	
+	<select id="testIF" 
+			parameterType="SimpleBbsDto" 
+			resultType="SimpleBbsDto">
+		select * 
+		
+		from 
+			simple_bbs
+<!-- 		where 
+			1=1 -->
+		<!-- <where>태그는 
+				1. if조건이 없으면 where문 자체도 없다.
+				2. if조건이 있으면 앞에 있는 and나  or를 삭제
+				3. 1=1 안 써도 된다.
+				-예시-
+				<where>
+					  title =#{title}
+				  and writer =#{writer}
+				 -->
+		<where>
+		<if test = "title != null and title !=''"> <!-- title이 없으면 null, title가 ''이 아니면 출력 title이 title인 title가 출력된다.-->
+		  and title =#{title}
+		</if>
+		<if test = "writer != null and writer !=''">
+		  and writer =#{writer}
+ 			<!--or writer =#{writer}	 작성자 또는 일 때 / ''으로 sql에서 사용하기 위해서 #{writer} 을 넣는다.--> 	
+		</if>
+<!-- 		<if test = "writer != null and writer !=''"> -->
+<!-- 		  and writer =#{writer} =#{title} 			영상 보고 넣기	 -->
+<!-- 		</if> -->
+		</where>
+		
+<!-- 	<if test = "title != null and title !=''> 
+ 		where title =#{title} -->			
+<!-- 			title = #{새글} -->
+<!-- 			title = #{title} -->
+		order by
+			id desc
+	</select>
+	
+<!-- 	choose 문 -->
+	<select id="testChoose"
+			parameterType="SimpleBbsDto" 
+			resultType="SimpleBbsDto">
+	
+		select 
+			* 
+		
+		from 
+			simple_bbs
+			<where>
+				<choose>
+					<when test="title != null and title !=''">	<!--when 여러개 사용할 수 있다.  -->
+						and title =#{title}
+						</when>	
+					<otherwise>		<!-- else 개념이다. -->
+						and title IS NULL
+					</otherwise>
+				</choose>
+			</where>
+	</select>
+	
+	
+<!-- 	Foreach 문 -->
+	<select id="testForeach"
+			parameterType="SimpleBbsDto" 
+			resultType="SimpleBbsDto">
+	
+		select 
+			* 
+		
+		from 
+			simple_bbs
+	</select>
 </mapper>
+
+
+<!-- sql 에서 학원에서 추가하기: 3개 list만 나오도록 검색
+
+select * form simple_bbs 
+where 
+	id =41 or id= 7 or id = 11;
+	
+	다른 표현으로
+	select * form simple_bbs 
+where 
+	id in(41, 1, 7); 
+-->

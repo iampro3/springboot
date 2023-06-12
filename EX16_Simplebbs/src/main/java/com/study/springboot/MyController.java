@@ -117,4 +117,35 @@ public class MyController {
 		System.out.println("삭제 개수 : " +result);
 		return "redirect:list";
 	}	
+	
+	// 주소창에 ""-----8081/testIF"
+	@RequestMapping("/testIF")
+	public String testIF(
+			// 전달인자가 dto의 필드명:setter 양식:과 일치하면
+			//값을 넣어줌
+			@ModelAttribute SimpleBbsDto dto,
+			
+			//jsp로 값을 보내기 위해 사용
+			Model model,
+			HttpServletRequest request  
+			) {
+				String type = request.getParameter("type");
+				String keyword = request.getParameter("keyword");
+			
+				System.out.println("type :" + type);
+				System.out.println("keyword :" + keyword);
+				
+				if("title".equals(type)) {
+					dto.setTitle(keyword);
+				}else if("writer".equals(type)) {
+					dto.setWriter(keyword);
+				}
+			//조건에 맞는 목록 선택
+			List list=	dao.testIF(dto);
+		
+			//조회한 목록을list라는 key로 담아서 jsp로 전달
+			model.addAttribute("list",list);
+			//list.jsp를 호출
+			return "list";
+	}
 }

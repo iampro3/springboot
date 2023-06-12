@@ -40,6 +40,16 @@
 	</tr>	
 	</c:forEach>
 </table><br>
+<form action="/testIF">
+	<select name ="type">  <!-- dto에 없음 -->
+		<option value="선택">선택</option>
+		<option value="writer">writer</option>
+		<option value="title">title</option>
+	</select>
+	<input type="text" name="keyword" placeholder="검색어를 입력하세요." >
+<!-- 	<input type="text" name="title" placeholder="검색어를 입력하세요." > -->
+	<input type="submit" value="검색">
+</form>
 
 
 </body>
