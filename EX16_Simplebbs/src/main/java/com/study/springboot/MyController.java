@@ -2,6 +2,8 @@ package com.study.springboot;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class MyController {
+	 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	ISimpleBbsDao dao;
@@ -74,7 +78,7 @@ public class MyController {
 		//n_id = Integer.parseInt("123"); // requestParam을 받음 "123"에 null 넣으면 오류난다.
 		
 		try {
-			n_id = Integer.parseInt("id");
+			n_id = Integer.parseInt(id);
 		}
 		catch (Exception e) {
 			n_id = -1;
@@ -92,7 +96,7 @@ public class MyController {
 			Model model
 			) {
 		
-		System.out.println("/modifyForm : id" + id);
+		System.out.println("/modifyForm : id :" + id);
 		SimpleBbsDto dto = dao.viewDao(id);		
 		model.addAttribute("dto", dto);
 		
@@ -119,6 +123,7 @@ public class MyController {
 	}	
 	
 	// 주소창에 ""-----8081/testIF"
+	// title로 검색하기 코드
 	@RequestMapping("/testIF")
 	public String testIF(
 			// 전달인자가 dto의 필드명:setter 양식:과 일치하면
@@ -135,7 +140,8 @@ public class MyController {
 				System.out.println("type :" + type);
 				System.out.println("keyword :" + keyword);
 				
-				if("title".equals(type)) {
+				// if 문의 ()안에는, list.jsp의 <select>안에 <option value="title">값을 넣어준 것이다.
+				if("title".equals(type)) {	
 					dto.setTitle(keyword);
 				}else if("writer".equals(type)) {
 					dto.setWriter(keyword);
@@ -147,5 +153,45 @@ public class MyController {
 			model.addAttribute("list",list);
 			//list.jsp를 호출
 			return "list";
+	}
+	
+	// chk box를 이용해서 찾는다.
+	@RequestMapping("/testForeach")
+	public String testForeach(
+			// 전달인자가 dto의 필드명:setter 양식:과 일치하면
+			//값을 넣어줌
+			@ModelAttribute SimpleBbsDto dto,
+			
+			//jsp로 값을 보내기 위해 사용
+			Model model,
+			HttpServletRequest request  
+			) {
+		
+				/* "getParameterValues"는 배열형태로 받을 수 있음 */
+				// checkbox를 모두 선택되도록 for문으로 한다.			
+				String[] list_chk = request.getParameterValues("chk"); 
+				if(list_chk !=null) {
+					for(int i=0 ; i<list_chk.length; i++) {
+						System.out.println("list_chk["+i+"] :" + list_chk[i]);
+					}
+				}
+				System.out.println("-------------------");
+				
+				// null 값 설정함
+				list_chk = dto.getChk();	//  SimpleBbsDto의 
+				if(list_chk !=null) {
+					for(int i=0 ; i<list_chk.length; i++) {
+						System.out.println("list_chk["+i+"] :" + list_chk[i]);
+						
+						logger.info("list_chk["+i+"] :" + list_chk[i]);
+						// logger.error("list_chk["+i+"] :" + list_chk[i]);	// log창에 보여진다.
+					}
+				} else {
+					System.out.println("list_chk is null");
+				}
+				List list = dao.testForeach(dto);
+				model.addAttribute("list", list);
+			
+		return "list";
 	}
 }

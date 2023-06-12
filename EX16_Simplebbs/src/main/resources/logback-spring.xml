@@ -12,6 +12,7 @@
 
 	<!-- Logger -->
 	<logger name="com.study" level="INFO" appender-ref="console" />
+<!-- 	<logger name="com.study" level="ERROR" appender-ref="console" /> -->
 
 	<logger name="jdbc" level="OFF" />
 	<logger name="jdbc.sqlonly" level="OFF" />

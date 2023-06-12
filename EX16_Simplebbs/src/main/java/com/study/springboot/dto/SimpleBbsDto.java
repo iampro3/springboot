@@ -9,7 +9,14 @@ public class SimpleBbsDto {
 	private String writer;
 	private String title;
 	private String content;
+	private String[] chk;	// chk box
 	
+	public String[] getChk() {
+		return chk;		// mycontroller : list_chk = dto.getChk();
+	}
+	public void setChk(String[] chk) {
+		this.chk = chk;
+	}
 	public int getId() {
 		return id;
 	}

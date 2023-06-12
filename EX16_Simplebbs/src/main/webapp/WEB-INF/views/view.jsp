@@ -10,7 +10,7 @@
 <title>view</title>
 </head>
 <body>
-id:${dto.id }<br>
+<%-- id:${dto.id }<br> --%>
 writer:${dto.writer }<br>
 title:${dto.title }<br>
 content:<br>

@@ -15,8 +15,10 @@ public interface ISimpleBbsDao {
 	
 	// return값인 int는 실행 결과 영향을 받은 row 수 // 전달인자를 입력함
 	int writeDao(String writer, String title, String content);
+	
 	int deleteDao(String id);
 	int updateDao(SimpleBbsDto dto);
 	
 	List testIF(SimpleBbsDto dto);
+	List testForeach(SimpleBbsDto dto);
 }

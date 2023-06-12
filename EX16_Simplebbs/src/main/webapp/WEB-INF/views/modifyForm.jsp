@@ -10,9 +10,9 @@
 <title>modifyForm</title>
 </head>
 <body>
-<script>
-let old_writer = "${dto.writer }"
-	</script>
+<!-- <script> -->
+// let old_writer = "${dto.writer }"
+<!-- 	</script> -->
 <h1>수정</h1>
 <!-- <form action="/modifyForm" method="post"> 데이터 가릴 때 post:select/ 다 보여줄 떄 get:insert-->
 <!-- <form action="/modifyForm" method="put"> update -->

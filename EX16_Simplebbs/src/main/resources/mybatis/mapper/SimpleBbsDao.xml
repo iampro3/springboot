@@ -5,10 +5,29 @@
 
 <mapper namespace="com.study.springboot.dao.ISimpleBbsDao"> 
 		
+	<resultMap id="bbsResult" type="SimpleBbsDto">
+		<result column="id" property="id" />
+		<result column="writer" property="writer" />
+	</resultMap>
 		
+	<select id="listDao2" resultMap="bbsResult">
+		select * from simple_bbs
+	</select>
+	
 	<select id="listDao" resultType="com.study.springboot.dto.SimpleBbsDto">
 		select * from simple_bbs order by id desc
 	</select>
+
+	<select id="test_listDao" resultType="com.study.springboot.dto.SimpleBbsDto">
+		select * 
+		from 
+			simple_bbs
+		where 
+			<![CDATA[id < 3]]>
+		order by 
+			id desc
+	</select>
+	
 
 	<select id="viewDao" 
 			resultType="com.study.springboot.dto.SimpleBbsDto"
@@ -33,8 +52,8 @@
 	
 	
 <!-- 	<delete id="deleteDao" parameterType="string"> parameter 사용할 때 가능 -->
-		<delete id="deleteDao">		
-		DELETE FROM simple_bbs WHERE id = #{param1}
+		<delete id="deleteDao" parameterType="string">		
+		DELETE FROM simple_bbs WHERE id = #{_parameter}
 										  <!--#{_parameter} 가능 -->		
 	</delete>
 	
@@ -71,10 +90,10 @@
 				 -->
 		<where>
 		<if test = "title != null and title !=''"> <!-- title이 없으면 null, title가 ''이 아니면 출력 title이 title인 title가 출력된다.-->
-		  and title =#{title}
+		 			 and title =#{title}
 		</if>
 		<if test = "writer != null and writer !=''">
-		  and writer =#{writer}
+		 			 and writer =#{writer}
  			<!--or writer =#{writer}	 작성자 또는 일 때 / ''으로 sql에서 사용하기 위해서 #{writer} 을 넣는다.--> 	
 		</if>
 <!-- 		<if test = "writer != null and writer !=''"> -->
@@ -103,10 +122,10 @@
 			<where>
 				<choose>
 					<when test="title != null and title !=''">	<!--when 여러개 사용할 수 있다.  -->
-						and title =#{title}
+								and title =#{title}
 						</when>	
 					<otherwise>		<!-- else 개념이다. -->
-						and title IS NULL
+								and title IS NULL
 					</otherwise>
 				</choose>
 			</where>
@@ -115,26 +134,28 @@
 	
 <!-- 	Foreach 문 -->
 	<select id="testForeach"
-			parameterType="SimpleBbsDto" 
-			resultType="SimpleBbsDto">
-	
-		select 
-			* 
+		parameterType="SimpleBbsDto"
+		resultType="SimpleBbsDto">
 		
-		from 
+		SELECT 
+			* 
+		FROM 
 			simple_bbs
+		<where>
+		<if test ="chk != null"></if>
+			id in 
+			<!-- collection="ids" index="idx" 는 삭제함 -->
+			<foreach 
+				item="value" 	
+				collection="chk"	
+				open="("
+				separator=","				
+				close=")">			<!-- open="(":시작할때, 조건문의 마지막에 넣어준다. -->
+				
+				#{value}
+			</foreach>			
+		</where>
 	</select>
 </mapper>
 
 
-<!-- sql 에서 학원에서 추가하기: 3개 list만 나오도록 검색
-
-select * form simple_bbs 
-where 
-	id =41 or id= 7 or id = 11;
-	
-	다른 표현으로
-	select * form simple_bbs 
-where 
-	id in(41, 1, 7); 
--->

@@ -15,17 +15,22 @@
 <br>
 <a href = "/writeForm">글쓰기</a><br>
 <br>
+<form action="/testForeach">
+<input type="submit" value="일괄조회">
 <table border="1">
 	<tr>
+		<td>선택</td>
 		<td>글번호</td>
 		<td>작성자</td>
-		<td>제목</td>
-		
+		<td>제목</td>		
 		<td>삭제</td>
 		<!-- <td>글 내용</td> -->
 	</tr>
 	<c:forEach var="dto" items="${list }">
 	<tr>
+	
+		<td><input type="checkbox" name="chk" value="${dto.id }"></td>
+<!-- 		<td><input type="checkbox" name="chk" value="">${dto.id }</td> : value 값이 넘어간다.-->
 		<td>${dto.id }</td>
 		<td>${dto.writer }</td>
 						<!-- 보내고 싶은 id -->
@@ -39,8 +44,10 @@
 <%-- 		<td>${list.content }</td> --%>
 	</tr>	
 	</c:forEach>
-</table><br>
-<form action="/testIF">
+</table>
+</form>
+<br>
+<form action="/testIF">	<!-- <form>안에 form이 겹치지 않게 한다. -->
 	<select name ="type">  <!-- dto에 없음 -->
 		<option value="선택">선택</option>
 		<option value="writer">writer</option>
