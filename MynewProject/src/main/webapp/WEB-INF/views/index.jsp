@@ -728,7 +728,8 @@
                 // ajax ½ÇÇà
                 let option = {
             
-                    "url" : "/field.html",
+                     "url" : "/list.jsp",
+               //      "url" : "/field.html", 
                     "type": "get",
                     "success" : function(data){
                         console.log(data);                        

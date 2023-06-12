@@ -20,34 +20,27 @@ repositories {
 }
 
 dependencies {
-/*	implementation 'org.springframework.boot:spring-boot-starter-jdbc
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	compileOnly("org.springframework.boot:spring-boot-devtools") // 추가함
-	annotationProcessor 'org.projectlombok:lombok'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-	testImplementation('org.springframework.boot:spring-boot-starter-test'){
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}*/
-	
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-devtools'
-	compileOnly 'org.projectlombok:lombok'
-	//compileOnly("org.springframework.boot:spring-boot-devtools") // 추가함
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
-	developementOnly 'org.springframework.boot:spring-boot-devtols' // html 파일 수정 시, refresh 설정 추가함
-	
+	// jsp 관련 없으면 404 error
 	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
     // implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-  
+    
+   // log4jdbc
+   implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+    
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
