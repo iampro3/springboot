@@ -41,9 +41,10 @@ public class myFilter implements Filter {
 		
 		StringBuffer sb = httpReq.getRequestURL();
 		String url = sb.toString();	// 버퍼가 줄어든다.
-		System.out.println("getRequestURL : " + url);	// 8081/login 을 치면 전체 주소가 로그창에 나온다. Controller에서도 사용가능하다.
 		
-		String writer = null; // 밖으로 뺴줌 지역변수-> 전역변수화 함
+		System.out.println("url : " + url);	// 8081/login 을 치면 전체 주소가 로그창에 나온다. Controller에서도 사용가능하다.
+		
+		//String writer = null; // 밖으로 뺴줌 지역변수-> 전역변수화 함
 		
 		// ********* login 이 아래 하나면 끝난다.
 		// login에서 세션 없으므로 list에서 글쓰기 못한다.
@@ -57,11 +58,14 @@ public class myFilter implements Filter {
 			//writer = (String)session.getAttribute("writer");
 			// writer가 null이 아니면 글쓰기로 가기
 			
-			if(url.indexOf("/login") == -1 ) { //-1은 글씨가 없다. 즉 로그인이 아니라면 / != -1 로그인 이라면
+			if(url.indexOf("/login") != -1 
+					|| url.indexOf("/logout") != -1) { //-1은 글씨가 없다. 즉 로그인이 아니라면 / != -1 로그인 이라면
 				//마침내 Controller까지 보내기 시작
+				//session없이 통과
 				chain.doFilter(request, response);		
 			}else {			
-			if(isLogon == null || isLogon !=true) {
+				if(isLogon == null || isLogon !=true) {
+				//로그인 페이지로 이동
 				HttpServletResponse resp = (HttpServletResponse)response;
 				resp.sendRedirect("/login");
 			}
