@@ -58,7 +58,7 @@
 		<br>
 
 	<form action="/testIf">
-		<select name="type" >
+		<select name="type">
 			<option value="선택">선택</option>
 			<option value="w">작성자</option>
 			<option value="t">제목</option>
@@ -69,25 +69,28 @@
 
 	<br>
 	<br>
+	<a href="/writeForm">글쓰기</a>
+	<br><br>
 	<form action="/testForeach">
 		<input type="submit" value="일정 조회">
+		
+		
 	
 		<tbody>
 			<tr>
 				<td>체크</td>
-				<td class="num">월<br><a href="/writeForm">1</a></td>
-				<td class="writer">화<br><a href="/writeForm">2</a></td>
-				<td class="title">수<br><a href="/writeForm">3</a></td>
-				<td>목<br><a href="/writeForm">4</a></td>
-				<td>금<br><a href="/writeForm">5</a></td>
-			
+				<td class="num">글번호</td>
+				<td class="writer">작성자</td>
+				<td class="title">제목</td>
+				<td>등록일자</td>
+				<td>조회수</td>
+				<!-- 		<td>글 내용</td> -->
 				<td>삭제</td>
 			</tr>
 			</thead>
 			<c:forEach var="dto" items="${list }">
 				<tr>
-					
-					<td ><input type="checkbox" name="chk" value="${dto.id }"></td>
+					<td "><input type="checkbox" name="chk" value="${dto.id }"></td>
 					<td class="num">${dto.id }</td>
 					<td class="writer">${dto["writer"] }</td>
 					<td class="title"><a href="/view?id=${dto.id }">${dto.title }</a></td>
@@ -101,9 +104,6 @@
 			</c:forEach>	
 		
 	</form>
-<!-- 	https://hitomis.tistory.com/140 -->
-<!-- https://dlgkstjq623.tistory.com/290 -->
-	
 	</tbody>
 	</table>
 	</div>

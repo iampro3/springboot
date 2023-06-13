@@ -11,10 +11,12 @@ public interface ISimpleBbsDao {
 	
 	public abstract List<SimpleBbsDto> listDao();
 	
+	public void increateViewcont(int bno) throws Exception;
+	
 	SimpleBbsDto viewDao(String id);
 	
 	// return값인 int는 실행 결과 영향을 받은 row 수
-	int writeDao(String writer, String title, String content);
+	int writeDao(String writer, String title, String content, String createDate);
 	
 	int deleteDao(String id);
 	int updateDao(SimpleBbsDto dto);

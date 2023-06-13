@@ -60,7 +60,7 @@ public class MyController {
 	@RequestMapping("/write")
 	public String write(
 			@ModelAttribute SimpleBbsDto dto,
-			Model model
+			Model model, String createdate
 	) {
 		
 		
@@ -68,16 +68,21 @@ public class MyController {
 		String writer = dto.getWriter();
 		String title = dto.getTitle();
 		String content = dto.getContent();
-
+		//String Date = dto.getCeateDate();		
+		//String cnt = dto.getCnt(OL);		
+		
 		
 		
 		// 콘솔에 출력
 		System.out.println("writer : "+ writer);
 		System.out.println("title : "+ title);
 		System.out.println("content : "+ content);
+		//System.out.println("Date : "+ Date);	//작성일자.
+		//System.out.println("Cnt : "+ cnt);	// 조회수
+		
 		
 		// 요청한 내용을 받아서 DB에 저장
-		int result = dao.writeDao(writer, title, content);
+		int result = dao.writeDao(writer, title, content, createdate);
 		System.out.println("writeDao result : "+ result);
 		
 //		return userlistPage(model);
@@ -229,4 +234,5 @@ public class MyController {
 		
 		return "list";
 	}
+
 }

@@ -1,0 +1,694 @@
+@charset "EUC-KR";
+:root {
+    --main-color:rgb(77, 16, 151);
+ 
+}
+
+* {
+    margin: 0; padding: 0;      /* 좌측 메뉴 보라색 박스 영역을 화면과여백없이 지정 */
+    box-sizing: border-box;
+    outline: 0 ; border : none ;
+    text-decoration: none;
+}
+
+html {
+    font-size: 14px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;    /* 스크롤 이동을 부드럽게 한다.-나중에 추가 */
+}
+
+body {
+    padding-left: 25rem;        /*  헤더의 크기만큼 띄어서 나온다. */
+}
+
+section {   
+    min-height: 100vh;  /*  모니터 크기의 전체가 적용된다. 50:절반 */
+    padding: 1rem 5%;
+}
+
+header {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    background-image: url(./img/b2.jpg);
+/*     background-color: rgb(212, 185, 227); */
+    width: 25rem;       /* body에  padding-left: 25rem;  준 값*/
+    display: flex;
+    flex-direction: column; /* 가로 방향으로 변경함 */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rem 1rem;
+    text-align: center;
+     z-index: 10; /*navi가 top*/
+}
+/* Makedata 글씨 설정*/
+header .logo {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: bold;
+}
+header .logo  span {
+    color: var(--main-color);
+}
+
+header .navbar {
+    position: relative;
+    padding: 17px 0;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #dddddd;  
+  }
+header .navbar {
+    display: block;
+    color: rgb(93, 73, 165);
+    margin: 1.5rem 0;   /* navi 메뉴 글자간격 */
+    font-size: 1.7rem;
+}  
+  
+/*좌 네비게이션 세부메뉴*/
+header .navbar a {
+    display: block;
+    color: rgb(255, 255, 255);
+    margin: 0.7rem 0;   /* navi 메뉴 글자간격*/
+    font-size: 1.1rem;
+}
+header .navbar a:hover {
+    color: var(--main-color);
+}
+
+/* navi-Logout & ID 메뉴 글자간격 0606 추가함 시작 */
+header .navbar_log a {
+    display: block;
+    color: rgb(255, 255, 255);
+    margin: 0.7rem 0;   /* navi-Logout & ID 메뉴 글자간격*/
+    font-size: 1.1rem;
+}
+
+header .navbar_log a:hover {
+    color: var(--main-color);
+}
+/* navi-Logout & ID 메뉴 글자간격 0606 추가함 시작 */
+
+header .sns {}
+header .sns a {
+    color: rgb(231, 241, 250);
+    font-size: 1rem;
+    margin: 50px 1rem;
+}
+
+header .sns a:hover {
+    color: var(--main-color);
+}
+
+/* ################ header 끝 ############## */
+
+
+
+/* ################ section 1 ############## */
+/* reset */
+input {
+    outline: none;
+    border: none;
+    background-color: transparent;  /* 투명 */
+}
+
+a {
+    text-decoration: none;
+    color: blueviolet;
+    text-align: center;
+}
+
+/* 전체영역 */
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+
+/* 도서관 정보줄 설정 */
+#title .title-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 도서관 정보 영역 */
+.title-wrap{
+    /* 가로세로 가운데 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    padding: 30px;    
+    border-radius: 10px;
+    background-color: rgb(243, 241, 250);
+    /* x축y축 블러 색성 */
+    box-shadow: 5px 5px 10px rgba(173, 168, 168, 0.4);
+    display: flex;
+    /* justify-content: space-between;
+    align-items: center; */   
+    
+    justify-content: center;
+}
+
+/* inner */
+#title { width: 100%;   height: 100%; }
+
+.title-text {
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+    /* font-weight : bold; */
+}
+
+/* ####### 도서관 수강 부분 */
+#title .title-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 20px;    
+}
+
+
+/*  입력 줄 크기 */
+#title .title-inputbox input{
+    width: 70%;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ddd;
+    margin-bottom: 10px;    
+    box-sizing: border-box;
+    }
+
+
+#title .title-inputbox input::placeholder{
+    color: rgb(133, 130, 130);  /* id, pw 글자 색상 설정 */
+}
+
+/* ----------- 버튼 박스 */ 
+#title .title-btnbox .title-btn{
+    display: block;
+    background-color: rgb(227, 220, 233);
+    color: blanchedalmond;
+    font-size: 1.0rem;
+    font-weight : bold;
+    color: rgb(66, 0, 132);
+    margin-top: 10px;   /* 내가 추가함 */
+    line-height: 25px;    /* 버튼 안에서 글자 높이 */
+    border-radius: 5px;
+    width: 180px;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center; 
+   
+}
+
+/* 버튼 박스 올렸을 때 버튼 색상 진해짐 */
+#title .title-btnbox .title-btn:hover {
+    filter: brightness(90%);
+}
+
+/* ############### image make 전체영역 (chatbot 함께 사용함)*/
+.container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* image make 영역 */
+.img-wrap{
+    /* 가로세로 가운데 */
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    padding: 30px;    
+    border-radius: 10px;
+    background-color: rgb(243, 241, 250);
+    /* x축y축 블러 색성 */
+    box-shadow: 5px 5px 10px rgba(173, 168, 168, 0.4);
+    display: flex;
+    /* justify-content: space-between;*/ 
+    align-items: flex-end;    
+    justify-content: center;
+}
+
+/* inner */
+#img { width: 100%;   height: 100%; }
+
+.img-text {
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+/* ####### img make  부분 */
+#img .img-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 20px;    
+}
+
+
+/*  입력 줄 크기 */
+#img .img-inputbox input{
+    width: 70%;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ddd;
+    margin-bottom: 10px;    
+    box-sizing: border-box;    
+}
+
+
+#img .img-inputbox input::placeholder{
+    color: rgb(133, 130, 130);  /* id, pw 글자 색상 설정 */
+}
+
+/* ----------- 버튼 박스 */ 
+#img .img-btnbox .img-btn{
+    display: block;
+    background-color: rgb(227, 220, 233);
+    color: blanchedalmond;
+    font-size: 1.0rem;
+    color: rgb(133, 103, 146);
+    margin-top: 10px;   /* 내가 추가함 */
+    line-height: 25px;    /* 버튼 안에서 글자 높이 */
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+   
+}
+
+
+/* 로그인 박스 올렸을 때 버튼 색상 진해짐 */
+#img .img-btnbox .img-btn:hover {
+    filter: brightness(90%);
+}
+
+
+/* login 전체영역 */
+.login-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* 로그인영역 */
+.login-wrap{
+    /* 가로세로 가운데 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 490px;
+    height: 600px; 
+    padding: 30px;    
+    border-radius: 5.5px;    
+    border-color: rgb(112, 84, 207);
+    border-style: solid;
+    background-color: rgb(255, 255, 255);
+    /* x축y축 블러 색성 */
+    box-shadow: 5px 5px 10px rgba(255, 253, 253, 0.4);
+}
+
+/* inner */
+#login { width: 100%;   height: 100%; }
+
+
+.login-text {
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+    /*  text-decoration : underline;  언더라인:링크 시*/
+}
+
+
+/* 아이디/ 비밀번호 입력 줄 설정 */
+#login .login-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 아이디/비밀번호 입력 칸 크기 */
+#login .login-inputbox input{
+    width: 100%;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ddd;
+    margin-bottom: 10px;    
+    box-sizing: border-box;
+}
+
+
+#login .login-inputbox input::placeholder{
+    color: rgb(213, 213, 213);  /* id, pw 글자 색상 설정 */
+}
+
+
+/* 아이디 저징/자동 로그인 */
+#login .login-remember {
+    height: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 10px;    
+}
+
+#login .login-remember label {
+    position: relative;
+    padding-left: 25px;
+    color: rgb(174, 164, 176);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#login .login-remember label input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#login .login-remember label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(246, 245, 254);
+}
+
+#login .login-remember label .checkmark::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 4px;
+    height: 8px;
+    border:  solid rgb(215, 215, 209);
+    border-width: 0 3px 3px 0;  /* top right botton left */
+    transform: rotate(45deg);
+}
+
+/* 체크했을 때 색상 변경 */
+#login .login-remember label input:checked ~ .checkmark {
+    background-color: rgb(67, 43, 226);
+
+}
+
+/* 글씨색도 변경  */
+#login .login-remember label input:checked ~ span {
+    color: rgb(85, 17, 212);
+}
+/* 로그인 버튼 박스 */
+#login .login-btnbox .login-btn{
+    display: block;
+    background-color: rgb(92, 72, 162);
+    color: blanchedalmond;
+    font-size: 1.2rem;
+    color: rgb(249, 246, 244);
+    margin-top: 10px;   /* 내가 추가함 */
+    line-height: 50px;    
+    border-radius: 5px;
+    text-align : center;
+}
+
+/* 로그인 박스 올렸을 때 버튼 색상 진해짐 */
+#login .login-btnbox .login-btn:hover {
+    filter: brightness(70%);
+}
+
+/* 카피라이트 */
+#login .copy {
+    height: 10px;
+    margin-top: 00px;   /* 카피라이트 글자 위의 요소와의 거리 */
+    margin-bottom: 10px;   
+    /* width: 500px; */
+    }
+    
+#login .copy p {
+    font-size: 1.0rem;
+    text-align: center;
+}   
+/* ################ section login 끝 ############## */
+
+
+
+
+/* ############## sign up ############### 영역 */
+.sign-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* 로그인영역 */
+.sign-wrap{
+    /* 가로세로 가운데 */
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 620px;
+    padding: 30px;    
+    border-radius: 1px; 
+    background-color: rgb(225, 220, 240);
+    /* x축y축 블러 색성 */
+    box-shadow: 5px 5px 10px rgba(255, 253, 253, 0.4);
+}
+
+/* inner */
+#sign { width: 100%;   height: 100%; }
+
+
+.sign-text {
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+/* 아이디/ 비밀번호 입력 줄 설정 */
+#sign .sign-inputbox{
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* 아이디/비밀번호 입력 칸 크기 */
+#sign .sign-inputbox input{
+    width: 100%;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ae9dc8;
+    margin-bottom: 10px;    
+    box-sizing: border-box;
+}
+
+#sign .sign-inputbox input::placeholder{
+    color: rgb(194, 172, 221);  /* id, pw 글자 색상 설정 */
+}
+
+/* viewresult 페이지 css 새로 추가함: 아이디/비밀번호 입력 칸 크기 시작 */
+#sign .sign-inputbox1 input{
+    width: 100%;
+    height: 40px;
+    padding-left: 5px;
+    font-size: 1rem;
+    border-bottom : 1px solid #ae9dc8;
+    margin-bottom: 10px;    
+    box-sizing: border-box;
+}
+
+#sign .sign-inputbox1 input::placeholder{
+    color: rgb(64, 0, 128);  /* id, pw 글자 색상 설정 */
+}
+/* viewresult 페이지 css 새로 추가함: 아이디/비밀번호 입력 칸 크기 끝 */
+
+/* 아이디 저징/자동 로그인 */
+#sign .sign-remember {
+    height: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 10px;    
+}
+
+#sign .sign-remember label {
+    position: relative;
+    padding-left: 25px;
+    color: rgb(140, 19, 164);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+#sign .sign-remember label input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* 로그인 버튼 박스 */
+#sign .sign-btnbox .sign-btn{
+    display: block;
+    background-color: rgb(92, 72, 162);
+    color: blanchedalmond;
+    font-size: 1.2rem;
+    color: rgb(249, 246, 244);
+    margin-top: 10px;   /* 내가 추가함 */
+    line-height: 50px;    
+    border-radius: 10px;
+}
+
+/* 로그인 박스 올렸을 때 버튼 색상 진해짐 */
+#sign .sign-btnbox .sign-btn:hover {
+    filter: brightness(70%);
+}
+
+
+/* 슬라이드 */
+.slide-container {
+    width: 100%;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction : row;
+    /* justify-content: space-between;
+    align-items: center; */   
+    
+    justify-content: center;    /*4개 메뉴 자식들 메인 이미지 중앙정렬됨*/
+}
+
+.slide-container .slide {
+    width: auto;
+    height: 700px;
+    padding: 40px 0;    /* top과 이미지의 거리 */
+    box-sizing: border-box;  
+    align-items: center;
+}
+
+.slide-container .text {
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+.slide li{
+  float: left;
+  width: 350px; height: 250px;
+
+}
+.slide li{ margin-right: 0; }
+
+.slide a{
+  display: block; /* 영역적용위해 사용 */
+  width: 100%; height: 100%;
+
+  overflow: hidden;
+  position: relative; /* absolute의 기본기준은 body로 처리 - 현재 요소로 기준변경 */
+}
+
+.slide figure{
+  width: 100%; height: 100%;
+}
+.slide figcaption{
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+
+  position: absolute; /* 이미지와 겹치게 처리 */
+  top: 0; left: 0;
+
+  color: #fff; text-align: center;
+  font-size: 2.0rem;
+  line-height: 250px;  /*글자 수직 위치*/
+
+  opacity: 0; /* 처음엔 안보이고 */
+  transition: 0.3s;
+}
+
+.slide a:hover figcaption, .slide a:focus figcaption{
+  /* 마우스를 올리면 보이게 처리 */
+  opacity: 1;
+}
+
+.slide img { 
+    width: auto;
+    height: 100%;
+    align-items: center; 
+}
+
+/* 상단 x 표 메뉴열기/닫기 */
+.btn-menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(167, 145, 196);
+    color: aliceblue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#btn-close {
+    position: absolute;
+}
+
+/* 공통 */
+.common-title {
+
+    color: #3c0c60;
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+.margin-box {
+    margin-bottom: 60px;
+}
+
+/* #################### map #################### */
+.section.map {}
+.section.place .place-info {     /* 지도 아래 장소 박스 */
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    padding: 50px 30px;
+    background-color: var(--bg-light);
+}
+
+.section.map .place-info .content{}
+section.place .place-info .content .hall { font-size: 20px;}
+section.place .place-info .content .address { font-size: 18px;}
+section.place .place-info .content .tel { font-size: 16px; }
+section.place .place-info .icon{ padding: 10px 20px; }
+section.place .place-info .icon img { width: 60px; height: 60px;}
+
+
+.section.place .map-info {}
+.section.place .map-info .flex-container {
+
+    display: flex;
+    width: 100%;
+    margin: 0px auto;
+    justify-content: space-between;     
+   
+    padding: 30px 30px;
+    background-color: var(--main);
+}

@@ -8,6 +8,8 @@
 	<resultMap id="bbsResult" type="SimpleBbsDto">
 		<result column="id" property="id" />
 		<result column="writer" property="writer" />
+		<result column="CreateDate" property="CreateDate" />
+		<result column="viewcnt" property="viewcnt" />
 	</resultMap>
 	
 	<select id="listDao2" resultMap="bbsResult">
@@ -42,7 +44,7 @@
 	</select>
 
 	<insert id="writeDao">
-		insert into simple_bbs (id, writer, title, content)
+		insert into simple_bbs (id, writer, title, content, CreateDate, viewcnt)
 		values (simple_bbs_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
