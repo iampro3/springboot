@@ -15,6 +15,7 @@ import com.study.springboot.dao.ISimpleBbsDao;
 import com.study.springboot.dto.SimpleBbsDto;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MyController {
@@ -29,17 +30,46 @@ public class MyController {
 		return "writeForm";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
+	}
+	
+	@RequestMapping("/loginCheck")
+	public String loginCheck(HttpServletRequest req) {
+		//위에서 얻어온 세션 담기
+		HttpSession session = req.getSession();
+		session.setAttribute("isLogon", true);  // isLogon:boolean 에 true가 들어간다.
+		
+		// 콘솔에 출력
+		return "redirect:/list";
+	}
+		
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest req) {
+		//위에서 얻어온 세션 담기
+		HttpSession session = req.getSession();
+		session.invalidate();		
+		
+		return "login";
+	}
+	
+	
 	@RequestMapping("/write")
 	public String write(
 			@ModelAttribute SimpleBbsDto dto,
-			Model model
+			Model model,
+			HttpServletRequest req  // 세션 만들기
 	) {
+		
 		// 요청한 내용을 받아서 변수에 저장
 		String writer = dto.getWriter();
 		String title = dto.getTitle();
 		String content = dto.getContent();
+
+		//session.setAttribute("writer", writer);  // writer 에 string인 writer이 들어간다.
 		
-		// 콘솔에 출력
 		System.out.println("writer : "+ writer);
 		System.out.println("title : "+ title);
 		System.out.println("content : "+ content);
@@ -55,9 +85,13 @@ public class MyController {
 	}
 	
 	@RequestMapping("/list") // jsp로 보낸다.
-	public String userlistPage(Model model) {
+	public String userlistPage(Model model, HttpServletRequest req) {
 								//jsp로 보내려면 model 전달인자로 필요
 		
+								/*  filter를 사용하면 아래처럼 불편하게 모두에 넣어주지 않아도됨!!!
+								 * Boolean idLogon = (Boolean)req.getSession().getAttribute("isLogon"); if(
+								 * isLogon == null || isLogon !=true) { return="login"; }
+								 */
 		List<SimpleBbsDto> list = dao.listDao();
 		model.addAttribute("list", list);
 		return "list";
@@ -147,7 +181,7 @@ public class MyController {
 					dto.setWriter(keyword);
 				}
 			//조건에 맞는 목록 선택
-			List list=	dao.testIF(dto);
+			List list=	dao.testIf(dto);
 		
 			//조회한 목록을list라는 key로 담아서 jsp로 전달
 			model.addAttribute("list",list);
