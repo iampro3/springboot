@@ -44,7 +44,8 @@
 	</select>
 
 	<insert id="writeDao">
-		insert into simple_bbs (id, writer, title, content, CreateDate, viewcnt)
+		insert into simple_bbs (id, writer, title, content)
+<!-- 		insert into simple_bbs (id, writer, title, content, CreateDate, viewcnt) , #{param4}, #{param5} 아래에 추가해야 함 -->
 		values (simple_bbs_seq.nextval, #{param1}, #{param2}, #{param3})
 	</insert>
 	
