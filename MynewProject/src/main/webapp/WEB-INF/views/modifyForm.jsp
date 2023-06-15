@@ -7,16 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>modifyForm</title>
+<title>modifyFormcal</title>
 </head>
 <body>
-<!-- <script> -->
-// let old_writer = "${dto.writer }"
-<!-- 	</script> -->
+
 <h1>수정</h1>
 <!-- <form action="/modifyForm" method="post"> 데이터 가릴 때 post:select/ 다 보여줄 떄 get:insert-->
 <!-- <form action="/modifyForm" method="put"> update -->
-<form action="/modify" method="post">
+<form action="/modifycal" method="post">
 	writer : <input type="text" name="writer" value="${dto.writer }"><br>
 	title : <input type="text" name="title" value="${dto.title }"><br>
 	content<br>

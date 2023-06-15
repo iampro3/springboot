@@ -14,7 +14,7 @@ content<br>
 ${dto.content }
 </textarea>
 <br>
-<a href="/list">목록으로</a><br>
-<a href="/modifyForm?id=${dto.id }">수정하기</a>
+<a href="/listCal">목록으로</a><br>
+<a href="/modifyFormcal?id=${dto.id }">수정하기</a>
 </body>
 </html>

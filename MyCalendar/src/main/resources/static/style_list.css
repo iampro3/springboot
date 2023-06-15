@@ -1,27 +1,25 @@
-@charset "EUC-KR";
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0px; box-sizing: border-box; }
 
 
 ul { list-style-type: none; }
 
 a { text-decoration: none; color: inherit; }
 
-/* ¿¸√ºøµø™ */
+/* Ï†ÑÏ≤¥ÏòÅÏó≠ */
 .container {
-    width: 1000px;
+    width: 1200px;
     margin: 100px auto;
 }
 
-.main-title { font-size: 16px; color: rgb(66, 7, 121) ; text-align: center;}
-.main-title h1 { font-size: 26px; margin-bottom: 20px; }
+.main-title { font-size: 20px; text-align: center; margin-top: 50px;}
+.main-title h1 { font-size: 32px; margin-bottom: 20px; }
 .main-title p { }
 
 
 .board { 
     width: 100%; 
-    border-top: 2px solid rgb(61, 16, 139); 
-    border-bottom: 2px solid rgb(66, 28, 155);
+    border-top: 2px solid black; 
+    border-bottom: 2px solid black;
     margin: 30px 0;
     border-collapse: collapse;  
 }
@@ -32,7 +30,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .board tr:hover {
-    background-color: rgb(232, 229, 252);
+    background-color: lightblue;
     font-weight: bold;
 }
 
@@ -86,7 +84,7 @@ a { text-decoration: none; color: inherit; }
 
 .pagination a.num.on,
 .pagination a:hover {
-    background-color: rgb(196, 173, 230);
+    background-color: lightblue;
     font-weight: bold;
 }
 
@@ -102,9 +100,9 @@ a { text-decoration: none; color: inherit; }
 }
 
 .btn {
-    background-color: rgb(110, 67, 202);
+    background-color: rgb(166, 160, 202);
     padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
     font-weight: bold;
  }

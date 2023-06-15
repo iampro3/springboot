@@ -24,9 +24,11 @@ public class MyController {
 	
 	@Autowired
 	ISimpleBbsDao dao;
-
-	@RequestMapping("/writeForm")
-	public String writeForm(HttpServletRequest req) {
+	
+	
+	
+	@RequestMapping("/writeFormcal")
+	public String writeFormcal(HttpServletRequest req) {
 		
 		Boolean isLogon = (Boolean) req.getSession().getAttribute("isLogon");
 		if(isLogon == null || isLogon != true) {
@@ -34,10 +36,11 @@ public class MyController {
 		}
 
 		
-		return "writeForm";
+		return "writeFormcal";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/")
+//	@RequestMapping("/login")
 	public String login() {
 		return "login";
 	}
@@ -47,7 +50,7 @@ public class MyController {
 		// 세션 테스트
 		HttpSession session = req.getSession();
 		session.setAttribute("isLogon", true);
-		return "redirect:/list";
+		return "redirect:/listCal";
 	}
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest req) {
@@ -57,8 +60,8 @@ public class MyController {
 	}
 	
 	
-	@RequestMapping("/write")
-	public String write(
+	@RequestMapping("/writecal")
+	public String writecal(
 			@ModelAttribute SimpleBbsDto dto,
 			Model model, String createdate
 	) {
@@ -86,10 +89,10 @@ public class MyController {
 		System.out.println("writeDao result : "+ result);
 		
 //		return userlistPage(model);
-		return "redirect:/list";
+		return "redirect:/listCal";
 	}
 	
-	@RequestMapping("/list")
+	@RequestMapping("/listCal")
 	public String userlistPage(Model model, 
 			HttpServletRequest req) {
 		Boolean isLogon = (Boolean) req.getSession().getAttribute("isLogon");
@@ -100,11 +103,11 @@ public class MyController {
 		
 		model.addAttribute("list", list);
 		
-		return "list";
+		return "listCal";
 	}
 	
-	@RequestMapping("/view")
-	public String view(Model model,
+	@RequestMapping("/viewcal")
+	public String viewcal(Model model,
 			@RequestParam("id") String id,
 			HttpServletRequest req
 			) {
@@ -133,41 +136,41 @@ public class MyController {
 
 //		- jsp로 보냄
 		model.addAttribute("dto", dto);
-		return "view";
+		return "viewcal";
 	}
 	
-	@RequestMapping("/modifyForm")
-	public String modifyForm(
+	@RequestMapping("/modifyFormcal")
+	public String modifyFormcal(
 			@RequestParam("id") String id,
 			Model model
 	) {
-		System.out.println("/modifyForm : id : "+ id);
+		System.out.println("/modifyFormcal : id : "+ id);
 		
 		SimpleBbsDto dto = dao.viewDao(id);
 		model.addAttribute("dto", dto);
 		
-		return "modifyForm";
+		return "modifyFormcal";
 	}
-	@RequestMapping("/modify")
-	public String modify(
+	@RequestMapping("/modifycal")
+	public String modifycal(
 		@ModelAttribute SimpleBbsDto dto,
 		Model model
 	) {
 		int result = dao.updateDao(dto);
 		System.out.println("업데이트 결과 : "+ result);
 		
-		return "redirect:/list";
+		return "redirect:/listCal";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(
+	@RequestMapping("/deletecal")
+	public String deletecal(
 		@RequestParam("id") String id
 	) {
 		
 		int result = dao.deleteDao(id);
 		System.out.println("삭제 개수 : "+ result);
 		
-		return "redirect:/list";
+		return "redirect:/listCal";
 	}
 
 	// 주소창에 "...:8080/testIf"
@@ -200,7 +203,7 @@ public class MyController {
 		model.addAttribute("list", list);
 		
 		// list.jsp 호출
-		return "list";
+		return "listCal";
 	}
 	
 	@RequestMapping("/testForeach")
@@ -232,7 +235,7 @@ public class MyController {
 		List list = dao.testForeach(dto);
 		model.addAttribute("list", list);
 		
-		return "list";
+		return "listCal";
 	}
 
 }

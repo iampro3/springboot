@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>수정</h1>
-<form action="/modify" method="post">
+<form action="/modifycal" method="post">
 	writer : <input type="text" name="writer" value="${dto.writer }"><br>
 	title : <input type="text" name="title" value="${dto.title }"><br>
 	content<br>

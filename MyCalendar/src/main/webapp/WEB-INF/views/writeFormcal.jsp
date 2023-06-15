@@ -13,7 +13,7 @@
 ${content }
 <!-- writer, title, content를 입력받음 -->
 
-<form action="/write" method="post">
+<form action="/writecal" method="post">
 	writer : <input type="text" name="writer"><br>
 	title : <input type="text" name="title"><br>
 	content<br>

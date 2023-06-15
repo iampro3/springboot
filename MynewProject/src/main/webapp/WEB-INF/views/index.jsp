@@ -233,8 +233,9 @@
         <!-- sns ¹öÆ° -->
             <div class="sns">        
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
-            <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+<!--             <a href="https://www.instagram.com/" class="fab fa-instagram"></a> -->
             <a href="#Map">M</a>            
+            <a href="#Map" target="_blank">Plan</a>            
             <span id="btn5"><a href="#field" >Post</a></span>            
         </div>            
     </header>
