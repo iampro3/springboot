@@ -9,7 +9,7 @@
 <body>
 	<form action="loginCheck">
 		id:<input type="text" name="id"><br>
-		pw:<input type="text" name="pw"><br>
+		pw:<input type="password" name="pw"><br>
 		<input type="submit" value="·Î±×ÀÎ"><br>
 	</form>
 </body>
