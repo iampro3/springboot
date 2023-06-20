@@ -58,6 +58,7 @@ public class Drinktest {
 //			}
 //			
 //			return result; // -1, 0, 1이 들어올 수 있다.
+		// 익명구현객체/클래스
 		list.sort(new Comparator() {
 	
 				@Override

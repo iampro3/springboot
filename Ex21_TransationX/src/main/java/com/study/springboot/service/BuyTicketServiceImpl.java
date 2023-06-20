@@ -2,6 +2,8 @@ package com.study.springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.study.springboot.dao.Transaction1Dao;
 import com.study.springboot.dao.Transaction2Dao;
@@ -14,9 +16,17 @@ public class BuyTicketServiceImpl implements BuyTicketService {
 	
 	@Autowired Transaction2Dao transaction2;
 	
+	@Autowired
+	TransactionTemplate transactionTemplate;
+	
+	
 	@Override
 	public int buy(String consumerId, String amount, String error) {
 		try {
+			
+			TransactionCallbackWithoutResult t = new TCWRImpl();
+			
+			transactionTemplate.execute(t);
 			
 			transaction1.pay(consumerId, amount);
 			
@@ -30,6 +40,9 @@ public class BuyTicketServiceImpl implements BuyTicketService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		System.out.println("완료");
 		
 		return -1;
 	}
