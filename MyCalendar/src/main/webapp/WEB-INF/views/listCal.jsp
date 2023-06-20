@@ -122,7 +122,7 @@
 					
 					<td class="writer"><input type="checkbox" name="chk" value="${dto.id }"></td>
 					<td class="writer"><a href="/deletecal?id=${dto.id }">삭제</a></td>
-
+					
 					<td class="writer">${dto["writer"] }</td>
 					<td class="writer"><a href="/writeFormcal">4</a><br>
 					<td class="writer"><a href="/writeFormcal">4</a><br>

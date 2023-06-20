@@ -18,6 +18,7 @@
 	<textarea name="content" cols="29" rows="11" wrap="hard" placeholder="내용을 입력하세요. &#13;&#10;&#13;&#10;">${dto.content }</textarea><br>
 	<input type="hidden" name="id" value="${dto.id }">
 	<input type="submit" value="수정하기">
+	<input type="submit" value="삭제"><a href="/deletecal?id=${dto.id }"></a>
 </form>
 
 </body>
