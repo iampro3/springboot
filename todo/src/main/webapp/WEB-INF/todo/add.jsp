@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/loginCheck">
-		id :<input type="text" name="id"><br>
-		pw :<input type="password" name="pw"><br>
-		<input type="submit" value="로그인">
+	<h1>할일 추가</h1>
+	
+	<form action="/add" method="post">
+	
+		할일 : <input type="text" name="todo"><br>
+		마감일 : <input type="date" name="due_date"><br>
+		<input type="submit" value="등록">
+	
 	</form>
 </body>
 </html>
