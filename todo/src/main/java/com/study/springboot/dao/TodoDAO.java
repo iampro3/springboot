@@ -10,10 +10,12 @@ import com.study.springboot.dto.TodoDTO;
 public interface TodoDAO {
 
 	int insertTodo(TodoDTO todoDTO);
-	List<TodoDTO> selectTodo();
+	List<TodoDTO> selectTodo(TodoDTO todoDTO);
 	
 	TodoDTO detailTodo(int todo_id);
 	
 	int updateTodo(TodoDTO todoDTO);
 	int deleteTodo(TodoDTO todoDTO);
+
+	int totalCount();
 }

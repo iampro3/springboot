@@ -1,6 +1,7 @@
 package com.study.springboot.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,21 +70,55 @@ public class TodoController {
 	}
 	
 	@RequestMapping("/list.do")
-	public String list(Model model) {
+	public String list(
+			Model model,
+			
+			@RequestParam(value="pageNum", required=false)
+			// 파라메터 pageNum가 없는 경우
+//			int pageNum, // int에 null 들어가지 못함
+			Integer pageNum, // 정수이지만 null을 넣을 수 있는 타입
+			
+			HttpServletRequest request	// request가 page num를 담는다. page num을 추가하는 방법으로 활용
+	) {
 		TodoDTO todoDTO = new TodoDTO();
 		
-		int pageNum = 3;
+		System.out.println("pageNum : "+ pageNum);
+		if(pageNum == null) {		// if문으로 pageNum이 Integer 에서 null로 나올 때, pageNum을 1부터 시작하도록 설정해준다.
+			pageNum = 1;
+		}
+//		int pageNum = 3; // 현재 페이지 번호
+		
+		String cpp = request.getParameter("countPerPage");	// request.get parameter 은 들어오는 것들을 모두 받아준다.
 		int countPerPage = 10;
+		try {
+			
+			countPerPage = Integer.parseInt(cpp); // 한 페이지당 표시 수 : 형 변환해 준다.
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		int startNum = ((pageNum-1) * countPerPage) +1;
-		int endNum = startNum + (countPerPage -1);
+		// [paging]하기
+		int startNum = ((pageNum-1) * countPerPage) + 1;
+		int endNum = startNum + (countPerPage - 1);
+		System.out.println("startNum : "+ startNum +", endNum : "+ endNum);
 		
-		System.out.println("startNum : " + startNum);
+		// startnum 과 endnum을 설정해준다.
 		todoDTO.setStartNum(startNum);
 		todoDTO.setEndNum(endNum);
 		
-		List<TodoDTO> list = todoService.list();
+		request.setAttribute("pageNum", pageNum);	// pageNum은 DTO에 없다. startNum/endNum응로 선언했기 때문에
+		model.addAttribute("countPerPage", countPerPage);	// pageNum은 DTO에 없다. startNum/endNum응로 선언했기 때문에
+		
+		Map map = todoService.list(todoDTO);
+		List<TodoDTO> list = (List<TodoDTO>) map.get("list");
 		model.addAttribute("list", list);
+		
+		int total = (int) map.get("totalCount");
+		request.setAttribute("total", total);	// request로 보낸다. 전체 글이 몇 개인 지 담는다.
+		//java에서 사용할 수 있도록 담는다.			
+	
+		//model.addAttribute("map", map);
 		
 		return "todo/list";
 	}

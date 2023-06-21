@@ -20,12 +20,14 @@
 		)
 		
 	</insert>
-	
+	<select id="totalCount" resultType="int">
+		select count(*) from tb_todo
+	</select>
 	<select id="selectTodo" resultType="TodoDTO" parameterType="TodoDTO">
+
 		SELECT *
-		FROM
-		  (
-		  	SELECT rownum AS rnum,
+		FROM  (
+		   SELECT rownum AS rnum,
 		          todo_id,
 		          todo,
 		          due_date,
@@ -33,9 +35,11 @@
 		          u.user_id,
 		          u.name
 		   FROM tb_todo t
-		   LEFT OUTER JOIN tb_user u on(u.user_id = t.user_id))
+		   LEFT OUTER JOIN tb_user u on(u.user_id = t.user_id)
+		)
 		WHERE rnum <![CDATA[ >= ]]> #{startNum}
 		  AND rnum <![CDATA[ <= ]]> #{endNum}
+
 	</select>
 	
 	<select id="detailTodo"
@@ -63,7 +67,7 @@
 			    due_date = #{due_date}
 		    </if>
 		    <if test="checked == true">
-		    	done_date = sysdate <!-- true면 날짜 생성 -->
+		    	done_date = sysdate
 		    </if>
 		    <!--
 		    	글 수정할때도 checked는 false이므로
