@@ -1,5 +1,7 @@
 package com.study.springboot;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.service.BuyTicketService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class MyController {
@@ -19,9 +23,15 @@ public class MyController {
 	public String buy_ticket_card(
 			@RequestParam("consumerId") String consumerId,
 			@RequestParam("amount") String amount,
-			@RequestParam("error") String error
+			@RequestParam("error") String error,
+			HttpServletRequest request
 	) {
-		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// TODO
 		// xml - DAO 연결 [완료]
 		// DAO - Service

@@ -44,7 +44,7 @@ public class BuyTicketServiceImpl implements BuyTicketService {
 				}
 			});
 			
-			
+			return 1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class BuyTicketServiceImpl implements BuyTicketService {
 		
 		
 		System.out.println("완료");
-		
+		System.out.println("consumerId : " + consumerId);
 		return -1;
 	}
 

@@ -141,7 +141,7 @@ public class UserController {
 			model.addAttribute("message", "계정을 확인해주세요");
 		}
 		
-		return "user/login";
+		return "redirect:/list.do";
 	}
 
 	

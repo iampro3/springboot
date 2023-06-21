@@ -13,7 +13,7 @@
 			due_date,
 			user_id
 		) values (
-			seq_todo.nextval, <!--todo id확보함  -->
+			seq_todo.nextval,
 			#{todo},
 			#{due_date},
 			#{user_id}
@@ -21,7 +21,26 @@
 		
 	</insert>
 	
-	<select id="selectTodo" resultType="TodoDTO">
+	<select id="selectTodo" resultType="TodoDTO" parameterType="TodoDTO">
+		SELECT *
+		FROM
+		  (
+		  	SELECT rownum AS rnum,
+		          todo_id,
+		          todo,
+		          due_date,
+		          done_date,
+		          u.user_id,
+		          u.name
+		   FROM tb_todo t
+		   LEFT OUTER JOIN tb_user u on(u.user_id = t.user_id))
+		WHERE rnum <![CDATA[ >= ]]> #{startNum}
+		  AND rnum <![CDATA[ <= ]]> #{endNum}
+	</select>
+	
+	<select id="detailTodo"
+			parameterType="int" 
+			resultType="TodoDTO">
 		select 
 			todo_id,
 			todo,
@@ -30,9 +49,52 @@
 			user_id
 		from
 			tb_todo
+		where
+			todo_id = #{todo_id}
 	</select>
 	
+	<update id="updateTodo"
+			parameterType="TodoDTO">
+		/* toto.updateTodo */
+		update tb_todo
+		set 
+			<if test="todo != null and due_date != null">
+			    todo = #{todo},
+			    due_date = #{due_date}
+		    </if>
+		    <if test="checked == true">
+		    	done_date = sysdate <!-- true면 날짜 생성 -->
+		    </if>
+		    <!--
+		    	글 수정할때도 checked는 false이므로
+		    	글 수정할때는 제외하는 조건 추가 
+		     -->
+		    <if test="checked != true and (todo == null or due_date == null)">
+		    	done_date = null
+		    </if>
+		    <!-- 
+		    <choose>
+		    	<when test="todo != null and due_date != null">
+			    	todo = #{todo},
+				    due_date = #{due_date}
+		    	</when>
+		    	<otherwise>
+		    		done_date = sysdate
+		    	</otherwise>
+		    </choose>
+		     -->
+		where
+		    todo_id = #{todo_id}
+			
+	</update>
+	
+	<delete id="deleteTodo"
+			parameterType="TodoDTO">
+		
+		DELETE 
+			tb_todo
+		WHERE 
+			todo_id = 1
+			
+	</delete>
 </mapper>
-
-
-

@@ -11,7 +11,7 @@
 	
 	<form action="/add" method="post">
 	
-		할일 : <input type="text" name="todo"><br>
+		할일 : <input type="text" name="todo" value="${todo }"><br>
 		마감일 : <input type="date" name="due_date"><br>
 		<input type="submit" value="등록">
 	

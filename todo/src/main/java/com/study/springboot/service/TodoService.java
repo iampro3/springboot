@@ -9,4 +9,7 @@ public interface TodoService {
 	int addTodo(TodoDTO todoDTO);
 	List<TodoDTO> list();
 	
+	TodoDTO detailTodo(int todo_id);
+	int updateTodo(TodoDTO todoDTO);
+	int deleteTodo(TodoDTO todoDTO);
 }
