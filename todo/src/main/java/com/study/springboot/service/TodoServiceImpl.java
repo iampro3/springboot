@@ -23,7 +23,7 @@ public class TodoServiceImpl implements TodoService{
 //		for(int i=0; i<100; i++) {
 //			String old = todoDTO.getTodo();
 //			todoDTO.setTodo(old +"_"+ i);
-			
+//			
 		result = todoDAO.insertTodo(todoDTO);
 			
 //			todoDTO.setTodo(old);

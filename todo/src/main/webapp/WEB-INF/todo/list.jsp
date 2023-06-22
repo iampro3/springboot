@@ -35,6 +35,7 @@
 			<div class="title">삭제</div>
 		</div>
 
+	<c:if test="${not empty list}">
 		<c:forEach var="item" items="${list}">
 		<div class="row">
 			<div class="todo">${item.todo_id }</div>
@@ -63,81 +64,89 @@
 			</div>
 		</div>
 		</c:forEach>
-		
-<%-- 		total :${total } --%>
+	</c:if>
+	<c:if test="${empty list}">
+		<div style="border:1px solid black; padding:50px; text-align: center;">등록된 내용이 없습니다</div>
+	</c:if>
 		<%
-// 			int total2 = (int)request.getAttribute("total");
-// 			out.print("out.println:" +total2+"<br>");
-			int total = (int)request.getAttribute("total");
-			int countPerPage = (int)request.getAttribute("countPerPage");
-			
-			double lastPage = Math.ceil((double )total/ (double)countPerPage);
-			
-			/* 페이징 그룹 */
-			int groupCount =3;
+// 			int total2 = (int) request.getAttribute("total");
+// 			if(true){
+// 				out.print("out.println : "+total2+"<br>");
+// 			}
+
+			int total = (int) request.getAttribute("total");
+			int countPerPage = (int) request.getAttribute("countPerPage");
+// 			ceil(101/10) == 11
+			double lastPage = Math.ceil( (double)total / (double)countPerPage);
+
+			// 페이징 그룹
+			// 한 그룹당 보여줄 수
+			int groupCount = 5;
 			// 현재 페이지
-			int pageNum = (int) request.setAttribute("pageNum");
-			// 현재속한 그룹. 
-			double group = Math.floor((((double)pageNum-1) /groupCount) +1);
-			//그룹의 시작 페이지, 끝페이지
-			int end = (int)group * groupCount; 
-			int begin = end - (groupCount -1);			
-			
-			// 마지막 페이지가 lastPage보다 크면 마지막 페이지로 잡는다.
+			int pageNum = (int) request.getAttribute("pageNum");
+			// 현재 속한 그룹
+			double group = Math.floor((((double)pageNum-1) / groupCount) + 1);
+			// 그룹의 시작 페이지, 끝 페이지
+			int end = (int)group * groupCount;
+			int begin = end - (groupCount - 1);
+			System.out.println("group: "+ group);
+			System.out.println("end: "+ end);
+			System.out.println("begin: "+ begin);
 			if(end > lastPage){
 				end = (int)lastPage;
 			}
 			
-			// scope 
-			pageContext.setAttribute("a",1);
-			// dom 에 올린다.
-			session.setAttribute("test",3);
-			application.setAttribute("test2", 4); // tomcat에 올린다.
-		%> 
-		
-		<!-- 확인하기 -->
- 		lastPage  : <%=lastPage  %><br>	<!-- java 표현이다. --> 
-		
-<%-- 		<c:set var="total3" value="<%=total2 %>" scope="page"/> --%>
-<%-- 		total3 :${total3 }<br> <!-- el태그로 바꿀 수 있게 메모리에 올릴 수 있도록 한다. --> --%>
-<%-- 		total2 :${total2 }<br>	<!-- 출력 안 됨 --> --%>
-<%-- 		pageNum :${pageNum }  --%>
-
-
-		<!-- c:foreach or java로 for 문 활용 -->
-		<div style ="width:200px; margin:0 auto"> 
-		<%
-			if(begin!=1){				
-			%>
-				<a href="/list.do?pageNum=<%= begin-1 %> ">[이전]</a>
-			<%				
-			}
-			%>
-		<%
-			for (int i=begin; i<end; i++){
+			// scope 관련
+			pageContext.setAttribute("a", 1);
+			request.setAttribute("p", 2);
+			session.setAttribute("test", 3);
+			application.setAttribute("test2", 4);
 		%>
-			<a href="/list.do?pageNum=<%= i %> ">
-				<c:set var="i2" value="<%=i %>" scope="page"/> <!-- scope : 변수가 저장되는 영역 설정(page | request | session | application 생략가능 생략시 기본값은 page) -->
-				<c:if test="${pageNum eq i2} ">
-						<strong><%=i %></strong>
+ 		total: <%= total%><br>
+ 		countPerPage: <%= countPerPage%><br>
+ 		lastPage: <%= lastPage%><br>
+		
+<%-- 		total2: <%= total2 %><br>
+		
+		<c:set var="total3" value="<%= total2 %>" scope="page"></c:set>
+		total3: ${total3 }<br>
+		total2: ${total2 }<br>
+		total: ${total }<br>
+ --%>
+ 		
+		<div style="width:200px; margin: 0 auto">
+		<%
+			if(begin != 1){
+		%>				
+				<a href="/list.do?pageNum=<%= begin-1 %>">[이전]</a>
+		<%
+			}
+		%>
+		<% 
+			for(int i=begin; i<=end; i++){
+		%>
+			<a href="/list.do?pageNum=<%= i %>">
+				<c:set var="i2" value="<%= i %>" scope="page"></c:set>
+				<c:if test="${pageNum eq i2}">
+					<strong><%= i %></strong>
 				</c:if>
-				<c:if test="${pageNum ne i2 } ">
-						<%=i %>
+				<c:if test="${pageNum ne i2}">
+					<%= i %>
 				</c:if>
 			</a>
-			<%
+		<%
 			}
-			%>
-			<%
-			if(end!=lastPage){
-			%>
-			<a href="/list.do?pageNum=<%= end+1 %> ">[다음]</a>
-			<%
+		%>
+		<%
+			if(end != lastPage){
+		%>				
+				<a href="/list.do?pageNum=<%= end+1 %>">[다음]</a>
+		<%
 			}
-			%>
+		%>
 			
-			
-			</div>
+		</div>
+		
 	</section>
 
 <script>
@@ -173,7 +182,6 @@
             }
             console.log("param", param)
             
-            // serialized -> "application/json" 94 줄, 위에 처럼 넣어야 한다.
             xhr.send(JSON.stringify(param));
             
             // 다녀오는게 끝났을때(응답 이후)

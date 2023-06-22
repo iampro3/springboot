@@ -1,5 +1,6 @@
 package com.study.springboot.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,6 +70,56 @@ public class TodoController {
 		return "redirect:/list.do";
 	}
 	
+	@RequestMapping("/list_csr.do")
+	public String list_csr() {
+		return "todo/list_csr";
+	}
+	
+	@RequestMapping(value="/api/todo", method=RequestMethod.GET)
+	@ResponseBody
+	public Map todoList(
+			@RequestParam(value="pageNum", required=false)
+			Integer pageNum,
+			HttpServletRequest request
+	) {
+		TodoDTO todoDTO = new TodoDTO();
+		
+		System.out.println("pageNum : "+ pageNum);
+		if(pageNum == null) {
+			pageNum = 1;
+		}
+		
+		String cpp = request.getParameter("countPerPage");
+		int countPerPage = 10;
+		try {
+			
+			countPerPage = Integer.parseInt(cpp); // 한 페이지당 표시 수
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		int startNum = ((pageNum-1) * countPerPage) + 1;
+		int endNum = startNum + (countPerPage - 1);
+		System.out.println("startNum : "+ startNum +", endNum : "+ endNum);
+		
+		todoDTO.setStartNum(startNum);
+		todoDTO.setEndNum(endNum);
+		
+		Map map = todoService.list(todoDTO);
+		List<TodoDTO> list = (List<TodoDTO>) map.get("list");
+		int total = (int) map.get("totalCount");
+		
+		Map returnMap = new HashMap();
+		returnMap.put("pageNum", pageNum);
+		returnMap.put("countPerPage", countPerPage);
+		returnMap.put("list", list);
+		returnMap.put("total", total);
+		
+		return returnMap;
+	}
+	
 	@RequestMapping("/list.do")
 	public String list(
 			Model model,
@@ -78,47 +129,45 @@ public class TodoController {
 //			int pageNum, // int에 null 들어가지 못함
 			Integer pageNum, // 정수이지만 null을 넣을 수 있는 타입
 			
-			HttpServletRequest request	// request가 page num를 담는다. page num을 추가하는 방법으로 활용
+			HttpServletRequest request
 	) {
 		TodoDTO todoDTO = new TodoDTO();
 		
 		System.out.println("pageNum : "+ pageNum);
-		if(pageNum == null) {		// if문으로 pageNum이 Integer 에서 null로 나올 때, pageNum을 1부터 시작하도록 설정해준다.
+		if(pageNum == null) {
 			pageNum = 1;
 		}
 //		int pageNum = 3; // 현재 페이지 번호
 		
-		String cpp = request.getParameter("countPerPage");	// request.get parameter 은 들어오는 것들을 모두 받아준다.
+		String cpp = request.getParameter("countPerPage");
 		int countPerPage = 10;
 		try {
 			
-			countPerPage = Integer.parseInt(cpp); // 한 페이지당 표시 수 : 형 변환해 준다.
+			countPerPage = Integer.parseInt(cpp); // 한 페이지당 표시 수
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		// [paging]하기
+		
 		int startNum = ((pageNum-1) * countPerPage) + 1;
 		int endNum = startNum + (countPerPage - 1);
 		System.out.println("startNum : "+ startNum +", endNum : "+ endNum);
 		
-		// startnum 과 endnum을 설정해준다.
 		todoDTO.setStartNum(startNum);
 		todoDTO.setEndNum(endNum);
 		
-		request.setAttribute("pageNum", pageNum);	// pageNum은 DTO에 없다. startNum/endNum응로 선언했기 때문에
-		model.addAttribute("countPerPage", countPerPage);	// pageNum은 DTO에 없다. startNum/endNum응로 선언했기 때문에
+		request.setAttribute("pageNum", pageNum);
+		model.addAttribute("countPerPage", countPerPage);
 		
 		Map map = todoService.list(todoDTO);
+//		model.addAttribute("map", map);
+
 		List<TodoDTO> list = (List<TodoDTO>) map.get("list");
 		model.addAttribute("list", list);
-		
+
 		int total = (int) map.get("totalCount");
-		request.setAttribute("total", total);	// request로 보낸다. 전체 글이 몇 개인 지 담는다.
-		//java에서 사용할 수 있도록 담는다.			
-	
-		//model.addAttribute("map", map);
+		request.setAttribute("total", total);
 		
 		return "todo/list";
 	}
@@ -149,7 +198,7 @@ public class TodoController {
 	}
 
 	@RequestMapping("/api/update")
-	@ResponseBody // list.jsp에서 json 출력하기 위해서 확인하려면 추가해야 함
+	@ResponseBody
 	public int update2(
 			@RequestBody TodoDTO todoDTO
 	) {
