@@ -20,14 +20,14 @@ public class TodoServiceImpl implements TodoService{
 	public int addTodo(TodoDTO todoDTO) {
 		
 		int result = 0; 
-//		for(int i=0; i<100; i++) {
-//			String old = todoDTO.getTodo();
-//			todoDTO.setTodo(old +"_"+ i);
-//			
+		for(int i=0; i<100; i++) {
+			String old = todoDTO.getTodo();
+			todoDTO.setTodo(old +"_"+ i);
+			
 		result = todoDAO.insertTodo(todoDTO);
 			
-//			todoDTO.setTodo(old);
-//		}
+			todoDTO.setTodo(old);
+		}
 		return result;
 		
 	}

@@ -43,11 +43,9 @@
 		    user_id = '1'
 	</update>
 	
-<!-- 	<delete id="deleteUser" parameterType="int"> int 도 사용 가능하고 UserDTO도 사용가능하다. application에서 dto를 써 줬기 때문에 -->
 	<delete id="deleteUser" parameterType="UserDTO">
 		delete 
 			tb_user
-			<!-- 			user_id = #{param1}  delete는 param1이 없어서 id로 변경해준다.-->
 		where
 			user_id = #{user_id}
 	</delete>
@@ -62,43 +60,41 @@
 			join_date) 
 		values (
 			seq_tb_user.nextval,
-			#{id},	<!-- userDTO에서 꺼내온 id로 변경해주기 -->
-			#{pw},	<!-- userDTO에서 꺼내온 pw로 변경해주기 -->
-			#{name},		<!-- userDTO에서 꺼내온 id로 변경해주기 -->
+			#{id},
+			#{pw},
+			#{name},
 			sysdate
 		)
 	</insert>
 	
 	<select id="loginCheck" 
 			parameterType="UserDTO"
-			resultType="int">	<!-- 전달인자는 parameterType="UserDTO"  -->
+			resultType="int">
 		select 
-			count(*) as count	<!-- 변수명에 (*)  사용못함, $와 _ 만 사용가능 / as count추가하여 사용 가능 /dto에 private Date join_date;추가하고 -->
+			count(*) as count
 		from tb_user
 		where id = #{id} and pw = #{pw}
 	</select>
 
 	<select id="idCheck" 
 			parameterType="UserDTO"
-			resultType="int">	<!-- 전달인자는 parameterType="UserDTO"  -->
+			resultType="int">
 		select 
-			count(*) as count	<!-- 변수명에 (*)  사용못함, $와 _ 만 사용가능 / as count추가하여 사용 가능 /dto에 private Date join_date;추가하고 -->
+			count(*) as count
 		from tb_user
 		where id = #{id}
 	</select>
 	
 	<select id="selectUserInfo" 
 			parameterType="UserDTO"
-			resultType="UserDTO">	<!-- 전달인자는 parameterType="UserDTO"  -->
+			resultType="UserDTO">
 		select 
 			user_id, 
 			id, 
 			pw, 
 			name, 
-			join_date 			
-
+			join_date
 		from tb_user
 		where id = #{id} and pw = #{pw}
 	</select>
-	
 </mapper>

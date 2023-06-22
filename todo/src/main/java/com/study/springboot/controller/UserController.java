@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.springboot.common.Const;
+import com.study.springboot.dao.UserDAO;
 import com.study.springboot.dto.UserDTO;
 import com.study.springboot.service.UserService;
 
@@ -23,6 +26,9 @@ public class UserController {
 	
 	@Autowired 
 	UserService userService;
+	
+	@Autowired
+	UserDAO userDAO;
 	
 	@RequestMapping("/")
 	public String login(
@@ -102,6 +108,20 @@ public class UserController {
 			return "user/joinForm";
 		}
 		return "user/login";
+	}
+	
+	@RequestMapping(value="/api/todo", method=RequestMethod.POST)
+	@ResponseBody
+	public int idCheck(
+			@RequestBody
+			UserDTO userDTO	// id, name, pw 등등의 DTO의 값들로 보낼 수 있다.
+			) {
+		
+		System.out.println("[POST] /api/todo userDTO.getID() :"+ userDTO.getId());		
+		
+		
+		int countId = userDAO.idCheck(userDTO);
+		return countId;		
 	}
 	
 	
