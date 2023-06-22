@@ -114,16 +114,14 @@ public class UserController {
 	@ResponseBody
 	public int idCheck(
 			@RequestBody
-			UserDTO userDTO	// id, name, pw 등등의 DTO의 값들로 보낼 수 있다.
-			) {
-		
-		System.out.println("[POST] /api/todo userDTO.getID() :"+ userDTO.getId());		
-		
+			UserDTO userDTO
+	) {
+		System.out.println("[POST] /api/todo userDTO.getId() : "+ userDTO.getId());
 		
 		int countId = userDAO.idCheck(userDTO);
-		return countId;		
+		
+		return countId;
 	}
-	
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {

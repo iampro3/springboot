@@ -20,15 +20,15 @@ public class TodoServiceImpl implements TodoService{
 	public int addTodo(TodoDTO todoDTO) {
 		
 		int result = 0; 
-		for(int i=0; i<100; i++) {
-			String old = todoDTO.getTodo();
-			todoDTO.setTodo(old +"_"+ i);
-			
+		/*// 리스트에 목록 5개씩 추가 생성하기
+		 * for(int i=0; i<5; i++) { String old = todoDTO.getTodo(); todoDTO.setTodo(old
+		 * +"_"+ i);
+		 */		
 		result = todoDAO.insertTodo(todoDTO);
 			
-			todoDTO.setTodo(old);
-		}
-		return result;
+		/*
+		 * todoDTO.setTodo(old); }
+		 */		return result;
 		
 	}
 
