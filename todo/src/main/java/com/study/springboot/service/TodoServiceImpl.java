@@ -28,8 +28,7 @@ public class TodoServiceImpl implements TodoService{
 			
 		/*
 		 * todoDTO.setTodo(old); }
-		 */		return result;
-		
+		 */		return result;		
 	}
 
 	@Override

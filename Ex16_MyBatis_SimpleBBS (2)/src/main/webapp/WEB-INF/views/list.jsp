@@ -39,6 +39,7 @@
 				<td>글번호</td>
 				<td>작성자</td>
 				<td>제목</td>
+				<td>부모글</td>
 				<!-- 		<td>글 내용</td> -->
 				<td>삭제</td>
 			</tr>
@@ -48,6 +49,7 @@
 					<td>${dto.id }</td>
 					<td>${dto["writer"] }</td>
 					<td><a href="/view?id=${dto.id }">${dto.title }</a></td>
+					<td>${dto.parent_id }</td>
 					<%-- 		<td>${dto.content }</td> --%>
 					<td><a href="/delete?id=${dto.id }">삭제</a></td>
 				</tr>

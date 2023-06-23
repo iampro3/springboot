@@ -73,10 +73,13 @@
 			simple_bbs
 		<where>
 			<if test=" title != null and title != '' ">
-				and title = #{title}
+				and upper(title)= upper(#{title})
 			</if>
 			<if test=" writer != null and writer != '' ">
-				and writer = #{writer}
+<!-- 				and upper(writer) = upper(#{writer}) -->
+
+				and upper(writer) = upper(#{writer})
+				and upper (writer)  like '%' || upper(#{writer}) || '%'
 			</if>
 		</where>
 		order by 
@@ -101,8 +104,10 @@
 					AND title IS NULL
 				</otherwise>
 			</choose>
-		</where>		
-	</select>		
+		</where>
+		
+	</select>
+	
 	
 	<select id="testForeach"
 		parameterType="SimpleBbsDto"
@@ -114,7 +119,7 @@
 			simple_bbs
 		<where>
 			<if test="chk != null">
-				id in
+				id in 
 				<foreach 
 					item="value" 
 					collection="chk" 

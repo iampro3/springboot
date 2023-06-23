@@ -16,5 +16,6 @@ ${dto.content }
 <br>
 <a href="/list">목록으로</a><br>
 <a href="/modifyForm?id=${dto.id }">수정하기</a>
+<a href="/reply?id=${dto.id }">답글달기</a>
 </body>
 </html>

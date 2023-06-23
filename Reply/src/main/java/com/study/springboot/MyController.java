@@ -15,6 +15,7 @@ import com.study.springboot.dao.ISimpleBbsDao;
 import com.study.springboot.dto.SimpleBbsDto;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -31,7 +32,9 @@ public class MyController {
 		Boolean isLogon = (Boolean) req.getSession().getAttribute("isLogon");
 		if(isLogon == null || isLogon != true) {
 			return "login";
-		}		
+		}
+
+		
 		return "writeForm";
 	}
 	
@@ -52,17 +55,23 @@ public class MyController {
 		HttpSession session = req.getSession();
 		session.invalidate();
 		return "login";
-	}	
+	}
+	
 	
 	@RequestMapping("/write")
 	public String write(
 			@ModelAttribute SimpleBbsDto dto,
-			Model model
-	) {		
+			Model model,
+			HttpServletResponse response
+	) {
+		
+		
 		// 요청한 내용을 받아서 변수에 저장
 		String writer = dto.getWriter();
 		String title = dto.getTitle();
-		String content = dto.getContent();		
+		String content = dto.getContent();
+
+		
 		
 		// 콘솔에 출력
 		System.out.println("writer : "+ writer);
@@ -73,14 +82,9 @@ public class MyController {
 		int result = dao.writeDao(writer, title, content);
 		System.out.println("writeDao result : "+ result);
 		
+//		response.sendRedirect("/list");
 //		return userlistPage(model);
 		return "redirect:/list";
-	}
-	
-	@RequestMapping("/reply")
-	public String reply() {
-		
-		return "/reply";
 	}
 	
 	@RequestMapping("/list")
@@ -90,6 +94,7 @@ public class MyController {
 		if(isLogon == null || isLogon != true) {
 			return "login";
 		}
+		System.out.println(1);
 		List<SimpleBbsDto> list = dao.listDao();
 		
 		model.addAttribute("list", list);

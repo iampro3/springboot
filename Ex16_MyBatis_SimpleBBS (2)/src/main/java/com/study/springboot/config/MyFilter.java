@@ -64,9 +64,6 @@ public class MyFilter implements Filter {
 			e.printStackTrace();
 		}
 		
-
-	
-		
 /*		
 		System.out.println("------------");
 		
@@ -81,5 +78,4 @@ public class MyFilter implements Filter {
 		System.out.println("Filter 동작 완료");
 */
 	}
-
 }

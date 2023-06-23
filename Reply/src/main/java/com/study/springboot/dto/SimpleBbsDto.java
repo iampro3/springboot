@@ -7,7 +7,6 @@ public class SimpleBbsDto {
 	private String title;
 	private String content;
 	private String[] chk;
-	private Integer parent_id;
 	
 	public int getId() {
 		return id;
