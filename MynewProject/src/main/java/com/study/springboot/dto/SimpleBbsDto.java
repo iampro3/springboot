@@ -10,6 +10,8 @@ public class SimpleBbsDto {
 	private String title;
 	private String content;
 	private String[] chk;	// chk box
+	private Integer parent_id;
+	private Integer lv;
 	
 	public String[] getChk() {
 		return chk;		// mycontroller : list_chk = dto.getChk();
@@ -40,5 +42,19 @@ public class SimpleBbsDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public Integer getParent_id() {
+		return parent_id;
+	}
+	public void setParent_id(Integer parent_id) {
+		this.parent_id = parent_id;
+	}
+	
+	public Integer getLv() {
+		return lv;
+	}
+	public void setLv(Integer lv) {
+		this.lv = lv;
 	}
 }

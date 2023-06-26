@@ -23,6 +23,58 @@
 			id desc
 	</select>
 
+	<select id="listWithDepthDao" resultType="com.study.springboot.dto.SimpleBbsDto">
+	<!-- 	with td_recu (lv, TODO_ID, TODO, DUE_DATE, DONE_DATE, USER_ID, PARENT_ID) as (
+		    select  
+		        1 as lv,
+		        TODO_ID, TODO, DUE_DATE, DONE_DATE, USER_ID, PARENT_ID
+		    from 
+		        tb_todo
+		    where 
+		        parent_id is null
+		    
+		    union all
+		        
+		    select
+		        t.lv + 1 as lv,
+		        td.TODO_ID, 
+		        lpad(' + ', t.lv ,' + ') || td.TODO, 
+		        td.DUE_DATE, 
+		        td.DONE_DATE, td.USER_ID, td.PARENT_ID
+		    from td_recu t
+		    left outer join tb_todo td on td.parent_id = t.TODO_ID
+		    where td.parent_id is not null
+		)
+		search depth first by (TODO_ID) set sort_TODO_ID
+		select * from td_recu
+		order by sort_TODO_ID -->
+		
+		<!-- simplebbs로 가져오기 -->
+			with bbs_recu (lv, id, writer, title, content, parent_id) as (
+			    select  
+			        1 as lv,
+			        id, writer, title, content, parent_id
+			    from 
+			        simple_bbs
+			    where 
+			        parent_id is null
+			    
+			    union all
+			    
+			    select
+			        r.lv + 1 as lv,
+			        bbs.id, bbs.writer, 
+			        bbs.title, 
+			        bbs.content, bbs.parent_id
+			    from bbs_recu r
+			    left outer join simple_bbs bbs on bbs.parent_id = r.id
+			    where bbs.parent_id is not null
+			)
+			search depth first by id desc set sort_id
+			select * from bbs_recu
+			order by sort_id
+	</select>
+	
 	<select id="test_listDao" resultType="com.study.springboot.dto.SimpleBbsDto">
 			select 
 				* 

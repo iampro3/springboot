@@ -8,7 +8,14 @@ public class SimpleBbsDto {
 	private String content;
 	private String[] chk;
 	private Integer parent_id;
+	private Integer lv;
 	
+	public Integer getLv() {
+		return lv;
+	}
+	public void setLv(Integer lv) {
+		this.lv = lv;
+	}
 	public int getId() {
 		return id;
 	}

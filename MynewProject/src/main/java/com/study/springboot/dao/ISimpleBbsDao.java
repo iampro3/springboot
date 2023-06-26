@@ -10,6 +10,7 @@ import com.study.springboot.dto.SimpleBbsDto;
 public interface ISimpleBbsDao {
 	
 	public abstract List<SimpleBbsDto> listDao();
+	List<SimpleBbsDto> listWithDepthDao();
 	
 	SimpleBbsDto viewDao(String id);
 	

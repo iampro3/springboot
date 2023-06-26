@@ -28,6 +28,33 @@
 			id desc
 	</select>
 	
+	<select id="listWithDepthDao" resultType="com.study.springboot.dto.SimpleBbsDto">
+	<!-- simplebbs로 가져오기 -->
+			with bbs_recu (lv, id, writer, title, content, parent_id) as (
+			    select  
+			        1 as lv,
+			        id, writer, title, content, parent_id
+			    from 
+			        simple_bbs
+			    where 
+			        parent_id is null
+			    
+			    union all
+			    
+			    select
+			        r.lv + 1 as lv,
+			        bbs.id, bbs.writer, 
+			        bbs.title, 
+			        bbs.content, bbs.parent_id
+			    from bbs_recu r
+			    left outer join simple_bbs bbs on bbs.parent_id = r.id
+			    where bbs.parent_id is not null
+			)
+			search depth first by id desc set sort_id
+			select * from bbs_recu
+			order by sort_id
+	</select>
+	
 
 	<select id="viewDao" 
 			resultType="com.study.springboot.dto.SimpleBbsDto"

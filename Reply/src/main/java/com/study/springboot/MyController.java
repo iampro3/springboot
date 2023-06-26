@@ -99,7 +99,8 @@ public class MyController {
 			return "login";
 		}
 		System.out.println(1);
-		List<SimpleBbsDto> list = dao.listDao();
+//		List<SimpleBbsDto> list = dao.listDao();
+		List<SimpleBbsDto> list = dao.listWithDepthDao();
 		
 		model.addAttribute("list", list);
 		

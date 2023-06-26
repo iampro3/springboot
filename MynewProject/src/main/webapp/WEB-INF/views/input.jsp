@@ -46,7 +46,7 @@
 
                                 <!-- tel-->
                               <div class="sign-inputbox">
-                                <input type="tel" name="tel" placeholder="전화번호">
+                                <input type="phone" name="phone" placeholder="전화번호">
                                 <span class="border"></span>
                                 </div>
 

@@ -44,7 +44,10 @@
 					<td><input type="checkbox" name="chk" value="${dto.id }"></td>
 					<td>${dto.id }</td>
 					<td>${dto["writer"] }</td>
-					<td><a href="/view?id=${dto.id }">${dto.title }</a></td>
+					<td style ="padding-left: ${(dto.lv-1)*20}px;">
+							<c:if test="${dto.lv != 1}">ㄴ</c:if>
+							<a href="/view?id=${dto.id }" >
+							${dto.title }</a></td>
 					<td>${dto.parent_id }</td>
 					<%-- 		<td>${dto.content }</td> --%>
 					<td><a href="/delete?id=${dto.id }">삭제</a></td>
