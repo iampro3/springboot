@@ -5,8 +5,8 @@
 <style>
 .header{
 	border:1px solid black;
-	height:100px
-	width:70px
+	height:500px
+	width:170px
 	margin:20px auto;	
 }
 </style>
