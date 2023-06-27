@@ -2,56 +2,102 @@ package com.study.springboot;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class MyController {
-
+	
+	
 	@RequestMapping("/uploadForm")
-	public String uploadForm() {
-		String path= "c:/file";	// 상위폴더로 하면 목록이 모두 호출된다.
-		getFiles(path); // getFiles 함수를 여기서 호출함
-		return "fileForm";		
+	public String uploadForm(Model model) {
+		
+		String path = "c:/file";
+		List list = getFiles(path);
+		model.addAttribute("fileList", list);
+		/*
+		List list1 = new ArrayList();
+		List list2 = new ArrayList();
+		
+		list1.add(1);
+		list1.add(2);
+		list1.add(3);
+		
+		list2.add(4);
+		list2.add(5);
+		list2.add(6);
+		
+		list1.addAll(list2);
+		for(int i=0; i<list1.size(); i++) {
+			System.out.println( list1.get(i) );
+		}
+		*/
+		
+		return "fileForm";
 	}
 	
-	void getFiles(String path) {
-				
-		File file = new File (path);
-		// 실제 파일이나 디렉토리가 있는지 검사 필요
+	
+	// 파일 목록을 가져오기
+	List getFiles(String path) {
 		
-		//파일이나 디렉토리 목록들을 텍스트로 추출하기
-		String[] files = file.list();
-//		 File 객체로 가져오기
-		File[] listFiles = file.listFiles();
+		File file = new File(path);
+		// TODO 
+		// 실제 파일이나 디렉토리(폴더)가 있는지 검사 필요
+		
+		// 파일이나 디렉토리 목록들
+		String[] files = file.list(); // 이름만 가져오기
+		
+		File[] listFiles = file.listFiles(); // File 객체로 가져오기
+		
+		
+		List list = new ArrayList();
 		
 		for(int i=0; i<listFiles.length; i++) {
-			File tempFile = listFiles[i];
-			if(tempFile.isDirectory()) {
-				System.out.println("폴더이고 이름은 :" + tempFile.getName());
-				System.out.println("폴더이고 이름은 :" + tempFile.getPath());
+			File tmpFile = listFiles[i];
+			// 폴더라면
+			if( tmpFile.isDirectory() ) {
+				System.out.println("폴더이고 이름은 : "+ tmpFile.getName());
+				System.out.println("폴더이고 경로는 : "+ tmpFile.getPath());
 				
-				// 재귀호출 : 내가 나를 다시 부르기
-				getFiles(tempFile.getPath());
-			}else {
+				// 재귀호출; 내가 나를 다시 부르기
+				List subList = getFiles( tmpFile.getPath() );
+				list.addAll(subList);
+				System.out.println("---------- 오늘 폴더 완료");
+			} else {
 				System.out.println("파일이고");
-				System.out.println("이름 :" + tempFile.getName());
-				System.out.println("크기 :" + tempFile.length());
-				System.out.println("경로 :" + tempFile.getPath());
+				System.out.println("이름: "+ tmpFile.getName());
+				System.out.println("크기: "+ tmpFile.length());
+				System.out.println("경로: "+ tmpFile.getPath());
+				
+				Map map = new HashMap();
+				map.put("name", tmpFile.getName());
+				map.put("size", tmpFile.length());
+				map.put("path", tmpFile.getPath());
+				
+				list.add( map );
 			}
 		}
+		
+		return list;
 	}
 	
 	@RequestMapping("/uploadOk")
-	@ResponseBody	// upload 하면 success,실패하면 fail
+	@ResponseBody
 	public String uploadOk(
 			@RequestParam("filename") 
 			MultipartFile multipartFile
@@ -66,8 +112,7 @@ public class MyController {
 			// 절대 주소; 단, 다른 pc에서는 다른 경로일 수 있다
 			String path = "c:/file/upload";
 			
-			// 디렉토리를 확인하고, 있다면  msg 출력하고, 없다면 생성하라.
-			File dir = new File(path);	
+			File dir = new File(path);
 			
 			if(dir.exists()) { // 존재하느냐?
 				System.out.println(path +" : 디렉토리가 존재합니다.");
@@ -79,7 +124,6 @@ public class MyController {
 					System.out.println(path +" : 디렉토리를 생성에 실패했습니다.");
 				}
 			}
-			
 			
 			// 상대적인 주소 classpath를 이용하는 방법
 //			String path = ResourceUtils.getFile("classpath:static/upload").toPath().toString();
@@ -104,56 +148,65 @@ public class MyController {
 		return "success";
 	}
 	
-		@RequestMapping("/download")
-		@ResponseBody
-		public String download(
-				HttpServletResponse response
-				) {
+	@RequestMapping("/download")
+	@ResponseBody
+	public String download(
+			HttpServletResponse response,
+			@RequestParam("path") String path
+			) {
+		
+		String repo = "c:/file/upload/";
+		String fileName = "a.txt";
+		System.out.println("path: "+ path);
+		
+		try {
+//			File file = new File(repo + fileName);
+			File file = new File(path);
 			
-//			download받는 파일
-			String repo = "c:/file/upload/";
-			String fileName = "1.png";			
-			try {
+			// 읽는거니까 input stream을 열어서
+			// 실제 파일을 메모리에 로딩
+			InputStream is = new FileInputStream( file );
+
 			
+			// 브라우저가 전달받은 내용을 파일로 인식하게 만듦
+			response.setHeader("Content-disposition", "attachment; fileName="+ fileName);
+			// 브라우저가 cache를 사용하지 않도록; 매번 다운로드 되도록
+			response.addHeader("Cache-Control", "no-cache");
 			
-				File file = new File(repo + fileName);
+			// 파일을 내보낼 수 있는 흐름을 열어서 준비
+			OutputStream out = response.getOutputStream();
+
+			byte[] buffer = new byte[4 * 1024]; // 4KB
+			
+//			while(is.read(buffer) != -1) {
+			while(true) {
+				// inputStream에서 buffer만큼 읽어서
+				int count = is.read(buffer);
+				System.out.println("읽은 크기 : count : "+ count);
 				
-				// 읽는 것이니 InputStream을 열어서 실제 파일을 메모리에 로딩함				
-				FileInputStream is = new FileInputStream(file);	
-				// 브라우저가 전달받은 내용을 파일로 인식하게 만듦
-				response.setHeader("Content-disposition", "attachment; fileName=" + fileName);
-//				response.setHeader("Content-disposition", "attachment; fileName="+"b.txt");
-				// 브라우저가 캐쉬를 사용하지 않도록 / 매번 다운로드 되도록 설정한다. 
-				response.addHeader("Cash-Control", "no-cache");
-				// 열었으면 닫아주기. 메모리를 절약하기 위해서 
-				
-				// 파일을 내보낼 수 있는 흐름을 열어서 준비
-				OutputStream out = response.getOutputStream();
-				
-				byte[] buffer = new byte[4*1024]; // 4kb 씩 파일을 쪼개서 전송한다.
-				
-				while(is.read(buffer )!=-1) {
-				//아래와 동일한 구문이다.				
-//				while(true) {					
-					// inputStream에서 buffer만큼 읽어서
-					int count = is.read(buffer);
-					System.out.println("읽은 크기 : " + count);
-					
-					if(count== -1) {
-						break;
-					}
-					out.write(buffer, 0, count); // 처움부터 읽어라. : 0				
+				// 읽은 내용이 없으면 -1
+				if(count == -1) {
+					break;
 				}
 				
-				is.close();
-				out.close();
+				// 응답 흐름에 읽은 만큼 내보내기
+				out.write(buffer, 0, count);
 			}
-			catch (Exception e) {
-	
-				e.printStackTrace();
-			}					
 			
-			return "success";
+			is.close();
+			out.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		return "success";
 	}
-
+	
+	@RequestMapping("/readMail")
+	@ResponseBody
+	public void readMail(HttpServletRequest req) {
+		String id = req.getParameter("id");
+		System.out.println("id : "+ id);
+	}
+}

@@ -22,7 +22,4 @@ public interface ISimpleBbsDao {
 	
 	List testIF(SimpleBbsDto dto);
 	List testForeach(SimpleBbsDto dto);
-	
-	
-	
 }
