@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.springboot.dao.hotplaceDAO"> 
+		
+		<select id = "selectAllHot" resultType="hashmap">
+			select 
+				hotplace_id, name, addr
+			from 
+				hotplace
+		</select>
+		
+		<select id = "selectAllHot2" resultType="hashmap">
+			select 
+				hotplace_id, name, addr
+			from 
+				hotplace
+			where hotplace_id = -1	<!-- map = null이 호출된다. -->
+		</select>
+		
+		<select id = "selectHot" resultType="hashmap"
+				parameterType="int">
+<!-- 				parameterType="java.lang.Integer"> -->
+			select 
+				hotplace_id, name, addr
+			from 
+				hotplace
+			where hotplace_id = #{param1}	<!-- map = null이 호출된다. -->
+		</select>
+	
+		
+</mapper>
+
+
